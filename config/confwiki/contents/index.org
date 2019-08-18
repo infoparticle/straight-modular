@@ -1,0 +1,7 @@
+#+STARTUP: showeverything
+
+* Main
+
+[[file:../tmp/confwiki-inbox.org][Inbox]]
+
+[[file:emacsd.org][emacs.d]]

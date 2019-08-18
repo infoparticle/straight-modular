@@ -1,0 +1,23 @@
+#+TITLE: emacs.d
+#+Last Saved: <2019-August-18 01:15:14>
+
+* Modern Configs to Steal!
+
+** dustinlacewell's config
+
+http://dustinlacewell.github.io/emacs.d
+
+- It has neat hydra eyecandy
+- straight.el and some fixes to it
+- 
+[[file:../resources/ldleworks_init.el.pdf][Dustinlace Config in PDF]]
+
+** emacs.d worth studying
+
+https://github.com/bodil/ohai-emacs/blob/master/init.el
+
+worth studying modular structure
+
+A derived one: https://github.com/jamesnvc/dotfiles/commits/master/emacs.d
+
+Nice naming conventions

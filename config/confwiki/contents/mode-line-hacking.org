@@ -1,0 +1,64 @@
+#+TITLE: Mode-Line Hacking
+#+Last Saved: <2019-August-17 14:51:08>
+
+** My hackish 
+
+*** slate blue working handsom
+#+BEGIN_SRC emacs-lisp
+(defun init-mode-line-for-gui()
+  (progn
+    (setq-default mode-line-format
+                  (
+                   quote(
+                         " "
+                         (:eval
+                          (when (eql buffer-read-only t)
+                            (propertize " READ ONLY " 'face
+                                        '(; :background "color-88"
+                                          :foreground "white" :weight bold))))
+
+                         (:eval
+                          (propertize " %b " 'face
+                                      (if (buffer-modified-p)
+                                          '(;:background "white"
+                                            :foreground "white" :weight bold :slant italic :underline t)
+                                        '(;:background "white"
+                                          :foreground "white" :weight bold :underline nil))))
+                         "        "
+                         mode-line-misc-info)))
+
+    (set-face-attribute 'mode-line           nil :background "slateblue" :box '(:line-width 1 :color "slateblue" ))
+    (set-face-attribute 'mode-line-inactive  nil :background "gray60"   :box '(:line-width 1 :color "gray60" ))))
+#+END_SRC
+*** grey mode-line
+#+BEGIN_SRC emacs-lisp
+(setq mode-line-format
+      (
+       quote(
+             " "
+             (:eval
+              (when (eql buffer-read-only t)
+                (propertize " READ ONLY " 'face
+                            '(; :background "color-88"
+                              :foreground "gray60" :weight bold))))
+
+             (:eval
+              (propertize "  %b " 'face
+                          (if (buffer-modified-p)
+                              '(
+                                        ;:background "light slate blue"
+                                :background "gray90"
+                                :foreground "indian red"
+                                :weight bold :height 100 )
+                            '(
+                              :background "gray90"
+                              :foreground "gray20"
+                              :weight bold :underline nil :height 100 ))))
+             "        "
+             mode-line-misc-info)))
+
+(set-face-attribute 'mode-line           nil :background "gray90" :box '(:line-width 1 :color "gray80" ))
+(set-face-attribute 'mode-line-inactive  nil :background "gray90"   :box '(:line-width 1 :color "gray90" ))))
+
+#+END_SRC
+** Case Study - mood-line : minimilistic + UTF-8 icons

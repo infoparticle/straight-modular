@@ -58,5 +58,11 @@
   (load-file (expand-file-name file user-config-directory)))
 
 (load-user-file "core-boot.el")
+(load-user-file "conf-behaviour.el")
+(load-user-file "conf-defaults.el")
 (load-user-file "conf-evil.el")
 (load-user-file "conf-ui.el")
+(load-user-file "conf-org.el")
+(load-user-file "conf-helpers.el")
+(load-user-file "conf-programming.el")
+(load-user-file "conf-keybindings.el")

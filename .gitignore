@@ -2,3 +2,6 @@ straight/
 *.sw*
 *.zip
 *.*~
+transient/
+.cache/
+.recentf

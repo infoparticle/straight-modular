@@ -1,3 +1,12 @@
+#+TITLE: Conf Behaviour
+#+AUTHOR: Gopinath Sadasivam
+#+BABEL: :cache yes
+#+PROPERTY: header-args :tangle yes
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+** Bulk Config
+#+BEGIN_SRC emacs-lisp
 (use-package recentf
   :defer t
   :init
@@ -66,6 +75,14 @@
   :config
   )
 
+#+END_SRC
+
+** dired configs
+
+http://ergoemacs.org/emacs/emacs_dired_tips.html
+https://github.com/magnars/.emacs.d/blob/master/settings/setup-dired.el
+
+#+BEGIN_SRC emacs-lisp
 (setq dired-recursive-copies (quote always)) ;no asking
 (setq dired-recursive-deletes (quote top)) ; ask once
 (setq dired-dwim-target t)
@@ -79,4 +96,6 @@
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
 
 ; was dired-up-directory
-(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
+(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  
+#+END_SRC
+

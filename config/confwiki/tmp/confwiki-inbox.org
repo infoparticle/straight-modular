@@ -1,5 +1,5 @@
 #+TITLE: ConfWiki Inbox
-#+Last Saved: <2019-August-18 01:07:11>
+#+Last Saved: <2019-August-19 20:34:02>
 
 
 ** Mode-line
@@ -9,3 +9,32 @@ https://occasionallycogent.com/custom_emacs_modeline/index.html
 
 http://xahlee.info/comp/a_emoji_tale.html
 http://ergoemacs.org/emacs/emacs_n_unicode.html
+
+** Full text search on org files
+
+*** Lucene lisp!                                                                          :useful:promising:
+
+http://rudolfochrist.github.io/blog/2015/08/19/on-indexing-org-files/
+
+Looks promising and complete solution!
+
+- mdfind
+
+https://www.cliki.net/Montezuma
+
+*** recoll                                                                                :related:
+https://oremacs.com/2015/07/27/counsel-recoll/
+
+*** full-text-search to website                                                           :related:
+https://medium.com/dev-channel/how-to-add-full-text-search-to-your-website-4e9c80ce2bf4
+
+**** lunr.js
+https://lunrjs.com/guides/core_concepts.html
+
+** leaf.el - another package manger like use-package
+https://github.com/conao3/leaf.el
+
+* scratch
+
+https://ternjs.net/  - intelligent javascript editor!
+ 

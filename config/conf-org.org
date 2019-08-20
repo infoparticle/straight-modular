@@ -1,3 +1,13 @@
+#+TITLE: Conf Org
+#+AUTHOR: Gopinath Sadasivam
+#+BABEL: :cache yes
+#+PROPERTY: header-args :tangle yes
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+** Bulk Config
+#+BEGIN_SRC emacs-lisp 
+
 (setq
   time-stamp-active t          ; do enable time-stamps
   ;; time-stamp-line-limit 34     ; check first N buffer lines for Time-stamp: <2019-August-20 14:55:56>
@@ -118,7 +128,11 @@
 ;;(setq org-agenda-inhibit-startup t) ;; ~50x speedup
 ;;(setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
 (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+#+END_SRC
 
+** org-helpers
+
+#+BEGIN_SRC emacs-lisp
 (defun my/org/org-reformat-buffer ()
   (interactive)
   (when (y-or-n-p "Really format current buffer? ")
@@ -126,3 +140,4 @@
       (erase-buffer)
       (insert document)
       (goto-char (point-min)))))
+#+END_SRC

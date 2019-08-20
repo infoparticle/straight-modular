@@ -1,3 +1,18 @@
+#+TITLE: Conf Defaults
+#+AUTHOR: Gopinath Sadasivam
+#+BABEL: :cache yes
+#+PROPERTY: header-args :tangle yes
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+* Conf Defaults
+Provides sane defaults and improves the vanilla emacs.
+- encoding
+- backups
+- newline behaviour etc.
+
+** Bulk Config
+#+BEGIN_SRC emacs-lisp
 (setq load-prefer-newer t) ;; always load new .elc never older
 
 
@@ -80,6 +95,13 @@
 (eldoc-mode 1)
 (setq inhibit-compacting-font-caches t)
 
+#+END_SRC
+
+** Line numbers only for programming mode
+
+They can also toggled later on with =SPC+t+l=
+
+#+BEGIN_SRC emacs-lisp
 (when (version<= "26.0.50" emacs-version )
   ;(global-display-line-numbers-mode)
   (custom-set-faces
@@ -89,9 +111,15 @@
 ;  (add-hook 'org-mode-hook #'display-line-numbers-mode) ;; who needs linum in org mode!
 )
 
+
+#+END_SRC
+** Matching Parenthises
+;(setq show-paren-style 'expression)
+#+BEGIN_SRC emacs-lisp
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 (set-face-attribute 'show-paren-mismatch nil 
                     :weight 'bold :underline t :overline nil :slant 'normal)
 (custom-set-faces
  '(show-paren-match ((((class color) (background light)) (:background "linen")))))
+#+END_SRC

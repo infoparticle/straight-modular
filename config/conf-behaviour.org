@@ -136,3 +136,15 @@ https://github.com/magnars/.emacs.d/blob/master/settings/setup-dired.el
   (progn
     (add-hook 'after-init-hook 'global-company-mode)))
 #+END_SRC
+** projectile
+
+Have to come before loading org mode, to setup wiki workspaces (SPC-p-w)
+Let's not defer it must be loaded to work with org-wiki setups.
+
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :diminish projectile-mode
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode))
+#+END_SRC

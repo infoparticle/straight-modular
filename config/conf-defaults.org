@@ -106,22 +106,6 @@ Provides sane defaults and improves the vanilla emacs.
 (setq scroll-conservatively 10000)
 (setq directory-free-space-args "-Pm")
 #+END_SRC
-** Line numbers only for programming mode
-
-They can also toggled later on with =SPC+t+l=
-
-#+BEGIN_SRC emacs-lisp
-(when (version<= "26.0.50" emacs-version )
-  ;(global-display-line-numbers-mode)
-  (custom-set-faces
-    ;'(line-number ((t (:inherit default :foreground "gray80" :background "gray95")))))
-    '(line-number ((t (:inherit default :foreground "gray80")))))
-  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
-;  (add-hook 'org-mode-hook #'display-line-numbers-mode) ;; who needs linum in org mode!
-)
-
-
-#+END_SRC
 ** Matching Parenthises
 ;(setq show-paren-style 'expression)
 #+BEGIN_SRC emacs-lisp

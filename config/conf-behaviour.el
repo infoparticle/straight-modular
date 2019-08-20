@@ -100,3 +100,9 @@
   :config
   (progn
     (add-hook 'after-init-hook 'global-company-mode)))
+
+(use-package projectile
+  :diminish projectile-mode
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode))

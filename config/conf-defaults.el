@@ -86,15 +86,6 @@
 (setq scroll-conservatively 10000)
 (setq directory-free-space-args "-Pm")
 
-(when (version<= "26.0.50" emacs-version )
-  ;(global-display-line-numbers-mode)
-  (custom-set-faces
-    ;'(line-number ((t (:inherit default :foreground "gray80" :background "gray95")))))
-    '(line-number ((t (:inherit default :foreground "gray80")))))
-  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
-;  (add-hook 'org-mode-hook #'display-line-numbers-mode) ;; who needs linum in org mode!
-)
-
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 (set-face-attribute 'show-paren-mismatch nil 

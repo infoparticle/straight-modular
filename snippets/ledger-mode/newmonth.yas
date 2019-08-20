@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: newmonth
+# key: .nm
+# --
+
+`(format-time-string "%Y-%m-01")` MF Salary `(format-time-string "%B %Y")`
+    Income:Salary                 -$0 INR
+
+`(format-time-string "%Y-%m-01")` House Rent CV Raman Nagar 
+    Expenses:Rent                 11200.00 INR
+
+
+`(format-time-string "%Y-%m-01")` Electricity bill 
+    Expenses:Bills:Utility             0.0 INR
+
+
+`(format-time-string "%Y-%m-01")` Milk
+    Expenses:Food:milk                  0.0 INR

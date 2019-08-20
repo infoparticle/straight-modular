@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: journalentry
+# key: je
+# --
+** `(format-time-string "%Y-%m-%d %a")`$1
+:PROPERTIES:
+:Date: `(format-time-string "%Y-%m-%d %a")`
+:Summary: $1
+:Tags: $2
+:Importance:$3
+:End:
+$4

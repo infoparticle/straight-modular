@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: python-plot-headers
+# key: <plth
+# --
+
+#+BEGIN_SRC python :results silent :session `(insert (concat "python-" (buffer-name)))`
+import numpy as np
+import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+os.chdir("`(insert default-directory)`")
+sns.set()
+$0
+#+END_SRC

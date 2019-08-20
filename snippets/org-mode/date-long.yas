@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Date long
+# key: d
+# --
+`(format-time-string "%b %d %H:%M:%S")` $0

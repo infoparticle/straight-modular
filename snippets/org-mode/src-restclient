@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: restclient
+# key: <r
+# --
+
+#+BEGIN_SRC restclient
+GET http://google.com
+#+END_SRC
+

@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: plt-clean 
+# key:  plt-clean
+# --
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(12, 9))
+
+ax = plt.subplot(111)  
+ax.spines["top"].set_visible(False) # remove the box, keep left/bottom lines 
+ax.spines["right"].set_visible(False)
+ax.get_xaxis().tick_bottom() # ensure ticks only on bottom/left  
+ax.get_yaxis().tick_left()
+
+plt.xticks(fontsize=14)  
+plt.yticks(range(5000, 30001, 5000), fontsize=14)
+
+plt.xlabel("X Label", fontsize=16)  
+plt.ylabel("Y Label", fontsize=16)
+
+# plt.hist()
+# plt.text(x,y, "(C) copy right", fontsize=7)
+plt.savefig("chess-elo-rating-distribution.png", bbox_inches="tight")

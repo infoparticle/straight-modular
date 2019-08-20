@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: python-plot
+# key: <plt
+# --
+
+#+BEGIN_SRC python :results file :session `(insert (concat "python-" (buffer-name)))`
+plt.gcf().clear()
+$0
+plt.savefig("${2:`(insert (concat "img-"  (format-time-string "%s")))`}.png", bbox_inches="tight")
+"$2.png"
+#+END_SRC

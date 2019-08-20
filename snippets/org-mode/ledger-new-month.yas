@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: ledger new month
+# key: .nm
+# --
+
+**  `(format-time-string "%B %Y")`
+
+#+BEGIN_SRC ledger
+`(format-time-string "%Y-%m-01")` MF Salary `(format-time-string "%B %Y")`
+    Income:Salary                      -$1 INR
+
+`(format-time-string "%Y-%m-01")` House Rent CV Raman Nagar 
+    Expenses:Home:Rent                  11200.00 INR
+
+`(format-time-string "%Y-%m-01")` Electricity bill 
+    Expenses:Home:Bills:Utility              0.0 INR
+
+`(format-time-string "%Y-%m-01")` Milk
+    Expenses:Home:Food:milk                  0.0 INR
+$0
+#+END_SRC

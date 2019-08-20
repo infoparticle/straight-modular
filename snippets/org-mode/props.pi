@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: PI Stories Properties
+# key: pi.s
+# --
+:PROPERTIES:
+:PI: $1
+:Sprint: $2
+:Points: $3
+:Feature: $4
+:Assigned: $5
+:Tags: $6
+:Date: `(format-time-string "%Y-%m-%d %a")`
+:END:

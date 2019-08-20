@@ -5,3 +5,6 @@ straight/
 transient/
 .cache/
 .recentf
+projectile-bookmarks.eld
+projectile.cache
+smex-items

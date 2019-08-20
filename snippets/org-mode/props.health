@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name:props.health 
+# key:p.h 
+# --
+** `(format-time-string "%Y-%m-%d %a")` $1
+:PROPERTIES:
+:Location: $2
+:Symptoms: $1
+:Parent: $3
+:Child: $4
+:Factors: $5
+:Duration: $6
+:Date:  `(format-time-string "%Y-%m-%d %a")`
+:END:
+$7

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: bookreviews
+# key: book
+# --
+:PROPERTIES:
+:Title: $1
+:Author: $2
+:Category: $3
+:Tags: $4
+:Rating: $5
+:Progress: $6
+:Comments: $7
+:created: `(format-time-string "%Y-%m-%d %a")`
+:END:

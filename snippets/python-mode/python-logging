@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: python-logging
+# key: py-logging
+# --
+import logging
+
+logging.basicConfig(filename="`(insert (file-name-sans-extension (buffer-name)))`.log", format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s: %(levelname)-8s %(message)s')
+console.setFormatter(formatter)
+logging.getLogger('').addHandler(console)
+
+
+log = logging.getLogger(__name__)

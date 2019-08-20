@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: device
+# key: dev
+# --
+:PROPERTIES:
+:ip: $1
+:name: $2
+:type: $3
+:version: ${4:None}
+:agent: $5
+:OMi: $6
+:MP: $7
+:comments: $8
+:modified: $9
+:created: `(format-time-string "%Y-%m-%d %a")`
+:END:

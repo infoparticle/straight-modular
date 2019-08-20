@@ -1,0 +1,29 @@
+# -*- mode: snippet -*-
+# name: orgpy
+# key: orgpy
+# --
+#+TITLE:
+#+DATE: `(format-time-string "%Y-%m-%d %a")`
+
+** Code Initialization
+help: <plth <plt
+
+#+BEGIN_SRC python :results silent :session `(insert (concat "python-" (buffer-name)))`
+import numpy as np
+import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+os.chdir("`(insert default-directory)`")
+sns.set()
+$0
+#+END_SRC
+
+#+BEGIN_SRC python :results file :session `(insert (concat "python-" (buffer-name)))`
+plt.gcf().clear()
+
+plt.savefig("${2:`(insert (concat "img-"  (format-time-string "%s")))`}.png", bbox_inches="tight")
+"$2.png"
+#+END_SRC

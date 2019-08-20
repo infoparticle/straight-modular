@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: date-short 
+# key: ds
+# --
+`(format-time-string "%y%m%d")`$0

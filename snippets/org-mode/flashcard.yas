@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: flashcard
+# key: flashcard
+# --
+#+LATEX_HEADER: \hypersetup{colorlinks=true,linkcolor=blue}
+#+LATEX_HEADER: \usepackage{geometry} \geometry{papersize={4.1in,6.9in}, left=0.1in, right=0.1in, top=0.3in, bottom=.5in}
+#+LATEX_HEADER: \usepackage{listings} \usepackage{minted} \usepackage[utf8]{inputenc}
+
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: p:t pri:nil prop:nil stat:t tags:nil tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:nil |:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+

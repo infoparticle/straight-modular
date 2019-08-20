@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: python-code 
+# key: <p
+# --
+
+#+BEGIN_SRC python :results output :session `(insert (concat "python-" (buffer-name)))`
+
+$0
+#+END_SRC
+

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: trade entry
+# key: .te
+# --
+        $1                        $2
+        MarketJi                  -$2
+        $0

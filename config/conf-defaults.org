@@ -97,6 +97,15 @@ Provides sane defaults and improves the vanilla emacs.
 
 #+END_SRC
 
+** scrolling
+
+#+BEGIN_SRC emacs-lisp
+;;; Scrolling
+(setq scroll-step               1) ;; one line
+(setq scroll-margin            10) ;; scroll buffer to 10 lines at going to last line
+(setq scroll-conservatively 10000)
+(setq directory-free-space-args "-Pm")
+#+END_SRC
 ** Line numbers only for programming mode
 
 They can also toggled later on with =SPC+t+l=

@@ -80,6 +80,12 @@
 (eldoc-mode 1)
 (setq inhibit-compacting-font-caches t)
 
+;;; Scrolling
+(setq scroll-step               1) ;; one line
+(setq scroll-margin            10) ;; scroll buffer to 10 lines at going to last line
+(setq scroll-conservatively 10000)
+(setq directory-free-space-args "-Pm")
+
 (when (version<= "26.0.50" emacs-version )
   ;(global-display-line-numbers-mode)
   (custom-set-faces

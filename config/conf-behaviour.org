@@ -5,7 +5,8 @@
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
 
-** Bulk Config
+** recentf
+
 #+BEGIN_SRC emacs-lisp
 (use-package recentf
   :defer t
@@ -19,6 +20,11 @@
                        (expand-file-name ".recentf" user-emacs-directory)
                        )
                  (recentf-mode t)))
+#+END_SRC
+
+** ivy
+
+#+BEGIN_SRC emacs-lisp
 (use-package ivy 
   :diminish (ivy-mode . "")
   :bind
@@ -47,7 +53,10 @@
   (setq ivy-re-builders-alist
         ;; allow input not in order
         '((t   . ivy--regex-ignore-order))))
+#+END_SRC
 
+** counsel
+#+BEGIN_SRC emacs-lisp
 (use-package counsel 
   :config
   (setq ivy-use-virtual-buffers t)
@@ -70,13 +79,34 @@
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
   (setq projectile-completion-system 'ivy)
   )
-
+#+END_SRC
+** swiper
+#+BEGIN_SRC emacs-lisp
 (use-package swiper 
+  :config)
+#+END_SRC
+** smex
+just install it let counsel-M-x use smex.
+#+BEGIN_SRC emacs-lisp
+(use-package smex
   :config
-  )
-
+  (smex-initialize))
 #+END_SRC
 
+** yasnippet
+
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+  :defer t
+  :init
+  (yas-global-mode 1)
+  (setq yas/indent-line nil))
+
+(use-package ivy-yasnippet
+  :defer t
+  :config
+  )
+#+END_SRC
 ** dired configs
 
 http://ergoemacs.org/emacs/emacs_dired_tips.html
@@ -99,3 +129,10 @@ https://github.com/magnars/.emacs.d/blob/master/settings/setup-dired.el
 (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  
 #+END_SRC
 
+** Company mode
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :config
+  (progn
+    (add-hook 'after-init-hook 'global-company-mode)))
+#+END_SRC

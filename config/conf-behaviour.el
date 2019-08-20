@@ -10,6 +10,7 @@
                        (expand-file-name ".recentf" user-emacs-directory)
                        )
                  (recentf-mode t)))
+
 (use-package ivy 
   :diminish (ivy-mode . "")
   :bind
@@ -63,6 +64,20 @@
   )
 
 (use-package swiper 
+  :config)
+
+(use-package smex
+  :config
+  (smex-initialize))
+
+(use-package yasnippet
+  :defer t
+  :init
+  (yas-global-mode 1)
+  (setq yas/indent-line nil))
+
+(use-package ivy-yasnippet
+  :defer t
   :config
   )
 
@@ -80,3 +95,8 @@
 
 ; was dired-up-directory
 (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
+
+(use-package company
+  :config
+  (progn
+    (add-hook 'after-init-hook 'global-company-mode)))

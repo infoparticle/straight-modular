@@ -1,7 +1,21 @@
+#+TITLE: Init
+#+AUTHOR: Gopinath Sadasivam
+#+BABEL: :cache yes
+#+PROPERTY: header-args :tangle yes
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+** setup default directories
+
+#+BEGIN_SRC emacs-lisp
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 (setq user-config-directory (concat user-emacs-directory "/config"))
+#+END_SRC
 
+** gc hack and elapsed time logging
+
+#+BEGIN_SRC emacs-lisp
 (setq gc-cons-threshold (* 500 1024 1024))
 (eval-when-compile (require 'cl))
 (lexical-let ((emacs-start-time (current-time)))
@@ -9,10 +23,19 @@
             (lambda ()
               (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
                 (message "[Emacs initialized in %.3fs]" elapsed)))))
+#+END_SRC
 
+** disable vc hooks
+
+;; disable vc-git crap https://stackoverflow.com/questions/5748814/how-does-one-disable-vc-git-in-emacs
+#+BEGIN_SRC emacs-lisp
 (setq vc-handled-backends nil)
 (eval-after-load "vc" '(remove-hook 'find-file-hook 'vc-find-file-hook))
+#+END_SRC
 
+** bootstrap straight.el package manager
+
+#+BEGIN_SRC emacs-lisp
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -28,7 +51,11 @@
 
 (setq straight-use-package-by-default t)
 (straight-use-package 'use-package)
+#+END_SRC
 
+** init-helper macros
+
+#+BEGIN_SRC emacs-lisp
 (defmacro with-system (type &rest body)
   "Evaluate BODY if `system-type' equals TYPE.
    usage: (with-system windows-nt  <code> )
@@ -42,7 +69,11 @@
   (interactive "f")
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-config-directory)))
+#+END_SRC
 
+** loading chain
+
+#+BEGIN_SRC emacs-lisp
 (load-user-file "conf-ui.el")
 (load-user-file "core-boot.el")
 (load-user-file "conf-behaviour.el")
@@ -62,3 +93,4 @@
 (with-system gnu/linux
   (setq custom-file (expand-file-name "conf-linux.el" user-config-directory))
   (load custom-file))
+#+END_SRC

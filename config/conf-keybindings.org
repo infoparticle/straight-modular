@@ -63,22 +63,12 @@
    "a"   '(org-agenda                 :which-key "org-agenda")
    "A"   '(cfw:open-org-calendar      :which-key "open-org-calendar")
    
-   "b"   '(ace-jump-buffer            :which-key "ace jump buffer")
    "c"   '(org-capture                :which-key "org-capture")
-   "f"   '(ido-find-file              :which-key "ido-find-file")
    "g"   '(keyboard-quit              :which-key "keyboard-quit")
-   "k"   '(volatile-kill-buffer       :which-key "volatile kill buff")
-   "q"   '(save-buffers-kill-terminal :which-key "exit emacs")
-   "rf"   '(recentf-open-files         :which-key "recentf-open-files")
    "s"   '(swiper                :which-key "swiper")
    "n"   '(org-narrow-to-subtree      :which-key "org-narrow-to-subtree")
    "N"   '(widen                      :which-key "widen")
-   "pw"  '(my/open-projectile-wiki-index      :which-key "wiki-index")
-   "ps"  '(my/open-projectile-file-scratch    :which-key "open-project-scratch")
-   "pi"  '(my/open-projectile-file-inbox      :which-key "open-project-scratch")
-   "pf"  '(projectile-find-file       :which-key "projectile-find-file")
-   "pp"  '(projectile-switch-project  :which-key "projectile-switch-project")
-   "im"  '(helm-imenu-anywhere        :which-key "helm-imenu-anywhere")
+  "im"  '(helm-imenu-anywhere        :which-key "helm-imenu-anywhere")
    "il"  '(imenu-list-smart-toggle    :which-key "imenu-list-smart-toggle")
    "y"   '(ivy-yasnippet             :which-key "ivy-yasnippet")
    
@@ -146,7 +136,6 @@
     "d" 'helm-cscope-find-called-function
     ;; ...
     )
-
   
   (general-define-key
    :states '(normal visual insert emacs)
@@ -155,5 +144,73 @@
    "C-j" 'worf-goto
    "l"   'org-store-link
    ))
+
+#+END_SRC
+
+*** file operations
+
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+
+ "ff"  '(counsel-find-file :which-key "counsel-find-file")
+ "fs"  '(save-buffer       :which-key "save-buffer")
+ "fr"  '(counsel-recentf   :which-key "counsel-recentf"))
+#+END_SRC
+*** projectile operations
+
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+
+ "pp"  '(projectile-switch-project       :which-key "projectile-switch-project")
+ "pf"  '(projectile-find-file            :which-key "projectile-find-file")
+ "pw"  '(my/open-projectile-wiki-index   :which-key "wiki-index")
+ "ps"  '(my/open-projectile-file-scratch :which-key "open-project-scratch")
+ "pi"  '(my/open-projectile-file-inbox   :which-key "open-project-inbox"))
+#+END_SRC
+
+*** buffer operations
+
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ 
+"bb"   '(ivy-switch-buffer    :which-key "ivy-switch-buffer")
+"bd"   '(delete-window        :which-key "delete-window")
+"bk"   '(kill-buffer          :which-key "kill-buffer")
+"bK"   '(volatile-kill-buffer :which-key "volatile kill buff")
+"bj"   '(ace-jump-buffer      :which-key "ace jump buffer")
+)
+
+#+END_SRC
+*** Quit
+
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+
+"qq"   '(save-buffers-kill-terminal   :which-key "save-buffers-kill-terminal")
+)
+
+#+END_SRC
+*** org mode
+
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ 
+"mot"   '(org-babel-tangle   :which-key "org-babel-tangle")
+)
 
 #+END_SRC

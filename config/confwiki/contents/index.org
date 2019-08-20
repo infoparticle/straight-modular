@@ -4,4 +4,6 @@
 
 [[file:../tmp/confwiki-inbox.org][Inbox]]
 
+[[file:spacemacs-keybindings.org][Spacemacs Keybindings]]
+
 [[file:emacsd.org][emacs.d]]

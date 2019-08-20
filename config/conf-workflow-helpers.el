@@ -4,10 +4,8 @@
 (defun /o/backlog       () (interactive) (find-file  (concat my-owspc-dir "apps/agenda/goals-backlog.org")))
 (defun /o/web-bookmarks () (interactive) (find-file  (concat my-owspc-dir "apps/bookmarks/web-bookmarks.org")))
 (defun /o/gtd           () (interactive) (find-file  "~/.em/emacs-apps/orgagenda/gtd-inbox.org"))
-(defun /o/config        () (interactive) (find-file  "~/.emacs.d/config.org"))
-(defun /o/master-wiki   () (interactive)   (split-window-right 30) (find-file  "~/.em/master-wiki.org"))
-
-
+(defun /o/config        () (interactive) (dired  "~/.emacs.d/config"))
+(defun /o/master-wiki   () (interactive) (split-window-right 30) (find-file  "~/.em/master-wiki.org"))
 
 (defun my/open-wiki (wiki-root wiki-name)
   (delete-other-windows)

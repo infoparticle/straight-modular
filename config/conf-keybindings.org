@@ -1,11 +1,28 @@
-(global-set-key "\C-s" 'save-buffer)
+#+TITLE: Conf Keybindings
+#+AUTHOR: Gopinath Sadasivam
+#+BABEL: :cache yes
+#+PROPERTY: header-args :tangle yes
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
 
+** global key configs
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key "\C-s" 'save-buffer)
+#+END_SRC
+
+** which-key
+
+#+BEGIN_SRC emacs-lisp
 (use-package which-key 
   :defer 10
   :config
   (which-key-mode)
   (setq which-key-idle-delay 1.0))
+#+END_SRC
 
+** key-chord
+#+BEGIN_SRC emacs-lisp
 (use-package key-chord 
   :defer 10
   :after (evil)
@@ -20,7 +37,11 @@
     (switch-to-buffer (other-buffer (current-buffer) 1)))
 
   (key-chord-define-global "JJ" #'er-switch-to-previous-buffer))
+#+END_SRC
 
+** Here comes General, all salute!
+
+#+BEGIN_SRC emacs-lisp
 (use-package general
   :config
   (general-define-key :keymaps 'evil-normal-state-map
@@ -134,3 +155,5 @@
    "C-j" 'worf-goto
    "l"   'org-store-link
    ))
+
+#+END_SRC

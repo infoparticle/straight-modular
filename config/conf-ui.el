@@ -21,5 +21,10 @@
 (with-system gnu/linux
   (load-user-file "conf-ui-linux.el"))
 
-(setq-default left-margin-width 1); Define new widths.
-(set-window-buffer nil (current-buffer)) ; Use them now.
+;; Adjust margins of all windows.
+(defun center-windows () ""
+  (walk-windows (lambda (window) (set-window-margins window 1 0)) nil 1))
+
+;; Listen to window changes.
+(add-hook 'window-configuration-change-hook 'center-windows)
+(global-visual-line-mode)

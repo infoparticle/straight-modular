@@ -10,26 +10,6 @@
  :header-args: :tangle yes
  :END:
  
-** setup default directories
-
-#+BEGIN_SRC emacs-lisp
-(setq user-init-file (or load-file-name (buffer-file-name)))
-(setq user-emacs-directory (file-name-directory user-init-file))
-(setq user-config-directory (concat user-emacs-directory "config/"))
-#+END_SRC
-
-** gc hack and elapsed time logging
-
-#+BEGIN_SRC emacs-lisp
-(setq gc-cons-threshold (* 500 1024 1024))
-(eval-when-compile (require 'cl))
-(lexical-let ((emacs-start-time (current-time)))
-  (add-hook 'emacs-startup-hook
-            (lambda ()
-              (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
-                (message "[Emacs initialized in %.3fs]" elapsed)))))
-#+END_SRC
-
 ** disable vc hooks
 
 ;; disable vc-git crap https://stackoverflow.com/questions/5748814/how-does-one-disable-vc-git-in-emacs

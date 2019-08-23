@@ -1,5 +1,5 @@
 #+TITLE: Conf UI
-#+Last Saved: <2019-August-23 14:13:09>
+#+Last Saved: <2019-August-24 00:15:01>
 #+BABEL: :cache yes
 
 Common UI configs
@@ -35,15 +35,66 @@ Common UI configs
   (load-user-file "conf-ui-linux.el"))
 #+END_SRC
 
-** windows margin
+** windows margin set-window-margins + window-configuration-change-hook
 #+BEGIN_SRC emacs-lisp
-(setq-default left-margin-width 1); Define new widths.
-(set-window-buffer nil (current-buffer)) ; Use them now.
-#+END_SRC
 
+;; Adjust margins of all windows.
+(defun center-windows () ""
+  (walk-windows (lambda (window) (set-window-margins window 1 0)) nil 1))
+
+;; Listen to window changes.
+(add-hook 'window-configuration-change-hook 'center-windows)
+(global-visual-line-mode)
+
+#+END_SRC
 
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no
  :END:
  
+** visual-fill-column
+This messes up the window margin configs, so simply avoiding it
+
+#+BEGIN_SRC emacs-lisp
+(use-package visual-fill-column
+  :after org
+  :config
+  (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+  ;(add-hook 'text-mode-hook 'visual-line-mode)
+  ;(global-visual-line-mode)
+  )
+#+END_SRC
+
+
+** windows margin with left/right margin + window-configuration-change-hook
+#+BEGIN_SRC emacs-lisp
+(defun my--margin-setup ()
+  (walk-windows
+   (lambda (window)
+     (with-current-buffer (window-buffer window)
+       (setq left-margin-width 10)
+       (setq right-margin-width 10)
+       (set-window-buffer window (current-buffer))
+       )
+     )
+   )
+  )
+(add-hook 'window-configuration-change-hook #'my--margin-setup)
+(add-hook 'minibuffer-setup-hook #'my--margin-setup)
+#+END_SRC
+
+** window margin add-hook
+#+BEGIN_SRC emacs-lisp
+(defun major-briggs ()
+  (when (eq major-mode 'text-mode)
+    (set-window-margins
+     (car (get-buffer-window-list (current-buffer) nil t)) 2 2
+     ) 
+    )
+  )
+(add-hook 'org-mode-hook (lambda ()
+                           (major-briggs)
+                           ;; insert additional stuff if so desired
+                           ))
+#+END_SRC

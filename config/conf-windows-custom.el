@@ -5,7 +5,8 @@
  ;; If there is more than one, they won't work right.
  '(epg-gpg-home-directory "c:\\Users\\gopinat.CORPDOM\\AppData\\Roaming\\gnupg")
  '(epg-gpg-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe")
- '(epg-gpgconf-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpgconf.exe"))
+ '(epg-gpgconf-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpgconf.exe")
+ '(left-margin 3))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

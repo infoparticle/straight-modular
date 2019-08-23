@@ -11,7 +11,7 @@
 (setq locale-coding-system   'utf-8)
 (prefer-coding-system        'utf-8)
 
-;https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
+                                        ;https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
 (set-selection-coding-system 'utf-16-le)  
 
 (set-input-method nil)
@@ -54,7 +54,7 @@
 (setq initial-scratch-message "")
 
                                         ;(setq-default truncate-lines t)
-(toggle-truncate-lines)
+                                        ;(toggle-truncate-lines)
 
 ;;better wild cards in search
 (setq search-whitespace-regexp ".*?")
@@ -79,8 +79,8 @@
 (setq initial-major-mode 'org-mode) ; scratch buffer is in org-mode now
 
 (global-superword-mode 1)
-;(global-hl-line-mode 1)
-;(set-face-background hl-line-face nil)
+                                        ;(global-hl-line-mode 1)
+                                        ;(set-face-background hl-line-face nil)
 (eldoc-mode 1)
 (setq inhibit-compacting-font-caches t)
 

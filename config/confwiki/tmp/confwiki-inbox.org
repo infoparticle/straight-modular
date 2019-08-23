@@ -1,5 +1,5 @@
 #+TITLE: ConfWiki Inbox
-#+Last Saved: <2019-August-23 12:04:15>
+#+Last Saved: <2019-August-23 23:22:30>
 
 
 ** Mode-line
@@ -38,6 +38,15 @@ https://github.com/conao3/leaf.el
 https://opensource.com/article/18/2/how-create-slides-emacs-org-mode-and-revealjs
 
 https://github.com/FormidableLabs/spectacle 7.8 Stars!
+
+** emacs fringes and margins
+(set-window-margins)
+(set-window-margins WINDOW LEFT-WIDTH &optional RIGHT-WIDTH)
+
+(with-current-buffer (window-buffer WINDOW))
+
+list of [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hooks.html][hooks]]
+
 * scratch
 
 https://ternjs.net/  - intelligent javascript editor!

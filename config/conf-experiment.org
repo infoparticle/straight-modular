@@ -1,25 +1,35 @@
 #+TITLE: Conf Experiment
-#+Last Saved: <2019-August-23 14:09:38>
+#+Last Saved: <2019-August-24 00:21:38>
 #+BABEL: :cache yes
 
 * Enabled Config
  :PROPERTIES:
  :header-args: :tangle yes
  :END:
+#+BEGIN_SRC emacs-lisp
+(message "conf experiment done!")
+
+#+END_SRC 
  
- #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'fringe nil :background nil)
-(defun my-tone-down-fringes ()
-  (set-face-attribute 'fringe nil
-                      :foreground (face-foreground 'default)
-                      :background (face-background 'default)))
-(my-tone-down-fringes) 
- #+END_SRC
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no
  :END:
 
+** set fringe
+ #+BEGIN_SRC emacs-lisp
+(defun eos/set-fringe-background ()
+  "Set the fringe background to the same color as the regular background."
+  (setq eos/fringe-background-color
+        (face-background "gray95"))
+  (custom-set-faces
+   `(fringe ((t (:background "green"))))))
+
+(add-hook 'after-init-hook #'eos/set-fringe-background)
+
+(eos/set-fringe-background)
+ 
+ #+END_SRC
 ** cousel-recentf
 
 #+BEGIN_SRC 

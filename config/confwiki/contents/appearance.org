@@ -1,0 +1,15 @@
+#+TITLE: Appearance
+#+Last Saved: <2019-August-23 14:00:24>
+
+
+
+
+** Fringes - editor fringes
+
+https://github.com/dakrone/eos/blob/master/eos-appearance.org
+
+** Paren faces - dimming parens
+
+https://github.com/tarsius/paren-face/blob/master/paren-face.el
+
+https://neverfriday.com/2014/03/06/dimming-javascript-curly-braces-and-brackets-in-emacs/

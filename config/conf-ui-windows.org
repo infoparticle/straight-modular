@@ -1,3 +1,15 @@
+#+TITLE: Conf Windows
+#+Last Saved: <2019-August-23 16:43:12>
+
+
+* Enabled Config
+ :PROPERTIES:
+ :header-args: :tangle yes
+ :END:
+ 
+** mode-line
+#+BEGIN_SRC emacs-lisp
+
 (setq-default mode-line-format
               (
                quote(
@@ -17,3 +29,10 @@
                      mode-line-misc-info)))
 (set-face-attribute 'mode-line           nil :background "gray90" :box '(:line-width 1 :color "gray80" ))
 (set-face-attribute 'mode-line-inactive  nil :background "gray90"   :box '(:line-width 1 :color "gray90" ))
+
+#+END_SRC
+* Disabled Config
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
+ 

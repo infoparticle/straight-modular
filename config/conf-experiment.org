@@ -1,5 +1,5 @@
 #+TITLE: Conf Experiment
-#+Last Saved: <2019-August-23 12:38:23>
+#+Last Saved: <2019-August-23 14:09:38>
 #+BABEL: :cache yes
 
 * Enabled Config
@@ -7,14 +7,14 @@
  :header-args: :tangle yes
  :END:
  
-** default window size
-
-#+BEGIN_SRC emacs-lisp
-(setq-default left-margin-width 5); Define new widths.
-(set-window-buffer nil (current-buffer)) ; Use them now.
-#+END_SRC
-
-
+ #+BEGIN_SRC emacs-lisp
+(set-face-attribute 'fringe nil :background nil)
+(defun my-tone-down-fringes ()
+  (set-face-attribute 'fringe nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default)))
+(my-tone-down-fringes) 
+ #+END_SRC
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no

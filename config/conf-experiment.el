@@ -1,2 +1,6 @@
-(setq-default left-margin-width 5); Define new widths.
-(set-window-buffer nil (current-buffer)) ; Use them now.
+(set-face-attribute 'fringe nil :background nil)
+(defun my-tone-down-fringes ()
+  (set-face-attribute 'fringe nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default)))
+(my-tone-down-fringes)

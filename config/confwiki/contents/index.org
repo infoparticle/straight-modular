@@ -7,3 +7,9 @@
 [[file:spacemacs-keybindings.org][Spacemacs Keybindings]]
 
 [[file:emacsd.org][emacs.d]]
+
+* Help Docs
+
+https://org-babel.readthedocs.io
+
+* Lisp Hacking

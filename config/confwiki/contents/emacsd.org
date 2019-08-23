@@ -1,5 +1,5 @@
 #+TITLE: emacs.d
-#+Last Saved: <2019-August-22 11:59:18>
+#+Last Saved: <2019-August-23 13:55:58>
 
 * Modern Configs to Steal!
 
@@ -249,3 +249,8 @@ worth studying modular structure
 A derived one: https://github.com/jamesnvc/dotfiles/commits/master/emacs.d
 
 Nice naming conventions
+
+* Classic
+
+** basic emacs config - like writer room
+https://bzg.fr/en/emacs-strip-tease.html/#sec-6

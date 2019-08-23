@@ -21,5 +21,5 @@
 (with-system gnu/linux
   (load-user-file "conf-ui-linux.el"))
 
-(setq-default left-margin-width 3); Define new widths.
+(setq-default left-margin-width 1); Define new widths.
 (set-window-buffer nil (current-buffer)) ; Use them now.

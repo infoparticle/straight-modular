@@ -106,3 +106,11 @@
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode))
+
+(defun my/tangle-dotfiles ()
+  "If the current file is in '~/.dotfiles', the code blocks are tangled"
+  (when (equal (file-name-directory (directory-file-name buffer-file-name)) user-config-directory)
+    (org-babel-tangle)
+    (message "%s tangled" buffer-file-name)))
+
+(add-hook 'after-save-hook #'my/tangle-dotfiles)

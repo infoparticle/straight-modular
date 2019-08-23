@@ -1,6 +1,6 @@
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
-(setq user-config-directory (concat user-emacs-directory "/config"))
+(setq user-config-directory (concat user-emacs-directory "config/"))
 
 (setq gc-cons-threshold (* 500 1024 1024))
 (eval-when-compile (require 'cl))
@@ -53,11 +53,15 @@
 (load-user-file "conf-programming.el")
 (load-user-file "conf-keybindings.el")
 (load-user-file "conf-ondemand-toolbox.el")
+(load-user-file "conf-experiment.el")
 
 (with-system windows-nt
-  (setq custom-file (expand-file-name "conf-windows.el" user-config-directory))
-  (load custom-file))
+  (load-user-file "conf-windows.el")
+  (setq custom-file (expand-file-name "conf-windows-custom.el" user-config-directory))
+  (load custom-file)
+  )
 
 (with-system gnu/linux
-  (setq custom-file (expand-file-name "conf-linux.el" user-config-directory))
+  (load-user-file "conf-linux.el")
+  (setq custom-file (expand-file-name "conf-linux-custom.el" user-config-directory))
   (load custom-file))

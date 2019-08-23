@@ -1,5 +1,5 @@
 #+TITLE: ConfWiki Inbox
-#+Last Saved: <2019-August-19 20:34:02>
+#+Last Saved: <2019-August-23 12:04:15>
 
 
 ** Mode-line
@@ -34,7 +34,14 @@ https://lunrjs.com/guides/core_concepts.html
 ** leaf.el - another package manger like use-package
 https://github.com/conao3/leaf.el
 
+** reveal.js + ox-reveal excellent presentation from org mode
+https://opensource.com/article/18/2/how-create-slides-emacs-org-mode-and-revealjs
+
+https://github.com/FormidableLabs/spectacle 7.8 Stars!
 * scratch
 
 https://ternjs.net/  - intelligent javascript editor!
  
+(straight-use-package 'el-patch)
+
+(setq initial-buffer-choice 'counsel-recentf) 

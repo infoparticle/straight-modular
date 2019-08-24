@@ -111,6 +111,9 @@
   "If the current file is in '~/.dotfiles', the code blocks are tangled"
   (when (equal (file-name-directory (directory-file-name buffer-file-name)) user-config-directory)
     (org-babel-tangle)
-    (message "%s tangled" buffer-file-name)))
+    (message "%s tangled" buffer-file-name)
+    (if (file-exists-p (concat buffer-file-name "c"))
+                  (delete-file (concat buffer-file-name "c")))
+    (my/byte-compile-init-dir)))
 
 (add-hook 'after-save-hook #'my/tangle-dotfiles)

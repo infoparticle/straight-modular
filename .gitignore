@@ -1,4 +1,5 @@
 straight/
+*.elc
 *.sw*
 *.zip
 *.*~
@@ -8,3 +9,4 @@ transient/
 projectile-bookmarks.eld
 projectile.cache
 smex-items
+.org-id-locations

@@ -23,7 +23,7 @@
 
 ;; Adjust margins of all windows.
 (defun center-windows () ""
-  (walk-windows (lambda (window) (set-window-margins window 1 0)) nil 1))
+  (walk-windows (lambda (window) (set-window-margins window 2 0)) nil 1))
 
 ;; Listen to window changes.
 (add-hook 'window-configuration-change-hook 'center-windows)

@@ -1,6 +1,14 @@
+(use-package org
+:mode (("\\.org$" . org-mode))
+:config
+(progn
+;; config stuff
+(define-key org-mode-map (kbd "RET") 'org-return-indent)
+))
+
 (setq
   time-stamp-active t          ; do enable time-stamps
-  ;; time-stamp-line-limit 34     ; check first N buffer lines for Time-stamp: <2019-August-20 14:55:56>
+  ;; time-stamp-line-limit 34     ; check first N buffer lines for Time-stamp: <2019-August-24 13:01:37>
   ;; example: Tuesday, July 15, 2008  10:59:09  (by dinoch)
   ;;time-stamp-format "%:a, %:b %02d, %04y  %02H:%02M:%02S %Z (by %u)") ; date format
   ;;time-stamp-format "%04y-%:b-%02d %02H:%02M:%02S" ; date format

@@ -1,5 +1,5 @@
 #+TITLE: Conf UI
-#+Last Saved: <2019-August-24 00:15:01>
+#+Last Saved: <2019-August-24 01:42:56>
 #+BABEL: :cache yes
 
 Common UI configs
@@ -40,7 +40,7 @@ Common UI configs
 
 ;; Adjust margins of all windows.
 (defun center-windows () ""
-  (walk-windows (lambda (window) (set-window-margins window 1 0)) nil 1))
+  (walk-windows (lambda (window) (set-window-margins window 2 0)) nil 1))
 
 ;; Listen to window changes.
 (add-hook 'window-configuration-change-hook 'center-windows)

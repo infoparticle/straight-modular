@@ -1,5 +1,5 @@
 #+TITLE: ConfWiki Inbox
-#+Last Saved: <2019-August-23 23:22:30>
+#+Last Saved: <2019-August-24 01:42:28>
 
 
 ** Mode-line
@@ -47,6 +47,12 @@ https://github.com/FormidableLabs/spectacle 7.8 Stars!
 
 list of [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hooks.html][hooks]]
 
+
+(defun my-set-margins ()
+  "Set margins in current buffer."
+  (setq left-margin-width 24)
+  (setq right-margin-width 24))
+ 
 * scratch
 
 https://ternjs.net/  - intelligent javascript editor!

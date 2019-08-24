@@ -25,7 +25,7 @@
 (setq require-final-newline t)
 
 ;; RET key autoindents
-(define-key global-map (kbd "RET") 'newline-and-indent)
+;; (define-key global-map (kbd "RET") 'newline-and-indent)
 ;; delete the selection with a keypress
 (delete-selection-mode t)
 
@@ -76,7 +76,7 @@
 (setq url-configuration-directory (concat user-cache-directory "url/"))
 (setq tramp-persistency-file-name (concat user-cache-directory "tramp"))
 
-(setq initial-major-mode 'org-mode) ; scratch buffer is in org-mode now
+;(setq initial-major-mode 'org-mode) ; scratch buffer is in org-mode now
 
 (global-superword-mode 1)
                                         ;(global-hl-line-mode 1)

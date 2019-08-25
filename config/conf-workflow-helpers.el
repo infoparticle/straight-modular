@@ -14,15 +14,15 @@
   (find-file-other-window (concat wiki-root wiki-name "/tmp/" wiki-name "-" "inbox.org"))
   )
 
-(defun /o/work-wiki () (interactive) (my/open-wiki "~/.em/" "em.work-wiki"))
-(defun /o/books-wiki () (interactive) (my/open-wiki "~/.em/" "em.books-wiki"))
+(defun /o/work-wiki    () (interactive) (my/open-wiki "~/.em/" "em.work-wiki"))
+(defun /o/books-wiki   () (interactive) (my/open-wiki "~/.em/" "em.books-wiki"))
 (defun /o/swcraft-wiki () (interactive) (my/open-wiki "~/.em/" "em.swcraft-wiki"))
-(defun /o/life-wiki () (interactive) (my/open-wiki "I:/emacs-apps/wikis/" "life-wiki"))
+(defun /o/life-wiki    () (interactive) (my/open-wiki "I:/emacs-apps/wikis/" "life-wiki"))
 (defun /o/trading-wiki () (interactive) (my/open-wiki "~/.em/" "trading-wiki"))
-(defun /o/home-wiki () (interactive) (my/open-wiki "C:\\Users\\gopinat.CORPDOM\\Dropbox\\wikis\\" "home-wiki"))
+(defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat.CORPDOM\\Dropbox\\wikis\\" "home-wiki"))
+(defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org"))
 
 (use-package projectile
-  :defer t
   :config
   (defun my/open-projectile-file(pathprefix filename)
     (find-file (concat (projectile-project-root) pathprefix (projectile-project-name) "-" filename ".org")))

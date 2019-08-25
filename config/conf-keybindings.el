@@ -7,7 +7,6 @@
   (setq which-key-idle-delay 1.0))
 
 (use-package key-chord 
-  :defer 10
   :after (evil)
   :config
   (key-chord-mode +1)
@@ -28,6 +27,10 @@
                       (general-chord " j") 'avy-goto-char-2
                       (general-chord " l") 'avy-goto-line
                       )
+  
+  (general-define-key :keymaps 'dired-mode-map
+                      "C-c C-n" 'dired-narrow)
+  
   (general-define-key
    :states '(normal visual insert emacs)
    :prefix "SPC"
@@ -47,7 +50,7 @@
    "s"   '(swiper                :which-key "swiper")
    "n"   '(org-narrow-to-subtree      :which-key "org-narrow-to-subtree")
    "N"   '(widen                      :which-key "widen")
-  "im"  '(helm-imenu-anywhere        :which-key "helm-imenu-anywhere")
+   "im"  '(helm-imenu-anywhere        :which-key "helm-imenu-anywhere")
    "il"  '(imenu-list-smart-toggle    :which-key "imenu-list-smart-toggle")
    "y"   '(ivy-yasnippet             :which-key "ivy-yasnippet")
    

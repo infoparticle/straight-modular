@@ -81,6 +81,12 @@
   :config
   )
 
+(use-package evil-collection
+  :custom (evil-collection-setup-minibuffer t)
+  :init
+  (setq evil-want-keybinding nil)
+  (evil-collection-init))
+
 (setq dired-recursive-copies (quote always)) ;no asking
 (setq dired-recursive-deletes (quote top)) ; ask once
 (setq dired-dwim-target t)
@@ -94,7 +100,16 @@
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
 
 ; was dired-up-directory
-(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
+(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  
+
+; put directories first
+(setq ls-lisp-dirs-first t)
+(setq dired-recursive-deletes 'top)
+(setq dired-listing-switches "-hal")
+(setq diredp-hide-details-initially-flag nil)
+
+
+(use-package dired-narrow)
 
 (use-package company
   :config

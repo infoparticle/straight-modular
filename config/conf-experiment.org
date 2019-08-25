@@ -1,29 +1,17 @@
 #+TITLE: Conf Experiment
-#+Last Saved: <2019-August-24 13:24:59>
+#+Last Saved: <2019-August-24 22:59:28>
 #+BABEL: :cache yes
 
 * Enabled Config
  :PROPERTIES:
  :header-args: :tangle yes
  :END:
-#+BEGIN_SRC emacs-lisp
-(use-package org-brain 
-  :init
-  (setq org-brain-path "~/.em/myorgbrain")
-  ;; For Evil users
-  (with-eval-after-load 'evil
-    (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
-  :config
-  (setq org-id-track-globally t)
-  (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
-  ;(push '("b" "Brain" plain (function org-brain-goto-end)
-  ;        "* %i%?" :empty-lines 1)
-  ;      org-capture-templates)
-  (setq org-brain-visualize-default-choices 'all)
-  (setq org-brain-title-max-length 12))
-
-#+END_SRC 
  
+ 
+** welcome
+#+begin_src emacs-lisp
+(message "conf experiment loaded")
+#+end_src
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no
@@ -400,3 +388,23 @@ Optionally, provide NO-NEXT-LINE to move the cursor forward a line."
      "p"
      `(lambda (&rest ignore) (projectile-switch-project-by-name ,el))
      (abbreviate-file-name el))))
+
+** org-brain
+#+BEGIN_SRC emacs-lisp
+(use-package org-brain 
+  :init
+  (setq org-brain-path "~/.em/myorgbrain")
+  ;; For Evil users
+  (with-eval-after-load 'evil
+    (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
+  :config
+  (setq org-id-track-globally t)
+  (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+  ;(push '("b" "Brain" plain (function org-brain-goto-end)
+  ;        "* %i%?" :empty-lines 1)
+  ;      org-capture-templates)
+  (setq org-brain-visualize-default-choices 'all)
+  (setq org-brain-title-max-length 12))
+
+#+END_SRC 
+ 

@@ -11,4 +11,7 @@
 * Help Docs
 
 https://org-babel.readthedocs.io
+
 * Lisp Hacking
+
+[[file:lisp-idioms.org][Lisp Idioms]]

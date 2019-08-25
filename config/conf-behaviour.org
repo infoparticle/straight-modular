@@ -110,6 +110,15 @@ just install it let counsel-M-x use smex.
   :config
   )
 #+END_SRC
+
+** evil-collection
+#+begin_src emacs-lisp
+(use-package evil-collection
+  :custom (evil-collection-setup-minibuffer t)
+  :init
+  (setq evil-want-keybinding nil)
+  (evil-collection-init))
+#+end_src
 ** dired configs
 
 http://ergoemacs.org/emacs/emacs_dired_tips.html
@@ -130,7 +139,27 @@ https://github.com/magnars/.emacs.d/blob/master/settings/setup-dired.el
 
 ; was dired-up-directory
 (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  
+
+; put directories first
+(setq ls-lisp-dirs-first t)
+(setq dired-recursive-deletes 'top)
+(setq dired-listing-switches "-hal")
+(setq diredp-hide-details-initially-flag nil)
+
+
+(use-package dired-narrow)
+
+
 #+END_SRC
+
+a: list all files
+h, --human-readable: with -l, print sizes in human readable format (e.g., 1K 234M 2G)
+l: use a long listing format
+group-directories-first: group directories before files
+X: sort alphabetically by entry extension
+U: do not sort; list entries in directory order
+t: sort by modification time, newest first
+S: sort by file size
 
 ** Company mode
 #+BEGIN_SRC emacs-lisp
@@ -173,3 +202,44 @@ Let's not defer it must be loaded to work with org-wiki setups.
  :header-args: :tangle no
  :END:
  
+** dired-hacks, dired-subtree, dired-narrow
+
+
+#+begin_src emacs-lisp
+
+(use-package dired-hacks
+  :config
+  (progn
+    (use-package dired-subtree
+      :config
+      (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+      (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
+      )
+
+    (use-package dired-narrow
+      :bind (:map dired-mode-map
+                  ("/" . dired-narrow)))
+    )
+  )
+#+end_src
+
+*** dired-sidebar
+#+begin_src emacs-lisp
+(use-package vscode-icon)
+(use-package dired-sidebar
+  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
+  :commands (dired-sidebar-toggle-sidebar)
+  :init
+  (add-hook 'dired-sidebar-mode-hook
+            (lambda ()
+              (unless (file-remote-p default-directory)
+                (auto-revert-mode))))
+  :config
+  (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
+  (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
+
+  (setq dired-sidebar-subtree-line-prefix "__")
+  (setq dired-sidebar-theme 'vscode)
+  (setq dired-sidebar-use-term-integration t)
+  (setq dired-sidebar-use-custom-font t))
+#+end_src

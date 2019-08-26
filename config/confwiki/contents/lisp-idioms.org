@@ -1,5 +1,5 @@
 #+TITLE: Lisp Idioms
-#+Last Saved: <2019-August-25 09:33:24>
+#+Last Saved: <2019-August-25 13:24:08>
 
 * Idioms
 
@@ -29,6 +29,13 @@ https://www.emacswiki.org/emacs/LoadPath
          load-path)))
 #+end_src
 
+** check if var is null - boundp
+
+#+begin_src emacs-lisp
+(width (if (boundp 'left-margin)
+           (- width left-margin)
+         width))
+#+end_src
 * Tips
 
 ** Debugging vars

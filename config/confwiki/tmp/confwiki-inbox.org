@@ -1,5 +1,5 @@
 #+TITLE: ConfWiki Inbox
-#+Last Saved: <2019-August-24 01:42:28>
+#+Last Saved: <2019-August-25 13:16:49>
 
 
 ** Mode-line
@@ -53,6 +53,19 @@ list of [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hoo
   (setq left-margin-width 24)
   (setq right-margin-width 24))
  
+
+  
+** contribute to page-break (2019-08-25 Sun)
+
+added this to fix the page-break.el!
+#+begin_src emacs-lisp
+(width (if (boundp 'left-margin)
+           (- width left-margin)
+         width))
+(width (if (boundp 'right-margin)
+           (- width right-margin)
+         width))
+#+end_src
 * scratch
 
 https://ternjs.net/  - intelligent javascript editor!

@@ -1,5 +1,5 @@
 #+TITLE: Conf UI
-#+Last Saved: <2019-August-26 19:42:37>
+#+Last Saved: <2019-August-26 19:47:09>
 #+BABEL: :cache yes
 
 Common UI configs
@@ -20,38 +20,6 @@ Common UI configs
                     :weight 'normal
                     :width 'normal)
 (load-file (expand-file-name "themes/my-default-theme.el" user-config-directory))
-#+END_SRC
-
-** highlight selected window
-
-#+BEGIN_SRC emacs-lisp
-(defun highlight-selected-window ()
-  "Highlight selected window with a different background color."
-  (walk-windows (lambda (w)
-                  (unless (eq w (selected-window))
-                    (with-current-buffer (window-buffer w)
-                      (buffer-face-set '(:background "gray95"))))))
-  (buffer-face-set 'default))
-(add-hook 'buffer-list-update-hook 'highlight-selected-window)
-#+END_SRC
-
-** global-highlight-line
-
-#+BEGIN_SRC emacs-lisp
-(global-hl-line-mode 1)
-(set-face-background hl-line-face "lavender")
-#+END_SRC
-
-** windows margin set-window-margins + window-configuration-change-hook + global-visual-line-mode
-
-#+BEGIN_SRC emacs-lisp
-;; Adjust margins of all windows.
-(defun center-windows () ""
-  (walk-windows (lambda (window) (set-window-margins window 2 0)) nil 1))
-
-;; Listen to window changes.
-(add-hook 'window-configuration-change-hook 'center-windows)
-(global-visual-line-mode)
 #+END_SRC
 
 ** load windows/linux specific ui configs

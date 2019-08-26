@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <2019-August-26 19:47:07>
+#+Last Saved: <2019-August-26 20:03:55>
 
 
 * Enabled Config
@@ -8,8 +8,8 @@
  :END:
  
 ** mode-line
-#+BEGIN_SRC emacs-lisp
 
+#+BEGIN_SRC emacs-lisp
 (setq-default mode-line-format
               (
                quote(

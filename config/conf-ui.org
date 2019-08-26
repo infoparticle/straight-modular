@@ -1,24 +1,30 @@
 #+TITLE: Conf UI
-#+Last Saved: <2019-August-24 01:42:56>
+#+Last Saved: <2019-August-26 19:42:37>
 #+BABEL: :cache yes
 
 Common UI configs
 
 * Enabled Config
+
  :PROPERTIES:
  :header-args: :tangle yes
  :END:
- 
-** bulk config
+
+** default face and theme
+
+;:family "Fira Code medium"
 #+BEGIN_SRC emacs-lisp
 (set-face-attribute 'default nil
-                                        ;:family "Fira Code medium"
                     :family "Consolas"
                     :height 100
                     :weight 'normal
                     :width 'normal)
 (load-file (expand-file-name "themes/my-default-theme.el" user-config-directory))
+#+END_SRC
 
+** highlight selected window
+
+#+BEGIN_SRC emacs-lisp
 (defun highlight-selected-window ()
   "Highlight selected window with a different background color."
   (walk-windows (lambda (w)
@@ -27,13 +33,41 @@ Common UI configs
                       (buffer-face-set '(:background "gray95"))))))
   (buffer-face-set 'default))
 (add-hook 'buffer-list-update-hook 'highlight-selected-window)
+#+END_SRC
 
+** global-highlight-line
+
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode 1)
+(set-face-background hl-line-face "lavender")
+#+END_SRC
+
+** windows margin set-window-margins + window-configuration-change-hook + global-visual-line-mode
+
+#+BEGIN_SRC emacs-lisp
+;; Adjust margins of all windows.
+(defun center-windows () ""
+  (walk-windows (lambda (window) (set-window-margins window 2 0)) nil 1))
+
+;; Listen to window changes.
+(add-hook 'window-configuration-change-hook 'center-windows)
+(global-visual-line-mode)
+#+END_SRC
+
+** load windows/linux specific ui configs
+
+#+BEGIN_SRC emacs-lisp
 (with-system windows-nt
   (load-user-file "conf-ui-windows.el"))
 
 (with-system gnu/linux
   (load-user-file "conf-ui-linux.el"))
 #+END_SRC
+
+* Disabled Config
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
 
 ** windows margin set-window-margins + window-configuration-change-hook
 #+BEGIN_SRC emacs-lisp
@@ -48,11 +82,6 @@ Common UI configs
 
 #+END_SRC
 
-* Disabled Config
- :PROPERTIES:
- :header-args: :tangle no
- :END:
- 
 ** visual-fill-column
 This messes up the window margin configs, so simply avoiding it
 
@@ -65,7 +94,6 @@ This messes up the window margin configs, so simply avoiding it
   ;(global-visual-line-mode)
   )
 #+END_SRC
-
 
 ** windows margin with left/right margin + window-configuration-change-hook
 #+BEGIN_SRC emacs-lisp
@@ -90,7 +118,7 @@ This messes up the window margin configs, so simply avoiding it
   (when (eq major-mode 'text-mode)
     (set-window-margins
      (car (get-buffer-window-list (current-buffer) nil t)) 2 2
-     ) 
+     )
     )
   )
 (add-hook 'org-mode-hook (lambda ()

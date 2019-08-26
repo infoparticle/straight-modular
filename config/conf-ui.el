@@ -1,5 +1,4 @@
 (set-face-attribute 'default nil
-                                        ;:family "Fira Code medium"
                     :family "Consolas"
                     :height 100
                     :weight 'normal
@@ -15,11 +14,8 @@
   (buffer-face-set 'default))
 (add-hook 'buffer-list-update-hook 'highlight-selected-window)
 
-(with-system windows-nt
-  (load-user-file "conf-ui-windows.el"))
-
-(with-system gnu/linux
-  (load-user-file "conf-ui-linux.el"))
+(global-hl-line-mode 1)
+(set-face-background hl-line-face "lavender")
 
 ;; Adjust margins of all windows.
 (defun center-windows () ""
@@ -28,3 +24,9 @@
 ;; Listen to window changes.
 (add-hook 'window-configuration-change-hook 'center-windows)
 (global-visual-line-mode)
+
+(with-system windows-nt
+  (load-user-file "conf-ui-windows.el"))
+
+(with-system gnu/linux
+  (load-user-file "conf-ui-linux.el"))

@@ -23,10 +23,8 @@
   (walk-windows (lambda (w)
                   (unless (eq w (selected-window))
                     (with-current-buffer (window-buffer w)
-                      (buffer-face-set '(:background "gray95"))
-                      (visual-line-mode 1)))))
-  (buffer-face-set 'default)
-  (visual-line-mode -1))
+                      (buffer-face-set '(:background "gray95"))))))
+  (buffer-face-set 'default))
 (add-hook 'buffer-list-update-hook 'highlight-selected-window)
 
 (global-hl-line-mode 1)

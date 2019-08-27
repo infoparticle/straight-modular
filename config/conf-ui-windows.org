@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <2019-August-26 23:09:04>
+#+Last Saved: <2019-August-27 12:18:22>
 
 
 * Enabled Config
@@ -40,10 +40,8 @@
   (walk-windows (lambda (w)
                   (unless (eq w (selected-window))
                     (with-current-buffer (window-buffer w)
-                      (buffer-face-set '(:background "gray95"))
-                      (visual-line-mode 1)))))
-  (buffer-face-set 'default)
-  (visual-line-mode -1))
+                      (buffer-face-set '(:background "gray95"))))))
+  (buffer-face-set 'default))
 (add-hook 'buffer-list-update-hook 'highlight-selected-window)
 #+END_SRC
 

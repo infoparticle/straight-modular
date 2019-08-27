@@ -42,10 +42,12 @@
    "2"   '(split-window-below         :which-key "split-window-below")
    "3"   '(split-window-right         :which-key "split-window-right")
    "B"   '(counsel-bookmark           :which-key "bookmarks")
-   "a"   '(org-agenda                 :which-key "org-agenda")
+  ;"a"   '(org-agenda                 :which-key "org-agenda")
+   "a"   '(hydra-avy/body             :which-key "hydra-avy")
    "A"   '(cfw:open-org-calendar      :which-key "open-org-calendar")
    
    "c"   '(org-capture                :which-key "org-capture")
+   "e"   '(hydra-eyebrowse-nav/body   :which-key "eyebrowse")
    "g"   '(keyboard-quit              :which-key "keyboard-quit")
    "s"   '(swiper                :which-key "swiper")
    "n"   '(org-narrow-to-subtree      :which-key "org-narrow-to-subtree")
@@ -55,7 +57,7 @@
    "y"   '(ivy-yasnippet             :which-key "ivy-yasnippet")
    
    ;; expand region
-   "er" 'er/expand-region
+   ;"er" 'er/expand-region
    ;; quickly open files
    "oi"  '(/o/inbox :which-key "owspc-inbox.org")
    "os"  '(/o/scratch                 :which-key "owspc-scratch.org")

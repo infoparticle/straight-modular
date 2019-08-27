@@ -1,3 +1,38 @@
+(use-package eyebrowse
+  :config
+  (eyebrowse-mode t)
+  ;; (eyebrowse-setup-evil-keys)
+  (setq eyebrowse-mode-line-separator " "
+	eyebrowse-new-workspace t
+	eyebrowse-wrap-around t
+	eyebrowse-mode-line-style t))
+
+(use-package hydra
+  :after eyebrowse
+  :config
+  (defhydra hydra-eyebrowse-nav (:hint nil)
+    "
+_n_: next            _0_: window config 0
+_p_: prev            _1_: window config 1
+_l_: last            _2_: window config 2
+_c_: create config   _3_: window config 3
+_D_: delete config   _4_: window config 4
+_r_: rename config   _q_:quit"
+    ("n" eyebrowse-next-window-config)
+    ("p" eyebrowse-prev-window-config)
+    ("l" eyebrowse-last-window-config)
+    ("c" eyebrowse-create-window-config)
+    ("D" eyebrowse-close-window-config)
+    ("r" eyebrowse-rename-window-config)
+    ("0" eyebrowse-switch-to-window-config-0)
+    ("1" eyebrowse-switch-to-window-config-1)
+    ("2" eyebrowse-switch-to-window-config-2)
+    ("3" eyebrowse-switch-to-window-config-3)
+    ("4" eyebrowse-switch-to-window-config-4)
+    ("q" nil :color blue))
+  (global-set-key (kbd "C-;") 'hydra-eyebrowse-nav/body)
+  )
+
 (defun joe-scroll-other-window()
   (interactive)
   (scroll-other-window 1))
@@ -5,19 +40,14 @@
   (interactive)
   (scroll-other-window-down 1))
 (use-package ace-window
-  :defer t
   :config
   (set-face-attribute
    'aw-leading-char-face nil
    :foreground "deep sky blue"
    :weight 'bold
-   :height 5.0)
-  (set-face-attribute
-   'aw-mode-line-face nil
-   :inherit 'mode-line-buffer-id
-   :foreground "lawn green")
+   :height 3.0)
   (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l)
-        aw-dispatch-always t
+        ;aw-dispatch-always t
         aw-dispatch-alist
         '((?x aw-delete-window "Ace - Delete Window")
           (?c aw-swap-window "Ace - Swap Window")
@@ -31,7 +61,8 @@
                 (progn
                   (winner-undo)
                   (setq this-command 'winner-undo))))
-          (?r winner-redo)))
+          (?r winner-redo))
+        )
 
   (use-package hydra
     :config
@@ -52,7 +83,7 @@
     (add-to-list 'aw-dispatch-alist '(?w hydra-window-size/body) t)
     (add-to-list 'aw-dispatch-alist '(?o hydra-window-scroll/body) t)
     (add-to-list 'aw-dispatch-alist '(?\; hydra-window-frame/body) t))
-  (ace-window-display-mode t)
+  (ace-window-display-mode -1) ;don't clutter mode-line
   (global-set-key (kbd "C-x o") 'ace-window))
 
 (use-package recentf
@@ -96,6 +127,14 @@
   (setq ivy-re-builders-alist
         ;; allow input not in order
         '((t   . ivy--regex-ignore-order))))
+
+(use-package avy :defer t
+:config
+(defhydra hydra-avy (:color teal)
+  ("c" avy-goto-char "char")
+  ("w" avy-goto-word-0 "word")
+  ("l" avy-goto-line "line")
+  ("p" avy-pop-mark "pop")))
 
 (use-package counsel 
   :config

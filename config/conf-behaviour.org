@@ -6,7 +6,7 @@
  :PROPERTIES:
  :header-args: :tangle yes
  :END:
-** eye-browse
+** eye-browse : SPC e
 #+BEGIN_SRC emacs-lisp
 (use-package eyebrowse
   :config
@@ -43,7 +43,7 @@ _r_: rename config   _q_:quit"
   (global-set-key (kbd "C-;") 'hydra-eyebrowse-nav/body)
   )
 #+END_SRC
-** ace-windows
+** ace-windows : C-x o
   (set-face-attribute
    'aw-mode-line-face nil
    :inherit 'mode-line-buffer-id
@@ -102,7 +102,7 @@ _r_: rename config   _q_:quit"
   (ace-window-display-mode -1) ;don't clutter mode-line
   (global-set-key (kbd "C-x o") 'ace-window))
 #+END_SRC
-** recentf
+** recentf : SPC f r
 
 #+BEGIN_SRC emacs-lisp
 (use-package recentf
@@ -350,3 +350,15 @@ Let's not defer it must be loaded to work with org-wiki setups.
   (setq dired-sidebar-use-term-integration t)
   (setq dired-sidebar-use-custom-font t))
 #+end_src
+** Hydra helpers zoom in and zoom out
+#+BEGIN_SRC emacs-lisp
+(use-package hydra
+  :config
+  (key-chord-define-global "QZ"
+                           (defhydra hydra-zoom ()
+                             "zoom"
+                             ("+" text-scale-increase "in")
+                             ("-" text-scale-decrease "out")
+                             ("0" (text-scale-adjust 0) "reset")
+                             ("q" nil "quit" :color blue))))
+#+END_SRC

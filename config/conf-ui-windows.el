@@ -1,7 +1,7 @@
 (setq-default mode-line-format
               (
                quote(
-                     " "
+                     "  "
                      (:eval
                       (when (eql buffer-read-only t)
                         (propertize " 🔒 " 'face
@@ -10,13 +10,15 @@
                      (:eval
                       (propertize "●" 'face
                                   (if (buffer-modified-p)
-                                      '(:background "gray90" :foreground "Indian red" :weight bold)
-                                    '(:background "gray90" :foreground "gray90" :weight bold ))))
-                     
-                     " %b    "
+                                      '(:background default :foreground "Indian red" :weight bold)
+                                    '(:background default :foreground "gray90" :weight bold ))))
+
+                     (:eval (propertize " %b" 'face
+                                      '(:foreground "gray30" :weight bold)))
+
                      mode-line-misc-info)))
 (set-face-attribute 'mode-line           nil :background "gray90" :box '(:line-width 1 :color "gray80" ))
-(set-face-attribute 'mode-line-inactive  nil :background "gray90"   :box '(:line-width 1 :color "gray90" ))
+(set-face-attribute 'mode-line-inactive  nil :background "gray95" :box nil)
 
 (defun highlight-selected-window ()
   "Highlight selected window with a different background color."

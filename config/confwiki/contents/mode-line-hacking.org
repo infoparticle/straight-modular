@@ -1,5 +1,5 @@
 #+TITLE: Mode-Line Hacking
-#+Last Saved: <2019-August-29 19:50:17>
+#+Last Saved: <2019-August-30 00:27:32>
 
 ** My hackish 
 
@@ -157,7 +157,7 @@ https://github.com/gonsie/dotfiles/blob/master/emacs/theme.el#L75
                     :overline nil
                     :underline nil)
 #+END_SRC
-*** Right justifcy
+*** Right justify
 #+BEGIN_SRC emacs-lisp
 '(:eval (propertize
          " " 'display

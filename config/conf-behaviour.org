@@ -6,43 +6,6 @@
  :PROPERTIES:
  :header-args: :tangle yes
  :END:
-** eye-browse : SPC e
-#+BEGIN_SRC emacs-lisp
-(use-package eyebrowse
-  :config
-  (eyebrowse-mode t)
-  ;; (eyebrowse-setup-evil-keys)
-  (setq eyebrowse-mode-line-separator " "
-	eyebrowse-new-workspace t
-	eyebrowse-wrap-around t
-	eyebrowse-mode-line-style t))
-
-(use-package hydra
-  :after eyebrowse
-  :config
-  (defhydra hydra-eyebrowse-nav (:hint nil)
-    "
-_n_: next            _0_: window config 0
-_p_: prev            _1_: window config 1
-_l_: last            _2_: window config 2
-_c_: create config   _3_: window config 3
-_D_: delete config   _4_: window config 4
-_r_: rename config   _q_:quit"
-    ("n" eyebrowse-next-window-config)
-    ("p" eyebrowse-prev-window-config)
-    ("l" eyebrowse-last-window-config)
-    ("c" eyebrowse-create-window-config)
-    ("D" eyebrowse-close-window-config)
-    ("r" eyebrowse-rename-window-config)
-    ("0" eyebrowse-switch-to-window-config-0)
-    ("1" eyebrowse-switch-to-window-config-1)
-    ("2" eyebrowse-switch-to-window-config-2)
-    ("3" eyebrowse-switch-to-window-config-3)
-    ("4" eyebrowse-switch-to-window-config-4)
-    ("q" nil :color blue))
-  (global-set-key (kbd "C-;") 'hydra-eyebrowse-nav/body)
-  )
-#+END_SRC
 ** ace-windows : C-x o
   (set-face-attribute
    'aw-mode-line-face nil
@@ -315,6 +278,7 @@ Let's not defer it must be loaded to work with org-wiki setups.
   (setq super-save-exclude '(".gpg")) ;avoid auto saving gpg files
   (super-save-mode +1))
 #+END_SRC
+
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no
@@ -372,4 +336,79 @@ Let's not defer it must be loaded to work with org-wiki setups.
                              ("-" text-scale-decrease "out")
                              ("0" (text-scale-adjust 0) "reset")
                              ("q" nil "quit" :color blue))))
+#+END_SRC
+** eye-browse : SPC e
+#+BEGIN_SRC emacs-lisp
+(use-package eyebrowse
+  :config
+  (eyebrowse-mode t)
+  ;; (eyebrowse-setup-evil-keys)
+  (setq eyebrowse-mode-line-separator " "
+	eyebrowse-new-workspace t
+	eyebrowse-wrap-around t
+	eyebrowse-mode-line-style t))
+
+(use-package hydra
+  :after eyebrowse
+  :config
+  (defhydra hydra-eyebrowse-nav (:hint nil)
+    "
+_n_: next            _0_: window config 0
+_p_: prev            _1_: window config 1
+_l_: last            _2_: window config 2
+_c_: create config   _3_: window config 3
+_D_: delete config   _4_: window config 4
+_r_: rename config   _q_:quit"
+    ("n" eyebrowse-next-window-config)
+    ("p" eyebrowse-prev-window-config)
+    ("l" eyebrowse-last-window-config)
+    ("c" eyebrowse-create-window-config)
+    ("D" eyebrowse-close-window-config)
+    ("r" eyebrowse-rename-window-config)
+    ("0" eyebrowse-switch-to-window-config-0)
+    ("1" eyebrowse-switch-to-window-config-1)
+    ("2" eyebrowse-switch-to-window-config-2)
+    ("3" eyebrowse-switch-to-window-config-3)
+    ("4" eyebrowse-switch-to-window-config-4)
+    ("q" nil :color blue))
+  (global-set-key (kbd "C-;") 'hydra-eyebrowse-nav/body)
+  )
+#+END_SRC
+** purpose
+#+BEGIN_SRC emacs-lisp
+(use-package window-purpose
+  :config
+  (define-key purpose-mode-map (kbd "C-c ,") nil)
+  (define-key purpose-mode-map (kbd "C-c w") purpose-mode-prefix-map)
+
+  (purpose-add-user-purposes
+   :modes  '((org-mode . edit)
+             (org-mode . edit)))
+  (purpose-compile-user-configuration)
+  (purpose-x-code1-setup)
+  (purpose-x-popwin-setup)
+  (purpose-x-kill-setup)
+  (purpose-x-magit-single-on)
+
+  (purpose-mode t)
+
+  (add-hook 'after-init-hook
+            (lambda ()
+              (when (file-exists-p purpose-default-layout-file)
+                (purpose-load-window-layout-file))
+              (select-window (get-largest-window)))))
+#+END_SRC
+
+** all-the-icons
+looks like mode-line needs utf-8 icons can be inserted in buffer but not in modeline as of now
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons
+  :if (display-graphic-p)
+  :config
+  (add-hook 'after-change-major-mode-hook
+            (lambda ()
+              (let* ((icon (all-the-icons-icon-for-mode major-mode))
+                     (face-prop (and (stringp icon) (get-text-property 0 'face icon))))
+                (when (and (stringp icon) (not (string= major-mode icon)) face-prop)
+                  (setq mode-name (propertize icon 'display '(:ascent center))))))))
 #+END_SRC

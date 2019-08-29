@@ -304,6 +304,17 @@ Let's not defer it must be loaded to work with org-wiki setups.
 
 #+END_SRC
 
+** super-save
+#+BEGIN_SRC emacs-lisp
+(use-package super-save
+  :defer t
+  :config
+  (setq super-save-auto-save-when-idle t)
+  (setq auto-save-default nil) ; turnoff default backups
+  (setq super-save-remote-files nil) ;don't autosave remote files
+  (setq super-save-exclude '(".gpg")) ;avoid auto saving gpg files
+  (super-save-mode +1))
+#+END_SRC
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no

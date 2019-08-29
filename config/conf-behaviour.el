@@ -228,3 +228,12 @@ _r_: rename config   _q_:quit"
     (my/byte-compile-init-dir)))
 
 (add-hook 'after-save-hook #'my/tangle-dotfiles)
+
+(use-package super-save
+  :defer t
+  :config
+  (setq super-save-auto-save-when-idle t)
+  (setq auto-save-default nil) ; turnoff default backups
+  (setq super-save-remote-files nil) ;don't autosave remote files
+  (setq super-save-exclude '(".gpg")) ;avoid auto saving gpg files
+  (super-save-mode +1))

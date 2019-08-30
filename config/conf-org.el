@@ -3,12 +3,19 @@
 :config
 (progn
 ;; config stuff
-(define-key org-mode-map (kbd "RET") 'org-return-indent)
-))
+(define-key org-mode-map (kbd "RET") 'org-return-indent)))
+
+(use-package ox-clip
+  :defer t)
+
+(use-package org-cliplink
+  :defer t
+  :config
+  (global-set-key (kbd "C-x p i") 'org-cliplink))
 
 (setq
   time-stamp-active t          ; do enable time-stamps
-  ;; time-stamp-line-limit 34     ; check first N buffer lines for Time-stamp: <2019-August-24 13:01:37>
+  ;; time-stamp-line-limit 34     ; check first N buffer lines for Time-stamp: <2019-August-30 12:01:40>
   ;; example: Tuesday, July 15, 2008  10:59:09  (by dinoch)
   ;;time-stamp-format "%:a, %:b %02d, %04y  %02H:%02M:%02S %Z (by %u)") ; date format
   ;;time-stamp-format "%04y-%:b-%02d %02H:%02M:%02S" ; date format

@@ -1,5 +1,5 @@
 #+TITLE: Lisp Idioms
-#+Last Saved: <2019-August-25 13:24:08>
+#+Last Saved: <2019-August-30 13:56:29>
 
 * Idioms
 
@@ -36,6 +36,23 @@ https://www.emacswiki.org/emacs/LoadPath
            (- width left-margin)
          width))
 #+end_src
+
+** change the selected region
+#+BEGIN_SRC emacs-lisp
+(defun del-binary_characters (beg end)
+  "Delete binary characters in a region"
+  (interactive "r")
+  (save-excursion
+    (save-restriction
+
+      ;the workhorse code
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (while (re-search-forward "[^[:ascii:]]" nil t)
+        (replace-match ""))
+
+)))
+#+END_SRC
 * Tips
 
 ** Debugging vars

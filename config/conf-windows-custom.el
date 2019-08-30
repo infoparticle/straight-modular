@@ -6,7 +6,9 @@
  '(epg-gpg-home-directory "c:\\Users\\gopinat.CORPDOM\\AppData\\Roaming\\gnupg")
  '(epg-gpg-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe")
  '(epg-gpgconf-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpgconf.exe")
- '(left-margin 0))
+ '(left-margin 0)
+ '(ox-clip-w32-cmd
+   "c:/opt/anaconda3/python.exe c:/Users/gopinat.CORPDOM/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

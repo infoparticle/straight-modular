@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <2019-August-20 17:54:43>
+#+Last Saved: <2019-August-30 13:17:57>
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -124,9 +124,13 @@ c:\\opt\\irfan32\\i_view32.exe
 #+BEGIN_SRC emacs-lisp
 (setq my-owspc-dir "~/.em/em.owspc/")
 ;; windows python config
-(when (file-exists-p "C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1/python.exe")
-  (setq python-shell-interpreter "C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1/python.exe"))
-(setq exec-path (append '("C:/opt/ripgrep") exec-path))
+(when (file-exists-p "C:/opt/anaconda3/python.exe")
+  (setq python-shell-interpreter "C:/opt/anaconda3/python.exe")
+  ;(setq exec-path (append '("C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1") exec-path))
+)
+
+(when (file-exists-p "C:/opt/ripgrep/rg.exe")
+  (setq exec-path (append '("C:/opt/ripgrep") exec-path)))
 
 (cd "c:/root/work/tmp")
 #+END_SRC

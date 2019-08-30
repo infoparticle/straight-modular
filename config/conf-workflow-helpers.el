@@ -20,7 +20,7 @@
 (defun /o/life-wiki    () (interactive) (my/open-wiki "I:/emacs-apps/wikis/" "life-wiki"))
 (defun /o/trading-wiki () (interactive) (my/open-wiki "~/.em/" "trading-wiki"))
 (defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat.CORPDOM\\Dropbox\\wikis\\" "home-wiki"))
-(defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org"))
+(defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org.gpg"))
 
 (use-package projectile
   :config
@@ -41,7 +41,7 @@
 
   (defun my/open-projectile-wiki-index ()
     (interactive)
-    (my/open-wiki 
+    (my/open-wiki
      (file-name-directory (directory-file-name (projectile-project-root)))
      (file-name-nondirectory (directory-file-name (projectile-project-root)))))
   )
@@ -63,7 +63,7 @@
    :non-normal-prefix "M-SPC"
    "oj" '(/bm/orgroot-journal       :which-key "orgroot:daily-journal")
    "rb" '(/ref/bash/scripting       :which-key "bash:scripting" )))
- 
+
 
 (with-system windows-nt
   (defun /bm/work () (interactive) (dired "c:/root/work")))

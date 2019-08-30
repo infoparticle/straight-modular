@@ -57,8 +57,12 @@
 
 (setq my-owspc-dir "~/.em/em.owspc/")
 ;; windows python config
-(when (file-exists-p "C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1/python.exe")
-  (setq python-shell-interpreter "C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1/python.exe"))
-(setq exec-path (append '("C:/opt/ripgrep") exec-path))
+(when (file-exists-p "C:/opt/anaconda3/python.exe")
+  (setq python-shell-interpreter "C:/opt/anaconda3/python.exe")
+  ;(setq exec-path (append '("C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1") exec-path))
+)
+
+(when (file-exists-p "C:/opt/ripgrep/rg.exe")
+  (setq exec-path (append '("C:/opt/ripgrep") exec-path)))
 
 (cd "c:/root/work/tmp")

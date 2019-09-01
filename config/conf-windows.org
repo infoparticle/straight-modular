@@ -1,9 +1,15 @@
 #+TITLE: Conf Windows
-#+Last Saved: <2019-August-30 13:17:57>
+#+Last Saved: <2019-September-01 16:07:14>
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
 
+** esheel
+#+BEGIN_SRC emacs-lisp
+(prefer-coding-system 'utf-8)
+(setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
+(setq explicit-bash.exe-args '("--login" "-i"))
+#+END_SRC
 ** spell check
 
 #+BEGIN_SRC emacs-lisp

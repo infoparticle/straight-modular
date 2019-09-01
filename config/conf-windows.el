@@ -1,3 +1,7 @@
+(prefer-coding-system 'utf-8)
+(setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
+(setq explicit-bash.exe-args '("--login" "-i"))
+
 (defun conf/ondemand/windows/spellcheck()
   (interactive)
   (progn

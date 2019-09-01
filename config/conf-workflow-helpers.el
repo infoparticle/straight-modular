@@ -23,11 +23,18 @@
 (defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org"))
 
 (defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
-"Wiki List"
-   ("a" (my/open-wiki "I:/emacs-apps" "accounting") "Accounting Wiki")
-   ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
-   ("s" (my/open-wiki "~/.em/" "em.swcraft-wiki") "Software Craft Wiki")
-   ("q" nil "cancel" :color blue)
+  "Wiki List"
+  ("a" (my/open-wiki "I:/emacs-apps" "accounting") "Accounting Wiki")
+  ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
+  ("s" (my/open-wiki "~/.em/" "em.swcraft-wiki") "Software Craft Wiki")
+  ("p" (my/open-wiki "C:\\Users\\gopinat.CORPDOM\\Dropbox\\wikis" "philosophy-wiki") "Philosophy Wiki")
+
+  ("dc" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "cse-wiki"          )   "cse-wiki")
+  ("df" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "food-wiki"         )   "food-wiki")
+  ("dh" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "home-wiki"         )   "home-wiki")
+  ("dp" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "priceaction-wiki"  )   "priceaction-wiki")
+  ("dt" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "trading-wiki"      )   "trading-wiki")
+  ("q" nil "cancel" :color blue)
 )
 
 (use-package projectile

@@ -18,9 +18,9 @@
 
 (defun my/open-wiki (wiki-root wiki-name)
   (delete-other-windows)
-  (find-file  (concat wiki-root wiki-name "/contents/index.org"))
+  (find-file  (concat wiki-root "/" wiki-name "/contents/index.org"))
   (split-window-right 30)
-  (find-file-other-window (concat wiki-root wiki-name "/tmp/" wiki-name "-" "inbox.org"))
+  (find-file-other-window (concat wiki-root "/" wiki-name "/tmp/" wiki-name "-" "inbox.org"))
   )
 
 (defun /o/work-wiki    () (interactive) (my/open-wiki "~/.em/" "em.work-wiki"))
@@ -33,6 +33,16 @@
 
 #+END_SRC
 
+** opener-hydras
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
+"Wiki List"
+   ("a" (my/open-wiki "I:/emacs-apps" "accounting") "Accounting Wiki")
+   ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
+   ("s" (my/open-wiki "~/.em/" "em.swcraft-wiki") "Software Craft Wiki")
+   ("q" nil "cancel" :color blue)
+)
+#+END_SRC
 ** helpers that need projectile
 
 #+BEGIN_SRC emacs-lisp
@@ -55,7 +65,7 @@
 
   (defun my/open-projectile-wiki-index ()
     (interactive)
-    (my/open-wiki 
+    (my/open-wiki
      (file-name-directory (directory-file-name (projectile-project-root)))
      (file-name-nondirectory (directory-file-name (projectile-project-root)))))
   )
@@ -80,8 +90,9 @@
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    "oj" '(/bm/orgroot-journal       :which-key "orgroot:daily-journal")
+   "ow" '(hydra-open-wiki/body           :which-key "Open wiki")
    "rb" '(/ref/bash/scripting       :which-key "bash:scripting" )))
- 
+
 
 (with-system windows-nt
   (defun /bm/work () (interactive) (dired "c:/root/work")))

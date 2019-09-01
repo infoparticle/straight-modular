@@ -9,9 +9,9 @@
 
 (defun my/open-wiki (wiki-root wiki-name)
   (delete-other-windows)
-  (find-file  (concat wiki-root wiki-name "/contents/index.org"))
+  (find-file  (concat wiki-root "/" wiki-name "/contents/index.org"))
   (split-window-right 30)
-  (find-file-other-window (concat wiki-root wiki-name "/tmp/" wiki-name "-" "inbox.org"))
+  (find-file-other-window (concat wiki-root "/" wiki-name "/tmp/" wiki-name "-" "inbox.org"))
   )
 
 (defun /o/work-wiki    () (interactive) (my/open-wiki "~/.em/" "em.work-wiki"))
@@ -20,7 +20,15 @@
 (defun /o/life-wiki    () (interactive) (my/open-wiki "I:/emacs-apps/wikis/" "life-wiki"))
 (defun /o/trading-wiki () (interactive) (my/open-wiki "~/.em/" "trading-wiki"))
 (defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat.CORPDOM\\Dropbox\\wikis\\" "home-wiki"))
-(defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org.gpg"))
+(defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org"))
+
+(defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
+"Wiki List"
+   ("a" (my/open-wiki "I:/emacs-apps" "accounting") "Accounting Wiki")
+   ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
+   ("s" (my/open-wiki "~/.em/" "em.swcraft-wiki") "Software Craft Wiki")
+   ("q" nil "cancel" :color blue)
+)
 
 (use-package projectile
   :config
@@ -62,6 +70,7 @@
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    "oj" '(/bm/orgroot-journal       :which-key "orgroot:daily-journal")
+   "ow" '(hydra-open-wiki/body           :which-key "Open wiki")
    "rb" '(/ref/bash/scripting       :which-key "bash:scripting" )))
 
 

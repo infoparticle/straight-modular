@@ -1,0 +1,28 @@
+#+TITLE: Conf Prog CPP
+#+Last Saved: <2019-September-02 15:49:04>
+#+property: header-args :tangle yes
+
+* Conf Programming
+
+Common configuration for programming mode.
+
+** cpp - linux
+
+#+BEGIN_SRC emacs-lisp
+(use-package lsp-mode :commands lsp )
+(use-package lsp-ui :commands lsp-ui-mode )
+(use-package company-lsp
+  :commands company-lsp
+  :config (push 'company-lsp company-backends)) ;; add company-lsp as a backend
+
+(use-package ccls
+  :config
+  (setq ccls-executable "ccls")
+  (setq lsp-prefer-flymake nil)
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp))))
+#+END_SRC
+
+#+RESULTS:
+| (lambda nil (require (quote ccls)) (lsp)) | er/add-cc-mode-expansions |

@@ -74,6 +74,10 @@
 (load-user-file "conf-behaviour-helpers.el")
 (load-user-file "conf-workflow-helpers.el")
 (load-user-file "conf-programming.el")
+
+(with-system gnu/linux
+(load-user-file "conf-prog-cpp.el")) ;ccls binaries not there in windows
+
 (load-user-file "conf-keybindings.el")
 (load-user-file "conf-ondemand-toolbox.el")
 (load-user-file "conf-experiment.el")

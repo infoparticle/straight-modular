@@ -3,7 +3,7 @@
                     :height 100
                     :weight 'normal
                     :width 'normal)
-(load-file (expand-file-name "themes/my-default-theme.el" user-config-directory))
+(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
 
 (with-system windows-nt
   (load-user-file "conf-ui-windows.el"))

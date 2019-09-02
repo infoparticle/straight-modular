@@ -1,3 +1,12 @@
+#+TITLE: Conf WorkFlow Helpers
+#+AUTHOR: Gopinath Sadasivam
+#+BABEL: :cache yes
+#+PROPERTY: header-args :tangle yes
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+** quick openers
+#+BEGIN_SRC emacs-lisp
 (setq my-owspc-dir "~/.em/em.owspc/")
 (defun /o/scratch       () (interactive) (find-file  (concat my-owspc-dir "inbox/owspc-scratch.org")))
 (defun /o/inbox         () (interactive) (find-file  (concat my-owspc-dir "inbox/owspc-inbox.org")))
@@ -8,11 +17,13 @@
 (defun /o/master-wiki   () (interactive) (split-window-right 30) (find-file  "~/.em/master-wiki.org"))
 
 (defun my/open-wiki (wiki-root wiki-name)
-  (delete-other-windows)
-  (find-file  (concat wiki-root "/" wiki-name "/contents/index.org"))
-  (split-window-right 30)
-  (find-file-other-window (concat wiki-root "/" wiki-name "/tmp/" wiki-name "-" "inbox.org"))
-  )
+  (if(file-directory-p wiki-root)
+      (progn
+        (delete-other-windows)
+        (find-file  (concat wiki-root "/" wiki-name "/contents/index.org"))
+        (split-window-right 30)
+        (find-file-other-window (concat wiki-root "/" wiki-name "/tmp/" wiki-name "-" "inbox.org")))
+    (message "Wiki not found %s" wiki-root)))
 
 (defun /o/work-wiki    () (interactive) (my/open-wiki "~/.em/" "em.work-wiki"))
 (defun /o/books-wiki   () (interactive) (my/open-wiki "~/.em/" "em.books-wiki"))
@@ -22,6 +33,10 @@
 (defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat.CORPDOM\\Dropbox\\wikis\\" "home-wiki"))
 (defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org"))
 
+#+END_SRC
+
+** opener-hydras
+#+BEGIN_SRC emacs-lisp
 (defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
   "Wiki List"
   ("a" (my/open-wiki "I:/emacs-apps" "accounting") "Accounting Wiki")
@@ -36,7 +51,10 @@
   ("dt" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "trading-wiki"      )   "trading-wiki")
   ("q" nil "cancel" :color blue)
 )
+#+END_SRC
+** helpers that need projectile
 
+#+BEGIN_SRC emacs-lisp
 (use-package projectile
   :config
   (defun my/open-projectile-file(pathprefix filename)
@@ -60,7 +78,11 @@
      (file-name-directory (directory-file-name (projectile-project-root)))
      (file-name-nondirectory (directory-file-name (projectile-project-root)))))
   )
+#+END_SRC
 
+** Bookmarks, References and Quick Launchers
+
+#+BEGIN_SRC emacs-lisp
 (defun /ref/bash/if        () (interactive) (find-file-other-window "~/.em/em.ref/bash/if.org"))
 (defun /ref/bash/scripting () (interactive) (find-file-other-window "~/.em/em.ref/bash/scripting.org"))
 (defun /ref/bash/bash-to-python () (interactive) (find-file-other-window "~/.em/em.ref/bash/bash-to-python.org"))
@@ -83,3 +105,4 @@
 
 (with-system windows-nt
   (defun /bm/work () (interactive) (dired "c:/root/work")))
+#+END_SRC

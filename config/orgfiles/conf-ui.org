@@ -3,7 +3,7 @@
 #+PROPERTY: header-args :tangle yes
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
-#+Last Saved: <2019-August-26 20:08:19>
+#+Last Saved: <2019-September-02 10:45:15>
 
 Common UI configs
 
@@ -22,7 +22,7 @@ Common UI configs
                     :height 100
                     :weight 'normal
                     :width 'normal)
-(load-file (expand-file-name "themes/my-default-theme.el" user-config-directory))
+(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
 #+END_SRC
 
 ** load windows/linux specific ui configs

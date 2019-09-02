@@ -1,18 +1,3 @@
-#+TITLE: Conf Behaviour Helpers
-#+AUTHOR: Gopinath Sadasivam
-#+BABEL: :cache yes
-#+Last Saved: <2019-August-24 12:11:53>
-
-
-* Enabled Config
- :PROPERTIES:
- :header-args: :tangle yes
- :END:
- 
- 
-** set-proxy/unset-proxy
-
-#+BEGIN_SRC emacs-lisp
 (defun set-proxy()
   (interactive)
   (setq url-proxy-services
@@ -23,30 +8,19 @@
 (defun unset-proxy()
   (interactive)
   (setq url-proxy-services nil))
-#+END_SRC
 
-** emacs server shutdown
-#+BEGIN_SRC emacs-lisp
 (defun server-shutdown ()
 "Save buffers, Quit, and Shutdown (kill) server"
 (interactive)
 (save-some-buffers)
 (kill-emacs)
 )
-#+END_SRC
 
-** my/byte-compile-init-dir
-   
-#+BEGIN_SRC emacs-lisp
 (defun my/byte-compile-init-dir ()
   "Byte-compile all your dotfiles."
   (interactive)
-  (byte-recompile-directory user-config-directory 0))
+  (byte-recompile-directory (concat user-emacs-directory "config/elispfiles/") 0))
 
-
-#+END_SRC
-** bulk config
-#+BEGIN_SRC emacs-lisp
 (defun volatile-kill-buffer ()
   "Kill current buffer unconditionally."
   (interactive)
@@ -65,9 +39,3 @@
         (e (if mark-active (max (point) (mark)) (point-max))))
     (shell-command-on-region b e
                              "python -mjson.tool" (current-buffer) t)))
-#+END_SRC
-* Disabled Config
- :PROPERTIES:
- :header-args: :tangle no
- :END:
- 

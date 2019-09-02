@@ -1,6 +1,6 @@
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
-(setq user-config-directory (concat user-emacs-directory "config/"))
+(setq user-config-directory (concat user-emacs-directory "config/elispfiles"))
 
 (setq gc-cons-threshold (* 500 1024 1024))
 (eval-when-compile (require 'cl))

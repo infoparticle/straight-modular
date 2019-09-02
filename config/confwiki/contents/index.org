@@ -6,7 +6,18 @@
 
 [[file:spacemacs-keybindings.org][Spacemacs Keybindings]]
 
+** emacs.d
+
 [[file:emacsd.org][emacs.d]]
+
+** Programming Mode
+
+[[file:python-setup.org][Python Setup]]
+[[file:cpp-setup.org][cpp setup]]
+
+** Features
+
+[[file:features.org][features]]
 
 * Help Docs
 

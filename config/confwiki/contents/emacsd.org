@@ -1,5 +1,5 @@
 #+TITLE: emacs.d
-#+Last Saved: <2019-September-02 00:58:25>
+#+Last Saved: <2019-September-03 00:18:11>
 
 * Modern Configs to Steal!
 
@@ -252,6 +252,42 @@ Nice naming conventions
 
 ** mu4e + elfeed + mbsync + gpg2 config of Vianney Lebouteiller
 http://irfu.cea.fr/Pisp/vianney.lebouteiller/emacs.html#orgf16d962
+
+** another config - elgot lsp/tabs + multicursor hydras!
+
+https://github.com/andreyorst/dotfiles/tree/master/.emacs.d#lsp-mode
+
+(when window-system
+  (setq window-divider-default-right-width 1)
+  (window-divider-mode 1))
+  
+* Future configs
+
+** TODO R org babel - super useful for trade data
+
+I have downloaded ess (Emacs speaks stats)
+
+References:
+https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-R.html
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/delme/lisp")
+(require 'ess-site)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)))
+(setq org-babel-R-command "c:/Progra~1/R/R-3.6.1/bin/x64/R --slave --no-save")
+
+#+END_SRC
+
+Following babel worked fine!
+#+begin_src R :file 2.png :results value graphics
+library(lattice)
+print(xyplot(1:10 ~ 1:10))
+#+end_src
+[[./2.png]]
+
 * Classic
 
 ** basic emacs config - like writer room

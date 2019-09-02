@@ -10,3 +10,4 @@ projectile-bookmarks.eld
 projectile.cache
 smex-items
 .org-id-locations
+.lsp-session*

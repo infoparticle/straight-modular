@@ -1,0 +1,51 @@
+#+TITLE: CPP Setup
+#+Last Saved: <2019-September-03 00:41:07>
+
+https://github.com/emacs-lsp/lsp-mode
+
+*  My Summary
+
+- cscope + emacs is done deal. Adding gnu global is also fine.
+- To get intellisense we need higher cmake/clangd/cquery/ccls than centos 7 servers.
+- Simply switch to visual studio and get it done - for old servers!
+- for the latest Fedora 29, we can try these new things, perhaps rsync back to old servers!
+- lsp + ccls is the way to go (not CDETS not Semenantic mode etc.)
+  
+* irony based
+
+http://martinsosic.com/development/emacs/2017/12/09/emacs-cpp-ide.html
+
+https://tuhdo.github.io/c-ide.html (c:/root/work/web_pages/tuhdo...)
+
+
+* elgot based
+
+https://ddavis.io/posts/eglot-cpp-ide/
+
+* lsp + ccls + cmake based (modern)
+
+https://www.sandeepnambiar.com/setting-up-emacs-for-c++/
+
+https://github.com/MaskRay/ccls
+
+https://github.com/rememberYou/.emacs.d/blob/b00402c2b51d0435ca8b0267ef71f5fa3558d41a/config.org#c
+
+https://shelper.github.io/posts/setup-emacs-foc-c%2B%2B-with-ccls-and-lsp/
+
+* Tools Available
+
+- rtags/irony
+- clangd/libclang
+- cquery/ccls
+- CDETS
+- emacs-ycmd/ycmd
+
+lsp-mode - for general language server support;
+company-lsp - for lsp completions;
+emacs-cquery - for cquery support;
+lsp-ui - for onscreen documentation when hovering.
+
+* Lisp fragments
+
+https://github.com/tigersoldier/company-lsp
+https://github.com/emacs-lsp/lsp-ui

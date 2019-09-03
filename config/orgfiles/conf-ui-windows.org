@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <2019-August-30 00:51:47>
+#+Last Saved: <2019-September-03 23:04:13>
 
 
 * Enabled Config
@@ -22,8 +22,8 @@
                      (:eval
                       (propertize "●" 'face
                                   (if (buffer-modified-p)
-                                      '(:background default :foreground "Indian red" :weight bold)
-                                    '(:background default :foreground "gray90" :weight bold ))))
+                                      '(:foreground "Indian red" :weight bold)
+                                    '(:foreground "gray93" :weight bold ))))
 
                      (:eval (propertize " %b" 'face
                                       '(:foreground "gray30" :weight bold)))

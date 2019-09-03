@@ -10,8 +10,8 @@
                      (:eval
                       (propertize "●" 'face
                                   (if (buffer-modified-p)
-                                      '(:background default :foreground "Indian red" :weight bold)
-                                    '(:background default :foreground "gray90" :weight bold ))))
+                                      '(:foreground "Indian red" :weight bold)
+                                    '(:foreground "gray93" :weight bold ))))
 
                      (:eval (propertize " %b" 'face
                                       '(:foreground "gray30" :weight bold)))

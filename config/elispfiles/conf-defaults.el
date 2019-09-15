@@ -107,6 +107,7 @@
                     ;:foreground "#183bc8"
                     :weight 'normal)
 (add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;; Scrolling
 (setq scroll-step               1) ;; one line

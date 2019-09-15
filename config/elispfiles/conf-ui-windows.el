@@ -4,7 +4,7 @@
                      "  "
                      (:eval
                       (when (eql buffer-read-only t)
-                        (propertize " 🔒 " 'face
+                        (propertize " [R] " 'face
                                     '( ; :background "color-88"
                                       :foreground "gray60" :weight bold))))
                      (:eval
@@ -27,7 +27,7 @@
                     (with-current-buffer (window-buffer w)
                       (buffer-face-set '(:background "gray95"))))))
   (buffer-face-set 'default))
-(add-hook 'buffer-list-update-hook 'highlight-selected-window)
+;(add-hook 'buffer-list-update-hook 'highlight-selected-window)
 
 (global-hl-line-mode 1)
 (set-face-background hl-line-face "lavender")

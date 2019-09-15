@@ -69,4 +69,4 @@
 (when (file-exists-p "C:/opt/ripgrep/rg.exe")
   (setq exec-path (append '("C:/opt/ripgrep") exec-path)))
 
-(cd "c:/root/work/tmp")
+(cd "c:/my/tmp")

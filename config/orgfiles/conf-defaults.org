@@ -131,6 +131,7 @@ Provides sane defaults and improves the vanilla emacs.
                     ;:foreground "#183bc8"
                     :weight 'normal)
 (add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+END_SRC
 ** scrolling
 

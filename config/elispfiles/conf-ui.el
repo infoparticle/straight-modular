@@ -1,6 +1,6 @@
 (set-face-attribute 'default nil
                     :family "Consolas"
-                    :height 100
+                    :height  115
                     :weight 'normal
                     :width 'normal)
 (load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))

@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <2019-September-01 16:07:14>
+#+Last Saved: <2019-September-06 13:07:22>
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -138,5 +138,5 @@ c:\\opt\\irfan32\\i_view32.exe
 (when (file-exists-p "C:/opt/ripgrep/rg.exe")
   (setq exec-path (append '("C:/opt/ripgrep") exec-path)))
 
-(cd "c:/root/work/tmp")
+(cd "c:/my/tmp")
 #+END_SRC

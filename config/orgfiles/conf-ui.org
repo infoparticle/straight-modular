@@ -3,7 +3,7 @@
 #+PROPERTY: header-args :tangle yes
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
-#+Last Saved: <2019-September-02 10:45:15>
+#+Last Saved: <2019-September-11 11:36:20>
 
 Common UI configs
 
@@ -19,7 +19,7 @@ Common UI configs
 #+BEGIN_SRC emacs-lisp
 (set-face-attribute 'default nil
                     :family "Consolas"
-                    :height 100
+                    :height  115
                     :weight 'normal
                     :width 'normal)
 (load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))

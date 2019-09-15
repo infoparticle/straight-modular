@@ -22,7 +22,9 @@
         (delete-other-windows)
         (find-file  (concat wiki-root "/" wiki-name "/contents/index.org"))
         (split-window-right 30)
-        (find-file-other-window (concat wiki-root "/" wiki-name "/tmp/" wiki-name "-" "inbox.org")))
+        (find-file-other-window (concat wiki-root "/" wiki-name "/tmp/" wiki-name "-" "inbox.org"))
+        (when (file-exists-p  (concat wiki-root "/" ".config.el"))
+          (load-file  (concat wiki-root "/" ".config.el"))))
     (message "Wiki not found %s" wiki-root)))
 
 (defun /o/work-wiki    () (interactive) (my/open-wiki "~/.em/" "em.work-wiki"))

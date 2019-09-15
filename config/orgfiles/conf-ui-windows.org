@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <2019-September-03 23:04:13>
+#+Last Saved: <2019-September-11 16:28:41>
 
 
 * Enabled Config
@@ -16,7 +16,7 @@
                      "  "
                      (:eval
                       (when (eql buffer-read-only t)
-                        (propertize " 🔒 " 'face
+                        (propertize " [R] " 'face
                                     '( ; :background "color-88"
                                       :foreground "gray60" :weight bold))))
                      (:eval
@@ -43,7 +43,7 @@
                     (with-current-buffer (window-buffer w)
                       (buffer-face-set '(:background "gray95"))))))
   (buffer-face-set 'default))
-(add-hook 'buffer-list-update-hook 'highlight-selected-window)
+;(add-hook 'buffer-list-update-hook 'highlight-selected-window)
 #+END_SRC
 
 ** global-highlight-line

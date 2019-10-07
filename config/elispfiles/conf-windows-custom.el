@@ -3,12 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(epg-gpg-home-directory "c:\\Users\\gopinat.CORPDOM\\AppData\\Roaming\\gnupg")
- '(epg-gpg-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe")
- '(epg-gpgconf-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpgconf.exe")
- '(left-margin 0)
  '(ox-clip-w32-cmd
-   "c:/opt/anaconda3/python.exe c:/Users/gopinat.CORPDOM/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py"))
+   "c:/opt/anaconda3/python.exe c:/Users/gopinat/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -24,9 +20,12 @@
  '(dired-subtree-depth-7-face ((t (:background "old lace"))))
  '(dired-subtree-depth-8-face ((t (:background "gray95"))))
  '(line-number ((t (:inherit default :foreground "gray80"))))
- '(org-block ((t (:background "gray95" :family "Fira Code" :height 100))))
- '(org-ellipsis ((t (:foreground "gray" :box nil :underline nil :overline nil ))))
-; '(org-level-2 ((t (:inherit outline-2 :weight bold))))
+ '(org-block ((t (:background "gray95" :height 100 :family "Fira Code"))))
+ '(org-block-begin-line ((t (:foreground "slateblue" :underline nil))))
+ '(org-block-end-line ((t (:foreground "slateblue" :overline nil))))
+ '(org-document-info-keyword ((t (:foreground "slateblue"))))
+ '(org-ellipsis ((t (:foreground "gray" :box nil :underline nil :overline nil :weight bold))))
+ '(org-meta-line ((t (:foreground "slateblue"))))
  '(show-paren-match ((((class color) (background light)) (:background "linen")))))
 
 (put 'dired-find-alternate-file 'disabled nil)

@@ -1,9 +1,9 @@
 #+TITLE: emacs.d
-#+Last Saved: <2019-September-03 00:18:11>
+#+Last Saved: <Sep 18, 2019>
 
 * Modern Configs to Steal!
 
-** Straight based
+** Straight basedG
 
 *** nasy.moe
 https://emacs.nasy.moe/#org809a599
@@ -22,10 +22,10 @@ https://emacs.nasy.moe/#org809a599
 
 #+END_SRC
 
-straight.el booting up
-
-#+BEGIN_SRC emacs-lisp
-(setq straight-recipes-gnu-elpa-use-mirror t
+st+-----------------+p
+  |                 |
+#+|EGIN_SRC emacs-li|p
+(s+-----------------+s-gnu-elpa-use-mirror t
       straight-repository-branch           "develop"
       straight-check-for-modifications     'live
       straight-vc-git-default-clone-depth  1)
@@ -237,7 +237,7 @@ http://dustinlacewell.github.io/emacs.d
 
 - It has neat hydra eyecandy
 - straight.el and some fixes to it
-- 
+-
 [[file:../resources/ldleworks_init.el.pdf][Dustinlace Config in PDF]]
 
 ** emacs.d worth studying
@@ -260,7 +260,7 @@ https://github.com/andreyorst/dotfiles/tree/master/.emacs.d#lsp-mode
 (when window-system
   (setq window-divider-default-right-width 1)
   (window-divider-mode 1))
-  
+
 * Future configs
 
 ** TODO R org babel - super useful for trade data
@@ -292,3 +292,7 @@ print(xyplot(1:10 ~ 1:10))
 
 ** basic emacs config - like writer room
 https://bzg.fr/en/emacs-strip-tease.html/#sec-6
+
+* Org-mode special .emacs.d
+** Org Mode - Organize Your Life In Plain Text!
+http://doc.norang.ca/org-mode.html

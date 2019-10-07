@@ -23,7 +23,7 @@
 (defun /o/swcraft-wiki () (interactive) (my/open-wiki "~/.em/" "em.swcraft-wiki"))
 (defun /o/life-wiki    () (interactive) (my/open-wiki "I:/emacs-apps/wikis/" "life-wiki"))
 (defun /o/trading-wiki () (interactive) (my/open-wiki "~/.em/" "trading-wiki"))
-(defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat.CORPDOM\\Dropbox\\wikis\\" "home-wiki"))
+(defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat\\Dropbox\\wikis\\" "home-wiki"))
 (defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org"))
 
 (defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
@@ -31,13 +31,13 @@
   ("a" (my/open-wiki "I:/emacs-apps" "accounting") "Accounting Wiki")
   ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
   ("s" (my/open-wiki "~/.em/" "em.swcraft-wiki") "Software Craft Wiki")
-  ("p" (my/open-wiki "C:\\Users\\gopinat.CORPDOM\\Dropbox\\wikis" "philosophy-wiki") "Philosophy Wiki")
+  ("p" (my/open-wiki "C:\\Users\\gopinat\\Dropbox\\wikis" "philosophy-wiki") "Philosophy Wiki")
 
-  ("dc" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "cse-wiki"          )   "cse-wiki")
-  ("df" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "food-wiki"         )   "food-wiki")
-  ("dh" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "home-wiki"         )   "home-wiki")
-  ("dp" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "priceaction-wiki"  )   "priceaction-wiki")
-  ("dt" (my/open-wiki "C:/Users/gopinat.CORPDOM/Dropbox/wikis" "trading-wiki"      )   "trading-wiki")
+  ("dc" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "cse-wiki"          )   "cse-wiki")
+  ("df" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "food-wiki"         )   "food-wiki")
+  ("dh" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "home-wiki"         )   "home-wiki")
+  ("dp" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "priceaction-wiki"  )   "priceaction-wiki")
+  ("dt" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "trading-wiki"      )   "trading-wiki")
   ("q" nil "cancel" :color blue)
 )
 

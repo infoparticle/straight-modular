@@ -15,7 +15,7 @@
 
                      (:eval (propertize " %b" 'face
                                       '(:foreground "gray30" :weight bold)))
-
+                     "   "
                      mode-line-misc-info)))
 (set-face-attribute 'mode-line           nil :background "gray90" :box '(:line-width 1 :color "gray80" ))
 (set-face-attribute 'mode-line-inactive  nil :background "gray95" :box nil)

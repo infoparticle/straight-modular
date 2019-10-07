@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <2019-September-11 16:28:41>
+#+Last Saved: <Sep 21, 2019>
 
 
 * Enabled Config
@@ -27,7 +27,7 @@
 
                      (:eval (propertize " %b" 'face
                                       '(:foreground "gray30" :weight bold)))
-
+                     "   "
                      mode-line-misc-info)))
 (set-face-attribute 'mode-line           nil :background "gray90" :box '(:line-width 1 :color "gray80" ))
 (set-face-attribute 'mode-line-inactive  nil :background "gray95" :box nil)
@@ -70,4 +70,3 @@
  :PROPERTIES:
  :header-args: :tangle no
  :END:
-

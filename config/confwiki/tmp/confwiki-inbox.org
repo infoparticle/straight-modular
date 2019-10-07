@@ -1,5 +1,5 @@
 #+TITLE: ConfWiki Inbox
-#+Last Saved: <2019-September-02 17:15:27>
+#+Last Saved: <Sep 16, 2019>
 
 
 ** unicode
@@ -49,9 +49,9 @@ list of [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hoo
   "Set margins in current buffer."
   (setq left-margin-width 24)
   (setq right-margin-width 24))
- 
 
-  
+
+
 ** contribute to page-break (2019-08-25 Sun)
 
 added this to fix the page-break.el!
@@ -70,10 +70,31 @@ https://emacs.stackexchange.com/questions/7375/can-i-format-cells-in-an-org-mode
 ** ivy reference
 https://oremacs.com/swiper/#required-arguments-for-ivy-read
 
+** Literate dot files
+https://writepermission.com/introducing-literate-dotfiles.html
+https://gitlab.com/to1ne/literate-dotfiles/blob/master/Makefile#L26-30
+https://github.com/kwpav/dotfiles
+
+use stow!
+
+#+begin_src conf
+#+TITLE:      Toon's i3 configuration
+#+AUTHOR:     Toon Claes
+#+KEYWORDS:   toon claes i3 wm config
+#+STARTUP:    showall
+#+PROPERTY:   header-args+ :comments both
+#+PROPERTY:   header-args+ :mkdirp yes
+#+PROPERTY:   header-args+ :tangle "~/.config/i3/config"
+-----
+#+end_src
+
+** GTD Howardabrams
+http://howardism.org/Technical/Emacs/getting-more-boxes-done.html
+https://gitlab.com/howardabrams/spacemacs.d/blob/master/elisp/boxes.el
 * scratch
 
 https://ternjs.net/  - intelligent javascript editor!
- 
+
 (straight-use-package 'el-patch)
 
-(setq initial-buffer-choice 'counsel-recentf) 
+(setq initial-buffer-choice 'counsel-recentf)

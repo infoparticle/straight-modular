@@ -9,7 +9,6 @@
   :defer t)
 
 (use-package org-cliplink
-  :defer t
   :config
   (global-set-key (kbd "C-x p i") 'org-cliplink))
 

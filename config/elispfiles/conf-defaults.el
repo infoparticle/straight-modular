@@ -12,7 +12,7 @@
 (prefer-coding-system        'utf-8)
 
                                         ;https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
-(set-selection-coding-system 'utf-16-le)  
+(set-selection-coding-system 'utf-16-le)
 
 (set-input-method nil)
 
@@ -94,10 +94,10 @@
    ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
   '(
     (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-    (newline-mark 10 [182 10]) ; 10 LINE FEED
+    (newline-mark 10 [172 10]) ; 10 LINE FEED
     (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
     ))
-(setq whitespace-style '(face tabs trailing tab-mark))
+(setq whitespace-style '(face tabs trailing newline tab-mark newline-mark))
 (set-face-attribute 'whitespace-tab nil
                     :background nil
                     :foreground "#00a8a8"
@@ -106,6 +106,11 @@
                     :background "orange red"
                     ;:foreground "#183bc8"
                     :weight 'normal)
+(set-face-attribute 'whitespace-newline nil
+                    :background nil
+                    :foreground "gray65"
+                    :weight 'normal)
+
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -117,7 +122,7 @@
 
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
-(set-face-attribute 'show-paren-mismatch nil 
+(set-face-attribute 'show-paren-mismatch nil
                     :weight 'bold :underline t :overline nil :slant 'normal)
 (custom-set-faces
  '(show-paren-match ((((class color) (background light)) (:background "linen")))))

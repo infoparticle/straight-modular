@@ -64,7 +64,7 @@
                        )
                  (recentf-mode t)))
 
-(use-package ivy 
+(use-package ivy
   :diminish (ivy-mode . "")
   :bind
   (:map ivy-mode-map
@@ -101,7 +101,7 @@
   ("l" avy-goto-line "line")
   ("p" avy-pop-mark "pop")))
 
-(use-package counsel 
+(use-package counsel
   :config
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
@@ -124,7 +124,7 @@
   (setq projectile-completion-system 'ivy)
   )
 
-(use-package swiper 
+(use-package swiper
   :config)
 
 (use-package smex
@@ -161,7 +161,7 @@
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
 
 ; was dired-up-directory
-(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  
+(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
 
 ; put directories first
 (setq ls-lisp-dirs-first t)
@@ -198,10 +198,45 @@
 (add-hook 'after-save-hook #'my/tangle-dotfiles)
 
 (use-package super-save
-  :defer t
   :config
   (setq super-save-auto-save-when-idle t)
   (setq auto-save-default nil) ; turnoff default backups
   (setq super-save-remote-files nil) ;don't autosave remote files
   (setq super-save-exclude '(".gpg")) ;avoid auto saving gpg files
   (super-save-mode +1))
+
+(use-package eyebrowse
+  :config
+  (eyebrowse-mode t)
+  ;; (eyebrowse-setup-evil-keys)
+  (eyebrowse-setup-opinionated-keys)
+  (setq eyebrowse-mode-line-separator " "
+	eyebrowse-new-workspace t
+	eyebrowse-wrap-around t
+	eyebrowse-mode-line-style t))
+
+(use-package hydra
+  :after eyebrowse
+  :config
+  (defhydra hydra-eyebrowse-nav (:hint nil)
+    "
+_n_: next            _0_: window config 0
+_p_: prev            _1_: window config 1
+_l_: last            _2_: window config 2
+_c_: create config   _3_: window config 3
+_D_: delete config   _4_: window config 4
+_r_: rename config   _q_:quit"
+    ("n" eyebrowse-next-window-config)
+    ("p" eyebrowse-prev-window-config)
+    ("l" eyebrowse-last-window-config)
+    ("c" eyebrowse-create-window-config)
+    ("D" eyebrowse-close-window-config)
+    ("r" eyebrowse-rename-window-config)
+    ("0" eyebrowse-switch-to-window-config-0)
+    ("1" eyebrowse-switch-to-window-config-1)
+    ("2" eyebrowse-switch-to-window-config-2)
+    ("3" eyebrowse-switch-to-window-config-3)
+    ("4" eyebrowse-switch-to-window-config-4)
+    ("q" nil :color blue))
+  (global-set-key (kbd "C-;") 'hydra-eyebrowse-nav/body)
+  )

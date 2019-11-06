@@ -1,12 +1,12 @@
 (global-set-key "\C-s" 'save-buffer)
 
-(use-package which-key 
+(use-package which-key
   :defer 10
   :config
   (which-key-mode)
   (setq which-key-idle-delay 1.0))
 
-(use-package key-chord 
+(use-package key-chord
   :after (evil)
   :config
   (key-chord-mode +1)
@@ -20,6 +20,12 @@
 
   (key-chord-define-global "JJ" #'er-switch-to-previous-buffer))
 
+(use-package eyebrowse
+  :after (evil)
+  :config
+  (eyebrowse-setup-opinionated-keys)
+)
+
 (use-package general
   :config
   (general-define-key :keymaps 'evil-normal-state-map
@@ -27,10 +33,10 @@
                       (general-chord " j") 'avy-goto-char-2
                       (general-chord " l") 'avy-goto-line
                       )
-  
+
   (general-define-key :keymaps 'dired-mode-map
                       "C-c C-n" 'dired-narrow)
-  
+
   (general-define-key
    :states '(normal visual insert emacs)
    :prefix "SPC"
@@ -45,7 +51,7 @@
   ;"a"   '(org-agenda                 :which-key "org-agenda")
    "a"   '(hydra-avy/body             :which-key "hydra-avy")
    "A"   '(cfw:open-org-calendar      :which-key "open-org-calendar")
-   
+
    "c"   '(org-capture                :which-key "org-capture")
    "e"   '(hydra-eyebrowse-nav/body   :which-key "eyebrowse")
    "g"   '(keyboard-quit              :which-key "keyboard-quit")
@@ -55,7 +61,7 @@
    "im"  '(helm-imenu-anywhere        :which-key "helm-imenu-anywhere")
    "il"  '(imenu-list-smart-toggle    :which-key "imenu-list-smart-toggle")
    "y"   '(ivy-yasnippet             :which-key "ivy-yasnippet")
-   
+
    ;; expand region
    ;"er" 'er/expand-region
    ;; quickly open files
@@ -120,7 +126,7 @@
     "d" 'helm-cscope-find-called-function
     ;; ...
     )
-  
+
   (general-define-key
    :states '(normal visual insert emacs)
    :prefix "C-c"
@@ -153,7 +159,7 @@
  :states '(normal visual insert emacs)
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
- 
+
 "bb"   '(ivy-switch-buffer    :which-key "ivy-switch-buffer")
 "bd"   '(delete-window        :which-key "delete-window")
 "bk"   '(kill-buffer          :which-key "kill-buffer")
@@ -173,6 +179,6 @@
  :states '(normal visual insert emacs)
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
- 
+
 "mot"   '(org-babel-tangle   :which-key "org-babel-tangle")
 )

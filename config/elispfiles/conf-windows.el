@@ -29,7 +29,7 @@
 (require 'url-util) ;needed for encoding spaces to %20
 (defun my/img-maker ()
   "Make folder if not exist, define image name based on time/date"
-  (setq myvar/img-folder-path (concat default-directory ".img/"))
+  (setq myvar/img-folder-path (concat default-directory ".img/" (buffer-name) "/"))
 
                                         ; Make img folder if it doesn't exist.
   (if (not (file-exists-p myvar/img-folder-path)) ;[ ] refactor this and screenshot code.
@@ -37,7 +37,7 @@
 
   (setq myvar/img-name (concat (format-time-string "%Y%m%d_%H%M%S_") (read-from-minibuffer "image name:" (buffer-name)) ".png"))
   (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path myvar/img-name) t t)) ;Relative to workspace.
-  (setq myvar/relative-filename (concat "./.img/" myvar/img-name))
+  (setq myvar/relative-filename (concat "./.img/" (buffer-name) "/" myvar/img-name))
   (insert "[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
   )
 
@@ -48,11 +48,12 @@
   "Take a screenshot into a time stamped unique-named file in the
  sub-directory (%filenameIMG) as the org-buffer and insert a link to this file."
   (interactive)
+  ;(evil-insert)
   (my/img-maker)
                                         ;(make-frame-invisible)
-  (lower-frame)
+  ;(lower-frame)
   (call-process "c:\\opt\\irfan32\\i_view32.exe" nil nil nil (concat "/clippaste /convert="  myvar/img-Abs-Path))
-  (raise-frame)
+  ;(raise-frame)
                                         ;(make-frame-visible)
   (org-display-inline-images)
   )

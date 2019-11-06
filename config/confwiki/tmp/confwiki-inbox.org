@@ -1,5 +1,5 @@
 #+TITLE: ConfWiki Inbox
-#+Last Saved: <Sep 16, 2019>
+#+Last Saved: <Nov 06, 2019>
 
 
 ** unicode
@@ -51,7 +51,6 @@ list of [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hoo
   (setq right-margin-width 24))
 
 
-
 ** contribute to page-break (2019-08-25 Sun)
 
 added this to fix the page-break.el!
@@ -91,6 +90,16 @@ use stow!
 ** GTD Howardabrams
 http://howardism.org/Technical/Emacs/getting-more-boxes-done.html
 https://gitlab.com/howardabrams/spacemacs.d/blob/master/elisp/boxes.el
+
+** counsel recoll - a full text search with xapian core
+
+https://github.com/koniu/recoll-webui  - a very nice ui!
+
+https://github.com/alraban/org-recoll
+https://oremacs.com/2015/07/27/counsel-recoll/
+
+https://www.emacswiki.org/emacs/AnythingSources#toc58
+
 * scratch
 
 https://ternjs.net/  - intelligent javascript editor!

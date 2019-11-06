@@ -27,6 +27,15 @@
   :config
   (global-set-key (kbd "C-x p i") 'org-cliplink))
 #+END_SRC
+** org-latex
+#+begin_src emacs-lisp
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(setq org-preview-latex-default-process 'dvipng)
+#+end_src
+
 ** Bulk Config
 #+BEGIN_SRC emacs-lisp
 (setq

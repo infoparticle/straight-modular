@@ -9,8 +9,15 @@
   :defer t)
 
 (use-package org-cliplink
+  :defer t
   :config
   (global-set-key (kbd "C-x p i") 'org-cliplink))
+
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(setq org-preview-latex-default-process 'dvipng)
 
 (setq
  time-stamp-active t          ; do enable time-stamps

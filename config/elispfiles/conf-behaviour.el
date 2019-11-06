@@ -206,11 +206,11 @@
   (super-save-mode +1))
 
 (use-package eyebrowse
+  :after (evil)
   :config
   (eyebrowse-mode t)
   ;; (eyebrowse-setup-evil-keys)
-  (eyebrowse-setup-opinionated-keys)
-  (setq eyebrowse-mode-line-separator " "
+  (setq eyebrowse-mode-line-separator "]   ["
 	eyebrowse-new-workspace t
 	eyebrowse-wrap-around t
 	eyebrowse-mode-line-style t))
@@ -240,3 +240,15 @@ _r_: rename config   _q_:quit"
     ("q" nil :color blue))
   (global-set-key (kbd "C-;") 'hydra-eyebrowse-nav/body)
   )
+
+  (use-package engine-mode
+    :defer 3
+    :config
+    (defengine quixy
+      "https://quixy.swinfra.net/quixy/query/detail.php?ISSUEID=%s"
+      :keybinding "q")
+
+    (defengine duckduckgo
+      "https://duckduckgo.com/?q=%s"
+      :keybinding "d")
+)

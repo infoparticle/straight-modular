@@ -24,7 +24,7 @@
 (defun /o/life-wiki    () (interactive) (my/open-wiki "I:/emacs-apps/wikis/" "life-wiki"))
 (defun /o/trading-wiki () (interactive) (my/open-wiki "~/.em/" "trading-wiki"))
 (defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat\\Dropbox\\wikis\\" "home-wiki"))
-(defun /o/password     () (interactive) (find-file   "z:/emacs-apps/pass.org"))
+(defun /o/password     () (interactive) (find-file   "E:/mydata/credentials/pass.org"))
 
 (defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
   "Wiki List"

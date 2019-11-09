@@ -1,10 +1,11 @@
 #+TITLE: Conf Programming
-#+Last Saved: <2019-September-03 19:52:21>
+#+Last Saved: <Nov 08, 2019>
 #+property: header-args :tangle yes
 
-* Conf Programming
-
-Common configuration for programming mode.
+* Enabled Config
+ :PROPERTIES:
+ :header-args: :tangle yes
+ :END:
 
 ** expand region
 
@@ -59,8 +60,47 @@ To add linum to your favorite modes:
   (add-hook 'prog-mode-hook #'display-line-numbers-mode))
 #+END_SRC
 
-*  Conf haskell
+** haskell
 
 #+BEGIN_SRC emacs-lisp
 (use-package haskell-mode :defer t)
+#+END_SRC
+
+** web-dev
+
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+  :mode ("\\.html$" . web-mode)
+  :init
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq js-indent-level 2)
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-auto-closing t)
+  (setq web-mode-enable-auto-expanding t)
+  (setq web-mode-enable-css-colorization t)
+  (add-hook 'web-mode-hook 'electric-pair-mode))
+
+(use-package emmet-mode
+  :diminish (emmet-mode . "ε")
+  :bind* (("C-)" . emmet-next-edit-point)
+          ("C-(" . emmet-prev-edit-point))
+  :commands (emmet-mode
+             emmet-next-edit-point
+             emmet-prev-edit-point)
+  :init
+  (setq emmet-indentation 2)
+  (setq emmet-move-cursor-between-quotes t)
+  :config
+  ;; Auto-start on any markup modes
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode))
+
+(use-package json-mode
+  :mode "\\.json\\'"
+  :config
+  (bind-key "{" #'paredit-open-curly json-mode-map)
+  (bind-key "}" #'paredit-close-curly json-mode-map))
+
 #+END_SRC

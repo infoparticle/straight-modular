@@ -1,15 +1,15 @@
 #+TITLE: Conf Behaviour Helpers
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-#+Last Saved: <2019-September-02 10:24:16>
+#+Last Saved: <Nov 08, 2019>
 
 
 * Enabled Config
  :PROPERTIES:
  :header-args: :tangle yes
  :END:
- 
- 
+
+
 ** set-proxy/unset-proxy
 
 #+BEGIN_SRC emacs-lisp
@@ -22,7 +22,10 @@
 
 (defun unset-proxy()
   (interactive)
-  (setq url-proxy-services nil))
+  (setq url-proxy-services nil)
+  (setenv "HTTP_PROXY" "")
+  (setenv "HTTPS_PROXY" "")
+)
 #+END_SRC
 
 ** emacs server shutdown
@@ -36,7 +39,7 @@
 #+END_SRC
 
 ** my/byte-compile-init-dir
-   
+
 #+BEGIN_SRC emacs-lisp
 (defun my/byte-compile-init-dir ()
   "Byte-compile all your dotfiles."
@@ -70,4 +73,3 @@
  :PROPERTIES:
  :header-args: :tangle no
  :END:
- 

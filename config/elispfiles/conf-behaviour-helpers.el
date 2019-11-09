@@ -7,7 +7,10 @@
 
 (defun unset-proxy()
   (interactive)
-  (setq url-proxy-services nil))
+  (setq url-proxy-services nil)
+  (setenv "HTTP_PROXY" "")
+  (setenv "HTTPS_PROXY" "")
+)
 
 (defun server-shutdown ()
 "Save buffers, Quit, and Shutdown (kill) server"

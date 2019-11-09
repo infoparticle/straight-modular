@@ -24,11 +24,11 @@
 (defun /o/life-wiki    () (interactive) (my/open-wiki "I:/emacs-apps/wikis/" "life-wiki"))
 (defun /o/trading-wiki () (interactive) (my/open-wiki "~/.em/" "trading-wiki"))
 (defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat\\Dropbox\\wikis\\" "home-wiki"))
-(defun /o/password     () (interactive) (find-file   "E:/mydata/credentials/pass.org"))
+(defun /o/password     () (interactive) (find-file   "E:/mydata/credentials/pass.org.gpg"))
 
 (defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
   "Wiki List"
-  ("a" (my/open-wiki "I:/emacs-apps" "accounting") "Accounting Wiki")
+  ("a" (my/open-wiki "E:/mydata" "accounting") "Accounting Wiki")
   ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
   ("s" (my/open-wiki "~/.em/" "em.swcraft-wiki") "Software Craft Wiki")
   ("p" (my/open-wiki "C:\\Users\\gopinat\\Dropbox\\wikis" "philosophy-wiki") "Philosophy Wiki")

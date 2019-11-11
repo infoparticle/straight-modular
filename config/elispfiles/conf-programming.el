@@ -62,3 +62,7 @@
   :config
   (bind-key "{" #'paredit-open-curly json-mode-map)
   (bind-key "}" #'paredit-close-curly json-mode-map))
+
+(use-package impatient-mode
+  :mode ("\\.html$" . impatient-mode)
+)

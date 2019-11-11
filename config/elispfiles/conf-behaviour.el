@@ -267,3 +267,66 @@ _r_: rename config   _q_:quit"
       "https://duckduckgo.com/?q=%s"
       :keybinding "d")
 )
+
+(defun eshell/clear ()
+  "Clear the eshell buffer."
+  (let ((inhibit-read-only t))
+    (erase-buffer)
+    (eshell-send-input)))
+
+(defun eshell-here ()
+  "Opens up a new shell in the directory associated with the
+current buffer's file. The eshell is renamed to match that
+directory to make multiple eshell windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 3))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (eshell "new")
+    (rename-buffer (concat "*eshell: " name "*"))
+    (insert (concat "ls"))
+    (eshell-send-input)))
+
+(defun ha/eshell-quit-or-delete-char (arg)
+  (interactive "p")
+  (if (and (eolp) (looking-back eshell-prompt-regexp))
+      (progn
+        (eshell-life-is-too-much) ; Why not? (eshell/exit)
+        (ignore-errors
+          (delete-window)))
+    (delete-forward-char arg)))
+
+(defun my-custom-func ()
+  (when (not (one-window-p))
+    (delete-window)))
+
+(advice-add 'eshell-life-is-too-much :after 'my-custom-func)
+
+(add-hook 'eshell-mode-hook
+            (lambda ()
+              (bind-keys :map eshell-mode-map
+                         ("C-d" . ha/eshell-quit-or-delete-char))))
+
+(use-package zoom
+  :config
+  (zoom-mode t)
+  (custom-set-variables
+   '(zoom-size '(0.618 . 0.618))
+   '(zoom-ignored-major-modes '(dired-mode markdown-mode))
+   '(zoom-ignored-buffer-names '("zoom.el" "init.el" "index.org"))
+   '(zoom-ignored-buffer-name-regexps '("^*calc"))
+   '(zoom-ignore-predicates '((lambda () (> (count-lines (point-min) (point-max)) 20)))
+                            )
+   )
+  )
+
+(use-package zoom-window
+:config
+(global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
+(custom-set-variables
+ '(zoom-window-mode-line-color "lightGreen"))
+)

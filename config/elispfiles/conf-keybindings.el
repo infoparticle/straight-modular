@@ -124,6 +124,8 @@
     "g" 'helm-cscope-find-global-definition
     "c" 'helm-cscope-find-calling-this-function
     "d" 'helm-cscope-find-called-function
+    "e" 'eshell-here
+    "x" 'eshell-life-is-too-much
     ;; ...
     )
 

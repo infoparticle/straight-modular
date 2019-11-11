@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <Nov 06, 2019>
+#+Last Saved: <Nov 10, 2019>
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -9,6 +9,7 @@
 (setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
 (setq explicit-bash.exe-args '("--login" "-i"))
 #+END_SRC
+
 ** spell check
 
 #+BEGIN_SRC emacs-lisp

@@ -20,12 +20,6 @@
 
   (key-chord-define-global "JJ" #'er-switch-to-previous-buffer))
 
-(use-package eyebrowse
-  :after (evil)
-  :config
-  (eyebrowse-setup-opinionated-keys)
-)
-
 (use-package general
   :config
   (general-define-key :keymaps 'evil-normal-state-map

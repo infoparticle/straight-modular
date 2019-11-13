@@ -1,10 +1,11 @@
 #+TITLE: Conf Keybindings
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-#+PROPERTY: header-args :tangle yes
-#+SELECT_TAGS: export
-#+EXCLUDE_TAGS: noexport
 
+* Enabled Config
+ :PROPERTIES:
+ :header-args: :tangle yes
+ :END:
 ** global key configs
 
 #+BEGIN_SRC emacs-lisp
@@ -37,17 +38,6 @@
 
   (key-chord-define-global "JJ" #'er-switch-to-previous-buffer))
 #+END_SRC
-
-** eyebrowse enable evil keys
-
-Need this hack as putting eyebrowse-setup-opinionated-keys in conf-behaviour.org is not helping! Perhaps some conflict?
-#+begin_src emacs-lisp
-(use-package eyebrowse
-  :after (evil)
-  :config
-  (eyebrowse-setup-opinionated-keys)
-)
-#+end_src
 
 ** Here comes General, all salute!
 
@@ -232,3 +222,23 @@ Need this hack as putting eyebrowse-setup-opinionated-keys in conf-behaviour.org
 )
 
 #+END_SRC
+
+* Disabled Config
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
+
+** eyebrowse enable evil keys
+:LOGBOOK:
+- Note taken on [2019-11-13 Wed 16:48] \\
+  moving to persp-mode ditching eyebrowse!
+:END:
+
+Need this hack as putting eyebrowse-setup-opinionated-keys in conf-behaviour.org is not helping! Perhaps some conflict?
+#+begin_src emacs-lisp
+(use-package eyebrowse
+  :after (evil)
+  :config
+  (eyebrowse-setup-opinionated-keys)
+)
+#+end_src

@@ -12,3 +12,4 @@ smex-items
 .org-id-locations
 .lsp-session*
 eshell/
+persp-*/

@@ -220,42 +220,6 @@
   (setq super-save-exclude '(".gpg")) ;avoid auto saving gpg files
   (super-save-mode +1))
 
-(use-package eyebrowse
-  :after (evil)
-  :config
-  (eyebrowse-mode t)
-  ;; (eyebrowse-setup-evil-keys)
-  (setq eyebrowse-mode-line-separator "]   ["
-	eyebrowse-new-workspace t
-	eyebrowse-wrap-around t
-	eyebrowse-mode-line-style t))
-
-(use-package hydra
-  :after eyebrowse
-  :config
-  (defhydra hydra-eyebrowse-nav (:hint nil)
-    "
-_n_: next            _0_: window config 0
-_p_: prev            _1_: window config 1
-_l_: last            _2_: window config 2
-_c_: create config   _3_: window config 3
-_D_: delete config   _4_: window config 4
-_r_: rename config   _q_:quit"
-    ("n" eyebrowse-next-window-config)
-    ("p" eyebrowse-prev-window-config)
-    ("l" eyebrowse-last-window-config)
-    ("c" eyebrowse-create-window-config)
-    ("D" eyebrowse-close-window-config)
-    ("r" eyebrowse-rename-window-config)
-    ("0" eyebrowse-switch-to-window-config-0)
-    ("1" eyebrowse-switch-to-window-config-1)
-    ("2" eyebrowse-switch-to-window-config-2)
-    ("3" eyebrowse-switch-to-window-config-3)
-    ("4" eyebrowse-switch-to-window-config-4)
-    ("q" nil :color blue))
-  (global-set-key (kbd "C-;") 'hydra-eyebrowse-nav/body)
-  )
-
   (use-package engine-mode
     :defer 3
     :config
@@ -315,14 +279,8 @@ directory to make multiple eshell windows easier."
   :config
   (zoom-mode t)
   (custom-set-variables
-   '(zoom-size '(0.618 . 0.618))
-   '(zoom-ignored-major-modes '(dired-mode markdown-mode))
-   '(zoom-ignored-buffer-names '("zoom.el" "init.el" "index.org"))
-   '(zoom-ignored-buffer-name-regexps '("^*calc"))
-   '(zoom-ignore-predicates '((lambda () (> (count-lines (point-min) (point-max)) 20)))
-                            )
-   )
-  )
+   '(zoom-size '(0.618 . 0.618)))
+)
 
 (use-package zoom-window
 :config
@@ -330,3 +288,7 @@ directory to make multiple eshell windows easier."
 (custom-set-variables
  '(zoom-window-mode-line-color "lightGreen"))
 )
+
+(use-package persp-mode
+  :config
+  (persp-mode t))

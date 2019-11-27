@@ -3,8 +3,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(epg-gpg-home-directory "c:\\Users\\gopinat\\AppData\\Roaming\\gnupg")
+ '(epg-gpg-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe")
+ '(epg-gpgconf-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpgconf.exe")
  '(ox-clip-w32-cmd
-   "c:/opt/anaconda3/python.exe c:/Users/gopinat/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py"))
+   "c:/opt/anaconda3/python.exe c:/Users/gopinat/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py")
+ '(safe-local-variable-values (quote ((eval progn (pp-buffer) (indent-buffer)))))
+ '(zoom-window-mode-line-color "lightGreen"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

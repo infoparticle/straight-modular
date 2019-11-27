@@ -66,3 +66,8 @@
 (use-package impatient-mode
   :mode ("\\.html$" . impatient-mode)
 )
+
+(use-package origami
+  :defer t
+  :config
+  (add-hook 'prog-mode-hook #'origami-mode))

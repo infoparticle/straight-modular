@@ -1,5 +1,5 @@
 #+TITLE: Conf Experiment
-#+Last Saved: <Nov 09, 2019>
+#+Last Saved: <Nov 16, 2019>
 #+BABEL: :cache yes
 
 * Enabled Config
@@ -120,11 +120,11 @@
 
 #+BEGIN_SRC emacs-lisp
 #+END_SRC
+
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no
  :END:
-
 ** set fringe
  #+BEGIN_SRC emacs-lisp
 (defun eos/set-fringe-background ()
@@ -514,4 +514,14 @@ Optionally, provide NO-NEXT-LINE to move the cursor forward a line."
   (setq org-brain-visualize-default-choices 'all)
   (setq org-brain-title-max-length 12))
 
+#+END_SRC
+** elnode
+Sounds interesting, easy way to share emacs locked in files to outer world!
+But hard to setup
+https://github.com/nicferrier/elnode
+
+#+BEGIN_SRC emacs-lisp
+(use-package web)
+(use-package fakir)
+(use-package elnode)
 #+END_SRC

@@ -1,5 +1,5 @@
 #+TITLE: Conf Programming
-#+Last Saved: <Nov 10, 2019>
+#+Last Saved: <Nov 27, 2019>
 #+property: header-args :tangle yes
 
 * Enabled Config
@@ -106,4 +106,13 @@ To add linum to your favorite modes:
 (use-package impatient-mode
   :mode ("\\.html$" . impatient-mode)
 )
+#+END_SRC
+
+** origami
+
+#+BEGIN_SRC emacs-lisp
+(use-package origami
+  :defer t
+  :config
+  (add-hook 'prog-mode-hook #'origami-mode))
 #+END_SRC

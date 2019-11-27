@@ -275,13 +275,6 @@ directory to make multiple eshell windows easier."
               (bind-keys :map eshell-mode-map
                          ("C-d" . ha/eshell-quit-or-delete-char))))
 
-(use-package zoom
-  :config
-  (zoom-mode t)
-  (custom-set-variables
-   '(zoom-size '(0.618 . 0.618)))
-)
-
 (use-package zoom-window
 :config
 (global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
@@ -291,4 +284,8 @@ directory to make multiple eshell windows easier."
 
 (use-package persp-mode
   :config
-  (persp-mode t))
+                                        ;(persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
+  (add-hook 'persp-mode
+            (lambda()
+              (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)
+              (global-set-key (kbd "C-x k") #'persp-kill-buffer))))

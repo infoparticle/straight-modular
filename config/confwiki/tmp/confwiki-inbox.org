@@ -1,5 +1,5 @@
 #+TITLE: ConfWiki Inbox
-#+Last Saved: <Nov 06, 2019>
+#+Last Saved: <Nov 13, 2019>
 
 
 ** unicode
@@ -99,6 +99,12 @@ https://github.com/alraban/org-recoll
 https://oremacs.com/2015/07/27/counsel-recoll/
 
 https://www.emacswiki.org/emacs/AnythingSources#toc58
+
+
+** Huge collection of config links
+
+https://github.com/emacs-tw/awesome-emacs
+https://github.com/pierre-lecocq/emacs4developers
 
 * scratch
 

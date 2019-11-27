@@ -31,11 +31,10 @@
   "Make folder if not exist, define image name based on time/date"
   (setq myvar/img-folder-path (concat default-directory ".img/" (buffer-name) "/"))
 
-                                        ; Make img folder if it doesn't exist.
-  (if (not (file-exists-p myvar/img-folder-path)) ;[ ] refactor this and screenshot code.
-      (mkdir myvar/img-folder-path))
+  (if (not (file-exists-p myvar/img-folder-path))
+      (make-directory myvar/img-folder-path :parents))
 
-  (setq myvar/img-name (concat (format-time-string "%Y%m%d_%H%M%S_") (read-from-minibuffer "image name:" (buffer-name)) ".png"))
+  (setq myvar/img-name (concat (format-time-string "%Y%m%d-%H%M%S-") (read-from-minibuffer "image name:" (buffer-name)) ".png"))
   (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path myvar/img-name) t t)) ;Relative to workspace.
   (setq myvar/relative-filename (concat "./.img/" (buffer-name) "/" myvar/img-name))
   (insert "[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")

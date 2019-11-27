@@ -1,5 +1,5 @@
 #+TITLE: Features
-#+Last Saved: <Sep 30, 2019>
+#+Last Saved: <Nov 18, 2019>
 
 * TODO helm-ag
 
@@ -18,3 +18,11 @@
 
 * nice tabs
 https://github.com/ema2159/centaur-tabs
+
+* Buffer Management
+
+** TODO window-purpose
+
+Windows layout and buffer grouping inside the layout
+https://github.com/bmag/emacs-purpose
+https://www.reddit.com/r/emacs/comments/2zr4pc/a_quick_praise_of_purpose_mode/

@@ -1,0 +1,84 @@
+#+TITLE: swiper ivy counsel
+#+Last Saved: <Dec 05, 2019>
+
+https://oremacs.com/swiper/#required-arguments-for-ivy-read
+
+#+BEGIN_SRC emacs-lisp
+(defun counsel-describe-function ()
+  "Forward to `describe-function'."
+  (interactive)
+  (ivy-read "Describe function: "
+            (let (cands)
+              (mapatoms
+               (lambda (x)
+                 (when (fboundp x)
+                   (push (symbol-name x) cands))))
+              cands)
+            :keymap counsel-describe-map
+            :preselect (ivy-thing-at-point)
+            :history 'counsel-describe-symbol-history
+            :require-match t
+            :action (lambda (x)
+                      (describe-function
+                       (intern x)))
+            :caller 'counsel-describe-function))
+
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+(defun my-action-1 (x)
+  (message "action-1: %s" x))
+
+(defun my-action-2 (x)
+  (message "action-2: %s" x))
+
+(defun my-action-3 (x)
+  (message "action-3: %s" x))
+
+(defun my-command-with-3-actions ()
+  (interactive)
+  (ivy-read "test: " '("foo" "bar" "baz")
+            :action '(1
+                      ("o" my-action-1 "action 1") ;;C-c C-o ivy occur opens, the oo => action 1, oj => action 2 etc.
+                      ("j" my-action-2 "action 2")
+                      ("k" my-action-3 "action 3"))))
+#+END_SRC
+
+
+(defun find-candidates-function (str pred _)
+  (let ((props '(1 2))
+        (strs '("foo" "foo2")))
+    (cl-mapcar (lambda (s p) (propertize s 'property p))
+               strs
+               props)))
+
+#+BEGIN_SRC emacs-lisp
+(defun my/pick-wiki-name-list-candidates (str pred _)
+  (message "%s" str)
+  '("abc" "def"))
+
+(defun my/pick-wiki-name-action (x)
+  (message x))
+
+(defun my/pick-wiki-name ()
+  "Forward to `describe-function'."
+  (interactive)
+  (ivy-read "Describe function: " #'my/pick-wiki-name-list-candidates
+            :preselect (ivy-thing-at-point)
+            :require-match t
+            :action #'my/pick-wiki-name-action
+            :caller 'my/pick-wiki-name))
+#+END_SRC
+
+
+(should
+ (equal (ivy-with
+         '(progn
+           (ivy-read "Test: " '("can do" "can't, sorry" "other"))
+           ivy-text)
+         "c <tab>")
+        "can"))
+
+References:
+https://kitchingroup.cheme.cmu.edu/blog/category/ivy/

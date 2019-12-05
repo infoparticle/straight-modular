@@ -69,7 +69,6 @@
 
 (when (file-exists-p "C:/opt/ripgrep/rg.exe")
   (setq exec-path (append '("C:/opt/ripgrep") exec-path))
-        (setq helm-grep-ag-command "C:\\opt\\ripgrep\\rg.exe --smart-case --no-heading --line-number %s %s %s"))
-
+  (setq helm-grep-ag-command "C:\\opt\\ripgrep\\rg.exe --smart-case --no-heading --line-number %s %s %s"))
 
 (cd "c:/my/tmp")

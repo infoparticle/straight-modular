@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <Nov 24, 2019>
+#+Last Saved: <Dec 04, 2019>
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -137,8 +137,11 @@ c:\\opt\\irfan32\\i_view32.exe
 
 (when (file-exists-p "C:/opt/ripgrep/rg.exe")
   (setq exec-path (append '("C:/opt/ripgrep") exec-path))
-        (setq helm-grep-ag-command "C:\\opt\\ripgrep\\rg.exe --smart-case --no-heading --line-number %s %s %s"))
-
+  (setq helm-grep-ag-command "C:\\opt\\ripgrep\\rg.exe --smart-case --no-heading --line-number %s %s %s"))
 
 (cd "c:/my/tmp")
 #+END_SRC
+
+(when (file-exists-p "c:/my/opt/putty/plink.exe")
+  (setq exec-path (append '("C:/my/opt/putty") exec-path))
+  )

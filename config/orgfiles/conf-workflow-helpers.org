@@ -39,20 +39,6 @@
 (defun /o/home-wiki    () (interactive) (my/open-wiki "C:\\Users\\gopinat\\Dropbox\\wikis\\" "home-wiki"))
 (defun /o/password     () (interactive) (find-file   "E:/mydata/credentials/pass.org.gpg"))
 
-(defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
-  "Wiki List"
-  ("a" (my/open-wiki "E:/mydata" "accounting") "Accounting Wiki")
-  ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
-  ("s" (my/open-wiki "~/.em/" "em.swcraft-wiki") "Software Craft Wiki")
-  ("p" (my/open-wiki "C:\\Users\\gopinat\\Dropbox\\wikis" "philosophy-wiki") "Philosophy Wiki")
-
-  ("dc" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "cse-wiki"          )   "cse-wiki")
-  ("df" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "food-wiki"         )   "food-wiki")
-  ("dh" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "home-wiki"         )   "home-wiki")
-  ("dp" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "priceaction-wiki"  )   "priceaction-wiki")
-  ("dt" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "trading-wiki"      )   "trading-wiki")
-  ("q" nil "cancel" :color blue)
-)
 
 (use-package projectile
   :config
@@ -94,10 +80,54 @@
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    "oj" '(/bm/orgroot-journal       :which-key "orgroot:daily-journal")
-   "ow" '(hydra-open-wiki/body           :which-key "Open wiki")
+   "ow" '(my/pick-wiki-name         :which-key "Open wiki")
    "rb" '(/ref/bash/scripting       :which-key "bash:scripting" )))
 
 
 (with-system windows-nt
   (defun /bm/work () (interactive) (dired "c:/root/work")))
+#+END_SRC
+
+** pick a wiki
+
+#+BEGIN_SRC emacs-lisp
+(defun my/pick-wiki-name-action-list-candidates (str pred _)
+  (setq wiki-root "C:\\Users\\gopinat\\Dropbox\\wikis")
+  (setq wiki-list  (cl-delete-if (lambda (k) (string-match-p "\\." k))
+                                 (directory-files wiki-root))))
+
+(defun my/pick-wiki-name-action (x)
+  (my/open-wiki  "C:/Users/gopinat/Dropbox/wikis" x))
+
+(defun my/pick-wiki-name ()
+  "pick a wiki from dropbox folder."
+  (interactive)
+  (ivy-read "List of wikis: "  #'my/pick-wiki-name-action-list-candidates
+            :preselect (ivy-thing-at-point)
+            :require-match t
+            :action #'my/pick-wiki-name-action
+            :caller 'my/pick-wiki-name))
+
+#+END_SRC
+
+* Disabled configs
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
+#+BEGIN_SRC emacs-lisp
+
+(defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
+  "Wiki List"
+  ("a" (my/open-wiki "E:/mydata" "accounting") "Accounting Wiki")
+  ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
+  ("s" (my/open-wiki "~/.em/" "em.swcraft-wiki") "Software Craft Wiki")
+  ("p" (my/open-wiki "C:\\Users\\gopinat\\Dropbox\\wikis" "philosophy-wiki") "Philosophy Wiki")
+
+  ("dc" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "cse-wiki"          )   "cse-wiki")
+  ("df" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "food-wiki"         )   "food-wiki")
+  ("dh" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "home-wiki"         )   "home-wiki")
+  ("dp" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "priceaction-wiki"  )   "priceaction-wiki")
+  ("dt" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "trading-wiki"      )   "trading-wiki")
+  ("q" nil "cancel" :color blue)
+)
 #+END_SRC

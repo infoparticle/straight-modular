@@ -110,6 +110,43 @@
 
 #+END_SRC
 
+** my org-templates
+
+#+BEGIN_SRC emacs-lisp
+(setq work-agenda-file "c:/Users/gopinat/AppData/Roaming/.em/em.work-wiki/contents/work-agenda-del.org")
+(setq org-capture-templates
+      '(
+        ("t" "Tasks")
+
+        ;; TODO     (t) Todo template
+        ("tc" "TODO" entry (file work-agenda-file)
+         "* TODO %?
+  :PROPERTIES:
+  :Created: %U
+  :Type:  %^{Type|Case|Task|Project}
+
+  :END:
+  :LOGBOOK:
+  - State \"TODO\"       from \"\"           %U
+  :END:" :empty-lines 1)
+
+
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")
+
+        ("i" "inbox" entry (file+datetree "~/org/org-inbox.org")
+         "* %?
+  :PROPERTIES:
+  :Created: %U
+  :Category:  %^{Category|Work|Philosophy|Trading|Others}
+  :END:" :empty-lines 1)
+        ("E" "Create Event and Clock In" entry
+         (file+datetree+prompt "~/org/events.org")
+         "* %?\n%T" :clock-in t :clock-keep t)
+        )
+      )
+
+#+END_SRC
 * Disabled configs
  :PROPERTIES:
  :header-args: :tangle no

@@ -1,5 +1,5 @@
 #+TITLE: Conf Programming
-#+Last Saved: <Nov 27, 2019>
+#+Last Saved: <Dec 21, 2019>
 #+property: header-args :tangle yes
 
 * Enabled Config
@@ -15,6 +15,15 @@
   )
 #+END_SRC
 
+** paren-face for elisp
+
+#+BEGIN_SRC emacs-lisp
+(use-package paren-face
+:defer t
+:config
+  (add-hook 'prog-mode-hook #'paren-face-mode))
+#+END_SRC
+
 ** highlight-symbol
 
 #+BEGIN_SRC emacs-lisp
@@ -26,15 +35,6 @@
   (setq highlight-symbol-idle-delay 0.3)
   (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (highlight-symbol-nav-mode))
-#+END_SRC
-
-** rainbo-delimiters
-#+BEGIN_SRC emacs-lisp
-
-(use-package rainbow-delimiters
-  :defer t
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
 
 ** highlight-indentation
@@ -115,4 +115,17 @@ To add linum to your favorite modes:
   :defer t
   :config
   (add-hook 'prog-mode-hook #'origami-mode))
+#+END_SRC
+
+* Disabled Config
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
+** rainbo-delimiters
+#+BEGIN_SRC emacs-lisp
+
+(use-package rainbow-delimiters
+  :defer t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC

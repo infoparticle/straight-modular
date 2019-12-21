@@ -2,6 +2,11 @@
   :defer t
   )
 
+(use-package paren-face
+:defer t
+:config
+  (add-hook 'prog-mode-hook #'paren-face-mode))
+
 (use-package highlight-symbol
   :defer 10
   :bind (("M-n" . highlight-symbol-next)
@@ -10,11 +15,6 @@
   (setq highlight-symbol-idle-delay 0.3)
   (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (highlight-symbol-nav-mode))
-
-(use-package rainbow-delimiters
-  :defer t
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package highlight-indentation
   :defer t

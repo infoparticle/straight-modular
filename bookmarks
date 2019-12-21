@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Downloads"
+(("org-capture-last-stored"
+ (filename . "~/org/journal.org")
+ (front-context-string . "**** Friday 13 f")
+ (rear-context-string . "19-12-13 Friday\n")
+ (position . 1468))
+("Downloads"
  (filename . "c:/Users/gopinat/Downloads")
  (position . 0)
  (defaults "gopinat" "Dropbox"))

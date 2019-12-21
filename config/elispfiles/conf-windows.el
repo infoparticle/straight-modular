@@ -27,21 +27,35 @@
 (conf/ondemand/windows/gpg)
 
 (require 'url-util) ;needed for encoding spaces to %20
+
+(defun my/create-rich-doc()
+  (interactive)
+  (setq parent-dir (file-name-nondirectory (directory-file-name (file-name-directory buffer-file-name))))
+  (if (string= (buffer-name) parent-dir)
+      (message "need NOT create new dirs")
+    (progn
+      (setq myvar/cursor-location (point))
+      (save-buffer)
+      (rename-file buffer-file-name (concat buffer-file-name "-tmp"))
+      (make-directory buffer-file-name)
+      (setq target-file-path (concat buffer-file-name "/" (buffer-name)))
+      (rename-file (concat buffer-file-name "-tmp")  target-file-path)
+      (kill-buffer)
+      (find-file target-file-path)
+      (forward-char myvar/cursor-location))))
+
 (defun my/img-maker ()
-  "Make folder if not exist, define image name based on time/date"
-  (setq myvar/img-folder-path (concat default-directory ".img/" (buffer-name) "/"))
+  (my/create-rich-doc)
+  (setq myvar/img-folder-path (concat default-directory ".img/"))
 
   (if (not (file-exists-p myvar/img-folder-path))
       (make-directory myvar/img-folder-path :parents))
 
-  (setq myvar/img-name (concat (format-time-string "%Y%m%d-%H%M%S-") (read-from-minibuffer "image name:" (buffer-name)) ".png"))
+  (setq myvar/img-name (concat (format-time-string "%Y%m%d-%H%M%S") ".png"))
   (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path myvar/img-name) t t)) ;Relative to workspace.
-  (setq myvar/relative-filename (concat "./.img/" (buffer-name) "/" myvar/img-name))
+  (setq myvar/relative-filename (concat "./.img/" myvar/img-name))
   (insert "[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
   )
-
-
-;; TODO need to add the filename in the image
 
 (defun org-screenshot ()
   "Take a screenshot into a time stamped unique-named file in the

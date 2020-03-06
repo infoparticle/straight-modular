@@ -71,3 +71,31 @@
   :defer t
   :config
   (add-hook 'prog-mode-hook #'origami-mode))
+
+(use-package emmet-mode
+  :diminish (emmet-mode . "ε")
+  :bind* (("C-)" . emmet-next-edit-point)
+          ("C-(" . emmet-prev-edit-point))
+  :commands (emmet-mode
+             emmet-next-edit-point
+             emmet-prev-edit-point)
+  :init
+  (setq emmet-indentation 2)
+  (setq emmet-move-cursor-between-quotes t)
+  :config
+  ;; Auto-start on any markup modes
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode))
+
+(use-package web-mode
+  :mode ("\\.html$" . web-mode)
+  :init
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq js-indent-level 2)
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-auto-expanding t)
+  (setq web-mode-enable-css-colorization t)
+  (set-face-attribute 'web-mode-html-tag-bracket-face  nil :foreground "#aaaaaa")
+  (add-hook 'web-mode-hook 'electric-pair-mode))

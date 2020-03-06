@@ -188,6 +188,12 @@ just install it let counsel-M-x use smex.
   :init
   (setq evil-want-keybinding nil)
   (evil-collection-init))
+
+;; https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+(with-eval-after-load 'evil
+    (defalias #'forward-evil-word #'forward-evil-symbol)
+    ;; make evil-search-word look for symbol rather than word boundaries
+    (setq-default evil-symbol-word-search t))
 #+end_src
 ** dired configs
 
@@ -387,7 +393,7 @@ https://github.com/Bad-ptr/persp-mode.el
 #+begin_src emacs-lisp
 (use-package persp-mode
   :config
-                                        ;(persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
+  (persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
   (add-hook 'persp-mode
             (lambda()
               (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)

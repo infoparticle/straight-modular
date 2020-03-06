@@ -35,7 +35,10 @@
 
 (setq org-preview-latex-default-process 'dvipng)
 #+end_src
-
+** org-plantuml
+#+BEGIN_SRC emacs-lisp
+(setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/tools/plantuml.jar"))
+#+END_SRC
 ** Bulk Config
 #+BEGIN_SRC emacs-lisp
 (setq

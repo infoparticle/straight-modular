@@ -20,9 +20,20 @@
 (defun /o/config        () (interactive) (dired  "~/.emacs.d/config"))
 (defun /o/master-wiki   () (interactive) (split-window-right 30) (find-file  "~/.em/master-wiki.org"))
 
+(defun my/one-page-project-management ()
+  (interactive)
+  (persp-mode t)
+  (persp-frame-switch "one-page")
+  (delete-other-windows)
+  (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/one-page-projects.org")
+  (split-window-right)
+  (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/one-page-agenda.org"))
+
 (defun my/open-wiki (wiki-root wiki-name)
   (if(file-directory-p wiki-root)
       (progn
+        (persp-mode t)
+        (persp-frame-switch wiki-name)
         (delete-other-windows)
         (find-file  (concat wiki-root "/" wiki-name "/contents/index.org"))
         (split-window-right 30)
@@ -81,6 +92,7 @@
    :non-normal-prefix "M-SPC"
    "oj" '(/bm/orgroot-journal       :which-key "orgroot:daily-journal")
    "ow" '(my/pick-wiki-name         :which-key "Open wiki")
+   "oo" '(my/one-page-project-management         :which-key "Open one-page-project-manager")
    "rb" '(/ref/bash/scripting       :which-key "bash:scripting" )))
 
 
@@ -146,6 +158,17 @@
         )
       )
 
+#+END_SRC
+
+** open html file in firefox
+
+#+BEGIN_SRC emacs-lisp
+(defun open-in-browser()
+  "open buffer in browser, unless it is not a file. Then fail silently (ouch)."
+  (interactive)
+  (if (buffer-file-name)
+      (let ((filename (buffer-file-name)))
+        (shell-command (concat "start firefox.exe \"file://" filename "\"")))))
 #+END_SRC
 * Disabled configs
  :PROPERTIES:

@@ -1,21 +1,21 @@
 # -*- mode: snippet -*-
 # name: new month
-# key: .nm
+# key: y.nm
 # --
 ;;--------------------------------------------------------------------
-;;                              2019 - ${2:$$(yas-choose-value '("January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December"))}
+;;                              2020 - ${2:$$(yas-choose-value '("January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December"))}
 ;;--------------------------------------------------------------------
 
-2019-$1-01 MF Salary `(format-time-string "%B %Y")`
+2020-$1-01 MF Salary `(format-time-string "%B %Y")`
     Income:Salary                 -$0 INR
 
-2019-$1-01  House Rent CV Raman Nagar
+2020-$1-01  House Rent CV Raman Nagar
     Expenses:Rent                 11200.00 INR
 
 
-2019-$1-01  Electricity bill
+2020-$1-01  Electricity bill
     Expenses:Bills:Utility             0.0 INR
 
 
-2019-$1-01  Milk
+2020-$1-01  Milk
     Expenses:Food:milk                  0.0 INR

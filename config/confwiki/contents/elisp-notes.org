@@ -1,0 +1,22 @@
+#+TITLE: elisp notes
+#+Last Saved: <Dec 22, 2019>
+
+
+| (file-name-as-directory "~rms/lewis") | "~rms/lewis/" | just adds / |
+|                                       |               |             |
+
+
+
+buffer-file-name = c:/Users/gopinat/AppData/Roaming/.emacs.d/config/confwiki/contents/elisp-notes.org
+
+(setq parent-dir (file-name-nondirectory ; contents
+ (directory-file-name                    ; c:/Users/gopinat/AppData/Roaming/.emacs.d/config/confwiki/contents
+ (file-name-directory                    ; c:/Users/gopinat/AppData/Roaming/.emacs.d/config/confwiki/contents/
+             buffer-file-name) ;c:/Users/gopinat/AppData/Roaming/.emacs.d/config/confwiki/contents/elisp-notes.org
+
+ )))
+
+but !
+
+(directory-file-name buffer-file-name) ;c:/Users/gopinat/AppData/Roaming/.emacs.d/config/confwiki/contents/elisp-notes.org
+(file-name-nondirectory (file-name-directory buffer-file-name)) ; ""

@@ -19,6 +19,8 @@
 
 (setq org-preview-latex-default-process 'dvipng)
 
+(setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/tools/plantuml.jar"))
+
 (setq
  time-stamp-active t          ; do enable time-stamps
  ;; time-stamp-line-limit 34     ; check first N buffer lines for Time-stamp: <2019-Sep-15 09:38:43>

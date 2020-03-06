@@ -148,6 +148,12 @@
   (setq evil-want-keybinding nil)
   (evil-collection-init))
 
+;; https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+(with-eval-after-load 'evil
+    (defalias #'forward-evil-word #'forward-evil-symbol)
+    ;; make evil-search-word look for symbol rather than word boundaries
+    (setq-default evil-symbol-word-search t))
+
 (setq dired-recursive-copies (quote always)) ;no asking
 (setq dired-recursive-deletes (quote top)) ; ask once
 (setq dired-dwim-target t)
@@ -284,7 +290,7 @@ directory to make multiple eshell windows easier."
 
 (use-package persp-mode
   :config
-                                        ;(persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
+  (persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
   (add-hook 'persp-mode
             (lambda()
               (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)

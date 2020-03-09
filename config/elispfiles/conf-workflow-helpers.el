@@ -80,19 +80,23 @@
    "oj" '(/bm/orgroot-journal       :which-key "orgroot:daily-journal")
    "ow" '(my/pick-wiki-name         :which-key "Open wiki")
    "oo" '(my/one-page-project-management         :which-key "Open one-page-project-manager")
-   "rb" '(/ref/bash/scripting       :which-key "bash:scripting" )))
+   "rc" '(my/refer/code              :which-key "refer:code" )
+   "rp" '(my/refer/personal-projects          :which-key "personal projects" )
+   "rw" '(my/refer/work-projects              :which-key "work projects" )
+))
 
 
 (with-system windows-nt
   (defun /bm/work () (interactive) (dired "c:/root/work")))
 
+(setq wiki-root "C:\\Users\\gopinat\\Dropbox\\emacs-apps\\wikis")
+
 (defun my/pick-wiki-name-action-list-candidates (str pred _)
-  (setq wiki-root "C:\\Users\\gopinat\\Dropbox\\wikis")
-  (setq wiki-list  (cl-delete-if (lambda (k) (string-match-p "\\." k))
+  (setq wiki-list  (cl-delete-if (lambda (k) (string-match-p "^\\." k))
                                  (directory-files wiki-root))))
 
 (defun my/pick-wiki-name-action (x)
-  (my/open-wiki  "C:/Users/gopinat/Dropbox/wikis" x))
+  (my/open-wiki  wiki-root x))
 
 (defun my/pick-wiki-name ()
   "pick a wiki from dropbox folder."
@@ -102,6 +106,48 @@
             :require-match t
             :action #'my/pick-wiki-name-action
             :caller 'my/pick-wiki-name))
+
+(defun my/list-candidates (str pred _)
+  (cl-delete-if (lambda (k) (string-match-p "^\\." k))
+                (directory-files proj-dir-root)))
+
+(defun my/pick-action (x)
+  (projectile-find-file-in-directory  (concat proj-dir-root "/" x)))
+
+(defun my/pick-proj-and-file (proj-dir-root)
+  "pick a wiki from dropbox folder."
+  (ivy-read "List of references: "  #'my/list-candidates
+            :preselect (ivy-thing-at-point)
+            :require-match t
+            :action #'my/pick-action
+            :caller 'my/pick-proj-and-file))
+
+(defun my/refer/code ()
+  (interactive)
+  (my/pick-proj-and-file "c:/users/gopinat/dropbox/emacs-apps/references/code-refs"))
+
+(defun my/refer/quotes ()
+  (interactive)
+  (my/pick-proj-and-file "c:/users/gopinat/dropbox/emacs-apps/references/quote-refs"))
+
+(defun my/refer/facts ()
+  (interactive)
+  (my/pick-proj-and-file "c:/users/gopinat/dropbox/emacs-apps/references/fact-refs"))
+
+
+
+(defun my/refer/personal-projects ()
+  (interactive)
+  (my/pick-proj-and-file "c:/users/gopinat/dropbox/emacs-apps/projects"))
+
+(defun my/refer/work-projects ()
+  (interactive)
+  (my/pick-proj-and-file "C:\\my\\home\\.em\\em.work-2.0\\projects"))
+
+
+(defun my/refer/work-cases ()
+  (interactive)
+  (my/pick-proj-and-file "C:\\my\\home\\.em\\em.work-2.0\\cases\\curr"))
 
 (setq work-agenda-file "c:/Users/gopinat/AppData/Roaming/.em/em.work-wiki/contents/work-agenda-del.org")
 (setq org-capture-templates

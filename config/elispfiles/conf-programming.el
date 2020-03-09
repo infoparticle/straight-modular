@@ -7,6 +7,43 @@
 :config
   (add-hook 'prog-mode-hook #'paren-face-mode))
 
+(use-package aggressive-indent
+  :diminish aggressive-indent-mode
+  :config
+  (add-hook 'prog-mode-hook #'aggressive-indent-global-mode)
+  (defvar aggressive-indent/excluded '())
+  (setq aggressive-indent/excluded '(php-mode rst-mode html-mode ruby-mode python-mode yaml-mode haskell-mode))
+  (dolist (i aggressive-indent/excluded)
+    (add-to-list 'aggressive-indent-excluded-modes i)))
+
+(use-package lispy
+  :hook ((common-lisp-mode . lispy-mode)
+         (emacs-lisp-mode . lispy-mode)
+         (scheme-mode . lispy-mode)
+         (racket-mode . lispy-mode)
+         (hy-mode . lispy-mode)
+         (lfe-mode . lispy-mode)
+         (clojure-mode . lispy-mode))
+  :config
+  (lispy-set-key-theme '(paredit c-digits))
+  (ef-add-hook lispy-mode-hook
+    (if (fboundp 'turn-off-smartparens-mode)
+        (turn-off-smartparens-mode))))
+
+(use-package lispyville
+  :hook (lispy-mode . lispyville-mode)
+  :config
+  (lispyville-set-key-theme
+   '((operators normal)
+     c-w
+     commentary
+     additional-wrap
+     slurp/barf-cp))
+  (evil-define-key 'normal lispyville-mode-map "#" #'lispyville-comment-or-uncomment-line)
+  (evil-define-key 'normal lispyville-mode-map "\\" #'lispyville-comment-or-uncomment-line)
+  (evil-define-key 'visual lispyville-mode-map "#" #'lispyville-comment-or-uncomment)
+  (evil-define-key 'visual lispyville-mode-map "\\" #'lispyville-comment-or-uncomment))
+
 (use-package highlight-symbol
   :defer 10
   :bind (("M-n" . highlight-symbol-next)
@@ -15,13 +52,6 @@
   (setq highlight-symbol-idle-delay 0.3)
   (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (highlight-symbol-nav-mode))
-
-(use-package highlight-indentation
-  :defer t
-  :config
-  (set-face-background 'highlight-indentation-face "#e3e3d3")
-  (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
-  (add-hook 'prog-mode-hook #'highlight-indentation-mode))
 
 (when (version<= "26.0.50" emacs-version )
   (custom-set-faces '(line-number ((t (:inherit default :foreground "gray80")))))

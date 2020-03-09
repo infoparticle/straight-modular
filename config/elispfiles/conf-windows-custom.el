@@ -8,7 +8,12 @@
  '(epg-gpgconf-program "C:\\Program Files (x86)\\GnuPG\\bin\\gpgconf.exe")
  '(ox-clip-w32-cmd
    "c:/opt/anaconda3/python.exe c:/Users/gopinat/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py")
- '(safe-local-variable-values (quote ((eval progn (pp-buffer) (indent-buffer)))))
+ '(safe-local-variable-values
+   (quote
+    ((checkdoc-package-keywords-flag)
+     (eval progn
+           (pp-buffer)
+           (indent-buffer)))))
  '(zoom-window-mode-line-color "lightGreen"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -30,7 +35,6 @@
  '(org-block-end-line ((t (:foreground "slateblue" :overline nil))))
  '(org-document-info-keyword ((t (:foreground "slateblue"))))
  '(org-ellipsis ((t (:foreground "gray" :box nil :underline nil :overline nil :weight bold))))
- '(org-meta-line ((t (:foreground "slateblue"))))
- '(show-paren-match ((((class color) (background light)) (:background "linen")))))
+ '(org-meta-line ((t (:foreground "slateblue")))))
 
 (put 'dired-find-alternate-file 'disabled nil)

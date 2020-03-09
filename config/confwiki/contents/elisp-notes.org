@@ -1,6 +1,8 @@
 #+TITLE: elisp notes
-#+Last Saved: <Dec 22, 2019>
+#+Last Saved: <Mar 06, 2020>
 
+
+** file-name-as-directory
 
 | (file-name-as-directory "~rms/lewis") | "~rms/lewis/" | just adds / |
 |                                       |               |             |
@@ -20,3 +22,18 @@ but !
 
 (directory-file-name buffer-file-name) ;c:/Users/gopinat/AppData/Roaming/.emacs.d/config/confwiki/contents/elisp-notes.org
 (file-name-nondirectory (file-name-directory buffer-file-name)) ; ""
+
+** structured editing
+
+paraedit
+smartparens
+lispy
+
+parainfer
+rainbow-delimiter
+inferior-lisp
+
+aggressive-indent-mode
+subword-mode
+
+evil lispy

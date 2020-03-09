@@ -121,8 +121,6 @@
 (setq directory-free-space-args "-Pm")
 
 (show-paren-mode 1)
-(setq show-paren-style 'expression)
+(setq show-paren-style 'parenthesis)
 (set-face-attribute 'show-paren-mismatch nil
                     :weight 'bold :underline t :overline nil :slant 'normal)
-(custom-set-faces
- '(show-paren-match ((((class color) (background light)) (:background "linen")))))

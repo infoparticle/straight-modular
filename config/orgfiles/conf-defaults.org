@@ -149,13 +149,14 @@ Provides sane defaults and improves the vanilla emacs.
 #+END_SRC
 ** Matching Parenthises
 ;(setq show-paren-style 'expression)
-#+BEGIN_SRC emacs-lisp
-(show-paren-mode 1)
-(setq show-paren-style 'expression)
-(set-face-attribute 'show-paren-mismatch nil
-                    :weight 'bold :underline t :overline nil :slant 'normal)
 (custom-set-faces
  '(show-paren-match ((((class color) (background light)) (:background "linen")))))
+
+#+BEGIN_SRC emacs-lisp
+(show-paren-mode 1)
+(setq show-paren-style 'parenthesis)
+(set-face-attribute 'show-paren-mismatch nil
+                    :weight 'bold :underline t :overline nil :slant 'normal)
 #+END_SRC
 
 * Disabled Config

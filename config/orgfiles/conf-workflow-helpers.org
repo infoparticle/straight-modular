@@ -83,6 +83,9 @@
 (defun /bm/trading-inbox () (interactive) (find-file-other-window "~/.em/em.finance/trading/trading-inbox.org"))
 
 (defun /bm/orgroot-journal       () (interactive) (find-file  "~/.em/em.orgroot/gtd/daily-journal.org"))
+(defun /bm/trade-journal       () (interactive) (find-file
+"c:/Users/gopinat/Dropbox/emacs-apps/wikis/trading-wiki/contents/trading/journal/2020/trade-journal-2020-may-aug.org/trade-journal-2020-may-aug.org"
+))
 
 (use-package general
   :config
@@ -96,6 +99,7 @@
    "rc" '(my/refer/code              :which-key "refer:code" )
    "rp" '(my/refer/personal-projects          :which-key "personal projects" )
    "rw" '(my/refer/work-projects              :which-key "work projects" )
+   "oi" '(hydra-open-inboxes/body              :which-key "inboxes" )
 ))
 
 
@@ -170,6 +174,12 @@
 (defun my/refer/work-cases ()
   (interactive)
   (my/pick-proj-and-file "C:\\my\\home\\.em\\em.work-2.0\\cases\\curr"))
+
+(defun my/refer/work-tasks ()
+  (interactive)
+  (my/pick-proj-and-file "C:\\my\\home\\.em\\em.work-2.0\\tasks"))
+
+
 #+END_SRC
 
 ** my org-templates
@@ -220,13 +230,85 @@
       (let ((filename (buffer-file-name)))
         (shell-command (concat "start firefox.exe \"file://" filename "\"")))))
 #+END_SRC
+
+** work-utils to create projects/tasks
+
+#+BEGIN_SRC emacs-lisp
+(setq my/work/case-data-dir-root "C:/my/work/cpe/data-dir/")
+(setq my/work/case-dir-root "c:/my/home/.em/em.work-2.0/cases/")
+(setq my/work/task-dir-root "C:/my/home/.em/em.work-2.0/tasks/")
+
+(setq my/work/personal-project-dir-root "c:/Users/gopinat/Dropbox/emacs-apps/projects/")
+
+(require 'subr-x)
+(defun encode-title-to-file-name (string)
+  (replace-regexp-in-string "-*-" "-" (replace-regexp-in-string "[.!?'\"]+" "" (replace-regexp-in-string "[ \|.,:;/\\]+" "-" (string-trim string)))))
+
+(defun my/work/create-new-case-or-project (prompt root-dir dir-suffix)
+  (setq case-title
+        (encode-title-to-file-name
+         (setq actual-title
+               (read-string prompt))))
+
+  (message actual-title)
+  (setq case-title-dir (concat root-dir case-title "." dir-suffix "/"))
+  (mkdir (concat case-title-dir "/.img/") :parents)
+  (mkdir (concat case-title-dir "/casedata/") :parents)
+  (write-region (concat  "#+TITLE:" actual-title "\n" "#+Last Saved: <Jun 20, 2020>\n\n")
+                nil (concat case-title-dir case-title "-summary.org"))
+  (write-region "" nil (concat case-title-dir  ".projectile")))
+
+(defun my/work/create-new-case () (interactive)
+       (progn
+         (my/work/create-new-case-or-project "Enter Case Title: "  (concat my/work/case-dir-root "curr/") "case")
+                                        ;(mkdir (concat my/work/case-data-dir-root case-title))
+         ))
+
+(defun my/work/archive-cases () (interactive)
+       (progn
+        (find-file (concat my/work/case-dir-root "case-archive"))
+        (split-window-right)
+        (find-file (concat my/work/case-dir-root "curr"))))
+
+(defun my/work/create-new-work-project () (interactive)
+       (my/work/create-new-case-or-project "Enter Project Title: "  my/work/project-dir-root "proj"))
+
+(defun my/work/create-new-personal-project () (interactive)
+       (my/work/create-new-case-or-project "Enter Project Title: "  my/work/personal-project-dir-root "proj"))
+
+(defun my/work/create-new-task () (interactive)
+       (my/work/create-new-case-or-project "Enter Project Title: "  my/work/task-dir-root "task"))
+#+END_SRC
+
+** Quickly open inboxes
+#+BEGIN_SRC emacs-lisp
+(defun my/split-find-file(width_in_chars file-name)
+(split-window-right width_in_chars) (find-file  file-name))
+(defhydra hydra-open-inboxes (:color blue :hint nil :columns 1)
+  "Wiki List"
+  ("w" (my/split-find-file 80 "C:\\my\\home\\.em\\em.work-2.0\\inbox\\work-inbox.org") "Work 2.0 Inbox")
+  ("q" nil "cancel" :color blue)
+)
+#+END_SRC
+
+** string utils - convert backward slash to forward
+#+BEGIN_SRC emacs-lisp
+(defun my/string-utils/convert-backward-slash-to-forward-slash ()
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (narrow-to-region (point) (mark))
+      (goto-char (point-min))
+      (while (search-forward "\\" nil t)
+        (replace-match "/" nil t)))))
+#+END_SRC
 * Disabled configs
  :PROPERTIES:
  :header-args: :tangle no
  :END:
-#+BEGIN_SRC emacs-lisp
 
-(defhydra hydra-open-wiki (:color blue :hint nil :columns 1)
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-open-inboxes (:color blue :hint nil :columns 1)
   "Wiki List"
   ("a" (my/open-wiki "E:/mydata" "accounting") "Accounting Wiki")
   ("w" (my/open-wiki "~/.em" "em.work-wiki") "Work Wiki")
@@ -240,4 +322,5 @@
   ("dt" (my/open-wiki "C:/Users/gopinat/Dropbox/wikis" "trading-wiki"      )   "trading-wiki")
   ("q" nil "cancel" :color blue)
 )
+
 #+END_SRC

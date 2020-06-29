@@ -101,6 +101,11 @@
   ("l" avy-goto-line "line")
   ("p" avy-pop-mark "pop")))
 
+(use-package helm
+:config
+  (global-set-key (kbd "C-c k") 'helm-do-grep-ag)
+)
+
 (use-package counsel
   :config
   (setq ivy-use-virtual-buffers t)
@@ -117,7 +122,6 @@
   (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
   (global-set-key (kbd "C-c g") 'counsel-git)
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
-  (global-set-key (kbd "C-c k") 'helm-do-grep-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)

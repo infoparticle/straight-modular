@@ -1,5 +1,5 @@
 #+TITLE: Conf Programming
-#+Last Saved: <Mar 08, 2020>
+#+Last Saved: <Jun 27, 2020>
 #+property: header-args :tangle yes
 
 * Enabled Config
@@ -152,8 +152,6 @@ To add linum to your favorite modes:
 ** web mode
 http://web-mode.org/assets/theme.el
 
-
-
 (set-face-attribute 'default            nil :background "grey14" :foreground "ivory1")
 (set-face-attribute 'fringe             nil :background "grey20")
 (set-face-attribute 'highlight          nil :background "grey16")
@@ -206,7 +204,7 @@ http://web-mode.org/assets/theme.el
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-auto-expanding t)
   (setq web-mode-enable-css-colorization t)
-  (set-face-attribute 'web-mode-html-tag-bracket-face  nil :foreground "#aaaaaa")
+  ;(set-face-attribute 'web-mode-html-tag-bracket-face  nil :foreground "#aaaaaa")
   (add-hook 'web-mode-hook 'electric-pair-mode))
 #+END_SRC
 * Disabled Config

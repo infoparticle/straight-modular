@@ -258,3 +258,11 @@
       (goto-char (point-min))
       (while (search-forward "\\" nil t)
         (replace-match "/" nil t)))))
+
+(setq chart-gallery-root "C:/my/trading/charts/")
+(defun my/trade/file-a-chart()
+  (interactive)
+  (progn
+    (setq chart-file-name (concat chart-gallery-root (format-time-string "%Y/%m-%b/%d-%a/%Y-%m-%d-%a.org")))
+    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/%d/.img")) :parents)
+    (find-file chart-file-name)))

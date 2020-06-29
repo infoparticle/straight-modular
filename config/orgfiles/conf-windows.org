@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <Jun 20, 2020>
+#+Last Saved: <Jun 24, 2020>
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -108,7 +108,7 @@ c:\\opt\\irfan32\\i_view32.exe
   (setq myvar/img-name (concat (format-time-string "%Y%m%d-%H%M%S") ".png"))
   (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path myvar/img-name) t t)) ;Relative to workspace.
   (setq myvar/relative-filename (concat "./.img/" myvar/img-name))
-  (insert "[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
+  (insert "[[file+sys:" (url-encode-url myvar/relative-filename) "]]" "\n")
   )
 
 (defun org-screenshot ()

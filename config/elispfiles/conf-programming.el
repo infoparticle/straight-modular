@@ -127,5 +127,5 @@
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-auto-expanding t)
   (setq web-mode-enable-css-colorization t)
-  (set-face-attribute 'web-mode-html-tag-bracket-face  nil :foreground "#aaaaaa")
+  ;(set-face-attribute 'web-mode-html-tag-bracket-face  nil :foreground "#aaaaaa")
   (add-hook 'web-mode-hook 'electric-pair-mode))

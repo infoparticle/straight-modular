@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-capture-last-stored"
+(("conf experiment"
+ (filename . "~/.emacs.d/config/orgfiles/conf-experiment.org")
+ (front-context-string . ")\n\n#+END_SRC\n* D")
+ (rear-context-string . "e bookmarks-plus")
+ (position . 3591))
+("org-capture-last-stored"
  (filename . "~/org/journal.org")
  (front-context-string . "**** Friday 13 f")
  (rear-context-string . "19-12-13 Friday\n")

@@ -302,6 +302,17 @@
       (while (search-forward "\\" nil t)
         (replace-match "/" nil t)))))
 #+END_SRC
+** my/trade/utils
+#+begin_src emacs-lisp
+(setq chart-gallery-root "C:/my/trading/charts/")
+(defun my/trade/file-a-chart()
+  (interactive)
+  (progn
+    (setq chart-file-name (concat chart-gallery-root (format-time-string "%Y/%m-%b/%d-%a/%Y-%m-%d-%a.org")))
+    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/%d/.img")) :parents)
+    (find-file chart-file-name)))
+#+end_src
+
 * Disabled configs
  :PROPERTIES:
  :header-args: :tangle no

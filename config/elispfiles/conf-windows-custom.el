@@ -37,7 +37,7 @@
  '(org-block-begin-line ((t (:foreground "slateblue" :underline nil))))
  '(org-block-end-line ((t (:foreground "slateblue" :overline nil))))
  '(org-document-info-keyword ((t (:foreground "slateblue"))))
- '(org-document-title ((t (:foreground "DarkBlue" :overline t :underline t :weight bold :height 1.5 :family "Century"))))
+ '(org-document-title ((t (:foreground "DarkBlue" :overline nil :underline nil :weight bold :height 2.8 :family "Century"))))
  '(org-ellipsis ((t (:foreground "gray" :box nil :underline nil :overline nil :weight bold))))
  '(org-level-1 ((t (:background "lavender" :foreground "RoyalBlue3" :overline t :weight bold :height 1.3))))
  '(org-level-2 ((t (:inherit outline-2 :height 1.2))))

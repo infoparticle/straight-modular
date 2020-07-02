@@ -89,10 +89,3 @@
   :after treemacs dired
 
   :config (treemacs-icons-dired-mode))
-
-(use-package dimmer
-:config
-(dimmer-configure-which-key)
-(dimmer-configure-helm)
-(dimmer-mode t)
-)

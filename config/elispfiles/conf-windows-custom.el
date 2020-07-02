@@ -24,7 +24,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "SystemWindow" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 115 :width normal :foundry "outline" :family "Consolas"))))
  '(dired-subtree-depth-1-face ((t (:background "old lace"))))
  '(dired-subtree-depth-2-face ((t (:background "gray95"))))
  '(dired-subtree-depth-3-face ((t (:background "old lace"))))
@@ -38,7 +37,11 @@
  '(org-block-begin-line ((t (:foreground "slateblue" :underline nil))))
  '(org-block-end-line ((t (:foreground "slateblue" :overline nil))))
  '(org-document-info-keyword ((t (:foreground "slateblue"))))
+ '(org-document-title ((t (:foreground "DarkBlue" :overline t :underline t :weight bold :height 1.5 :family "Century"))))
  '(org-ellipsis ((t (:foreground "gray" :box nil :underline nil :overline nil :weight bold))))
- '(org-meta-line ((t (:foreground "slateblue")))))
+ '(org-level-1 ((t (:background "lavender" :foreground "RoyalBlue3" :overline t :weight bold :height 1.3))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
+ '(org-meta-line ((t (:foreground "slateblue"))))
+ '(org-table ((t (:foreground "royalblue4")))))
 
 (put 'dired-find-alternate-file 'disabled nil)

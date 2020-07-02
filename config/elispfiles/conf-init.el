@@ -56,6 +56,7 @@
   (load-user-file "conf-windows.el")
   (setq custom-file (expand-file-name "conf-windows-custom.el" user-config-directory))
   (load custom-file)
+  ;;(load-user-file "conf-my-theme-light.el")
   )
 
 (with-system gnu/linux

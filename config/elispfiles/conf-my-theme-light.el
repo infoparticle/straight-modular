@@ -1,0 +1,374 @@
+(set-face-font 'default "Roboto Mono Light 10")
+
+;; Line spacing, can be 0 for code and 1 or 2 for text
+(setq-default line-spacing 0)
+
+;; Line cursor and no blink
+(set-default 'cursor-type  '(bar . 1))
+(blink-cursor-mode 0)
+
+;; No sound
+(setq visible-bell t)
+(setq ring-bell-function 'ignore)
+
+;; No Tooltips
+(tooltip-mode 0)
+
+;; Paren mode is part of the theme
+(show-paren-mode t)
+
+;; No fringe but nice glyphs for truncated and wrapped lines
+(fringe-mode '(0 . 0))
+(defface fallback '((t :family "Fira Code Light"
+                       :inherit 'face-faded)) "Fallback")
+(set-display-table-slot standard-display-table 'truncation
+                        (make-glyph-code ?… 'fallback))
+(set-display-table-slot standard-display-table 'wrap
+                        (make-glyph-code ?↩ 'fallback))
+
+;; When we set a face, we take care of removing any previous settings
+(defun set-face (face style)
+  "Reset a face and make it inherit style."
+  (set-face-attribute face nil
+   :foreground 'unspecified :background 'unspecified
+   :family     'unspecified :slant      'unspecified
+   :weight     'unspecified :height     'unspecified
+   :underline  'unspecified :overline   'unspecified
+   :box        'unspecified :inherit    style))
+
+;; A theme is fully defined by these six faces
+(defgroup elegance nil
+  "Faces for the elegance theme"
+  :prefix "face-")
+
+;; Do not show prefix when displaying the elegance group
+(setq custom-unlispify-remove-prefixes t)
+
+(defface face-critical nil
+"Critical face is for information that requires immediate action.
+It should be of high constrast when compared to other faces. This
+can be realized (for example) by setting an intense background
+color, typically a shade of red. It must be used scarcely."
+:group 'elegance)
+
+(defface face-popout nil
+"Popout face is used for information that needs attention.
+To achieve such effect, the hue of the face has to be
+sufficiently different from other faces such that it attracts
+attention through the popout effect."
+:group 'elegance)
+
+(defface face-strong nil
+"Strong face is used for information of a structural nature.
+It has to be the same color as the default color and only the
+weight differs by one level (e.g., light/regular or
+regular/bold). IT is generally used for titles, keywords,
+directory, etc."
+:group 'elegance)
+
+(defface face-salient nil
+"Salient face is used for information that are important.
+To suggest the information is of the same nature but important,
+the face uses a different hue with approximately the same
+intensity as the default face. This is typically used for links."
+
+:group 'elegance)
+
+(defface face-faded nil
+"Faded face is for information that are less important.
+It is made by using the same hue as the default but with a lesser
+intensity than the default. It can be used for comments,
+secondary information and also replace italic (which is generally
+abused anyway)."
+:group 'elegance)
+
+(defface face-subtle nil
+"Subtle face is used to suggest a physical area on the screen.
+It is important to not disturb too strongly the reading of
+information and this can be made by setting a very light
+background color that is barely perceptible."
+:group 'elegance)
+
+;; Light theme
+(defun elegance-light ()
+  (interactive)
+  (setq frame-background-mode 'light)
+  (set-background-color "#ffffff")
+  (set-foreground-color "#333333")
+  (set-face-attribute 'default nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default))
+  (set-face-attribute 'face-critical nil :foreground "#ffffff"
+                      :background "#ff6347")
+  (set-face-attribute 'face-popout nil :foreground "#ffa07a")
+  (set-face-attribute 'face-strong nil :foreground "#333333"
+                      :weight 'regular)
+  (set-face-attribute 'face-salient nil :foreground "#00008b"
+                      :weight 'light)
+  (set-face-attribute 'face-faded nil :foreground "#999999"
+                      :weight 'light)
+  (set-face-attribute 'face-subtle nil :background "#f0f0f0")
+  ;(with-eval-after-load 'cus-edit (set-button-faces))
+)
+
+;; Set theme
+(elegance-light)
+
+;; Structural
+(set-face 'bold                                          'face-strong)
+(set-face 'italic                                         'face-faded)
+(set-face 'bold-italic                                   'face-strong)
+(set-face 'region                                        'face-subtle)
+(set-face 'highlight                                     'face-subtle)
+(set-face 'fixed-pitch                                       'default)
+(set-face 'fixed-pitch-serif                                 'default)
+(set-face 'variable-pitch                                    'default)
+(set-face 'cursor                                            'default)
+
+;; Semantic
+(set-face 'shadow                                         'face-faded)
+(set-face 'success                                      'face-salient)
+(set-face 'warning                                       'face-popout)
+(set-face 'error                                       'face-critical)
+
+;; General
+(set-face 'buffer-menu-buffer                            'face-strong)
+(set-face 'minibuffer-prompt                             'face-strong)
+(set-face 'link                                         'face-salient)
+(set-face 'fringe                                         'face-faded)
+(set-face 'isearch                                       'face-strong)
+(set-face 'isearch-fail                                   'face-faded)
+(set-face 'lazy-highlight                                'face-subtle)
+(set-face 'trailing-whitespace                           'face-subtle)
+(set-face 'show-paren-match                              'face-popout)
+(set-face 'show-paren-mismatch                           'face-normal)
+(set-face-attribute 'tooltip nil                         :height 0.85)
+
+;; Programmation mode
+;;(set-face 'font-lock-comment-face                         'face-faded)
+;;(set-face 'font-lock-doc-face                             'face-faded)
+;;(set-face 'font-lock-string-face                         'face-popout)
+;;(set-face 'font-lock-constant-face                      'face-salient)
+;;(set-face 'font-lock-warning-face                        'face-popout)
+;;(set-face 'font-lock-function-name-face                  'face-strong)
+;;(set-face 'font-lock-variable-name-face                  'face-strong)
+;;(set-face 'font-lock-builtin-face                       'face-salient)
+;;(set-face 'font-lock-type-face                          'face-salient)
+;;(set-face 'font-lock-keyword-face                       'face-salient)
+
+;; Documentation
+(with-eval-after-load 'info
+  (set-face 'info-menu-header                            'face-strong)
+  (set-face 'info-header-node                            'face-normal)
+  (set-face 'Info-quoted                                  'face-faded)
+  (set-face 'info-title-1                                'face-strong)
+  (set-face 'info-title-2                                'face-strong)
+  (set-face 'info-title-3                                'face-strong)
+  (set-face 'info-title-4                               'face-strong))
+
+;; Bookmarks
+(with-eval-after-load 'bookmark
+  (set-face 'bookmark-menu-heading                       'face-strong)
+  (set-face 'bookmark-menu-bookmark                    'face-salient))
+
+;; Message
+(with-eval-after-load 'message
+  (set-face 'message-cited-text                           'face-faded)
+  (set-face 'message-header-cc                               'default)
+  (set-face 'message-header-name                         'face-strong)
+  (set-face 'message-header-newsgroups                       'default)
+  (set-face 'message-header-other                            'default)
+  (set-face 'message-header-subject                     'face-salient)
+  (set-face 'message-header-to                          'face-salient)
+  (set-face 'message-header-xheader                          'default)
+  (set-face 'message-mml                                 'face-popout)
+  (set-face 'message-separator                           'face-faded))
+
+;; Outline
+(with-eval-after-load 'outline
+  (set-face 'outline-1                                   'face-strong)
+  (set-face 'outline-2                                   'face-strong)
+  (set-face 'outline-3                                   'face-strong)
+  (set-face 'outline-4                                   'face-strong)
+  (set-face 'outline-5                                   'face-strong)
+  (set-face 'outline-6                                   'face-strong)
+  (set-face 'outline-7                                   'face-strong)
+  (set-face 'outline-8                                  'face-strong))
+
+;; Interface
+(with-eval-after-load 'cus-edit
+  (set-face 'widget-field                                'face-subtle)
+  (set-face 'widget-button                               'face-strong)
+  (set-face 'widget-single-line-field                    'face-subtle)
+  (set-face 'custom-group-subtitle                       'face-strong)
+  (set-face 'custom-group-tag                            'face-strong)
+  (set-face 'custom-group-tag-1                          'face-strong)
+  (set-face 'custom-comment                               'face-faded)
+  (set-face 'custom-comment-tag                           'face-faded)
+  (set-face 'custom-changed                             'face-salient)
+  (set-face 'custom-modified                            'face-salient)
+  (set-face 'custom-face-tag                             'face-strong)
+  (set-face 'custom-variable-tag                             'default)
+  (set-face 'custom-invalid                              'face-popout)
+  (set-face 'custom-visibility                          'face-salient)
+  (set-face 'custom-state                               'face-salient)
+  (set-face 'custom-link                               'face-salient))
+
+;; Flyspell
+(with-eval-after-load 'flyspell
+  (set-face 'flyspell-duplicate                         'face-popout)
+  (set-face 'flyspell-incorrect                         'face-popout))
+
+;; Ido
+(with-eval-after-load 'ido
+  (set-face 'ido-first-match                            'face-salient)
+  (set-face 'ido-only-match                               'face-faded)
+  (set-face 'ido-subdir                                 'face-strong))
+
+;; Diff
+(with-eval-after-load 'diff-mode
+  (set-face 'diff-header                                  'face-faded)
+  (set-face 'diff-file-header                            'face-strong)
+  (set-face 'diff-context                                    'default)
+  (set-face 'diff-removed                                 'face-faded)
+  (set-face 'diff-changed                                'face-popout)
+  (set-face 'diff-added                                 'face-salient)
+  (set-face 'diff-refine-added            '(face-salient face-strong))
+  (set-face 'diff-refine-changed                         'face-popout)
+  (set-face 'diff-refine-removed                          'face-faded)
+  (set-face-attribute     'diff-refine-removed nil :strike-through t))
+
+;; Term
+(with-eval-after-load 'term
+  ;; (setq eterm-256color-disable-bold nil)
+  (set-face 'term-bold                                   'face-strong)
+  (set-face-attribute 'term-color-black nil
+                                :foreground (face-foreground 'default)
+                               :background (face-foreground 'default))
+  (set-face-attribute 'term-color-white nil
+                              :foreground "white" :background "white")
+  (set-face-attribute 'term-color-blue nil
+                          :foreground "#42A5F5" :background "#BBDEFB")
+  (set-face-attribute 'term-color-cyan nil
+                          :foreground "#26C6DA" :background "#B2EBF2")
+  (set-face-attribute 'term-color-green nil
+                          :foreground "#66BB6A" :background "#C8E6C9")
+  (set-face-attribute 'term-color-magenta nil
+                          :foreground "#AB47BC" :background "#E1BEE7")
+  (set-face-attribute 'term-color-red nil
+                          :foreground "#EF5350" :background "#FFCDD2")
+  (set-face-attribute 'term-color-yellow nil
+                         :foreground "#FFEE58" :background "#FFF9C4"))
+
+;; org-agende
+(with-eval-after-load 'org-agenda
+  (set-face 'org-agenda-calendar-event                    'default)
+  (set-face 'org-agenda-calendar-sexp                     'face-faded)
+  (set-face 'org-agenda-clocking                          'face-faded)
+  (set-face 'org-agenda-column-dateline                   'face-faded)
+  (set-face 'org-agenda-current-time                      'face-faded)
+  (set-face 'org-agenda-date                            'face-salient)
+  (set-face 'org-agenda-date-today        '(face-salient face-strong))
+  (set-face 'org-agenda-date-weekend                      'face-faded)
+  (set-face 'org-agenda-diary                             'face-faded)
+  (set-face 'org-agenda-dimmed-todo-face                  'face-faded)
+  (set-face 'org-agenda-done                              'face-faded)
+  (set-face 'org-agenda-filter-category                   'face-faded)
+  (set-face 'org-agenda-filter-effort                     'face-faded)
+  (set-face 'org-agenda-filter-regexp                     'face-faded)
+  (set-face 'org-agenda-filter-tags                       'face-faded)
+  (set-face 'org-agenda-property-face                     'face-faded)
+  (set-face 'org-agenda-restriction-lock                  'face-faded)
+  (set-face 'org-agenda-structure                        'face-faded))
+
+(provide 'elegance)
+
+(custom-theme-set-faces
+ 'elegance
+
+ '(cursor ((((background light)) (:background "black")) (((background dark)) (:background "white"))))
+
+ '(fixed-pitch ((t (:family "Monospace"))))
+
+ '(variable-pitch ((((type w32)) (:foundry "outline" :family "Arial")) (t (:family "Sans Serif"))))
+
+ '(escape-glyph ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "brown"))))
+
+ '(homoglyph ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "brown"))))
+
+ '(minibuffer-prompt ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "medium blue"))))
+
+ '(highlight ((((class color) (min-colors 88) (background light)) (:background "darkseagreen2")) (((class color) (min-colors 88) (background dark)) (:background "darkolivegreen")) (((class color) (min-colors 16) (background light)) (:background "darkseagreen2")) (((class color) (min-colors 16) (background dark)) (:background "darkolivegreen")) (((class color) (min-colors 8)) (:foreground "black" :background "green")) (t (:inverse-video t))))
+
+ '(region ((((class color) (min-colors 88) (background dark)) (:background "blue3")) (((class color) (min-colors 88) (background light) (type gtk)) (:background "gtk_selection_bg_color" :distant-foreground "gtk_selection_fg_color")) (((class color) (min-colors 88) (background light) (type ns)) (:background "ns_selection_bg_color" :distant-foreground "ns_selection_fg_color")) (((class color) (min-colors 88) (background light)) (:background "lightgoldenrod2")) (((class color) (min-colors 16) (background dark)) (:background "blue3")) (((class color) (min-colors 16) (background light)) (:background "lightgoldenrod2")) (((class color) (min-colors 8)) (:foreground "white" :background "blue")) (((type tty) (class mono)) (:inverse-video t)) (t (:background "gray"))))
+
+ '(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))
+
+ '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1")) (((class color) (min-colors 88) (background dark)) (:background "SkyBlue4")) (((class color) (min-colors 16) (background light)) (:background "yellow")) (((class color) (min-colors 16) (background dark)) (:background "SkyBlue4")) (((class color) (min-colors 8)) (:foreground "black" :background "cyan")) (t (:inverse-video t))))
+
+ '(trailing-whitespace ((((class color) (background light)) (:background "red1")) (((class color) (background dark)) (:background "red1")) (t (:inverse-video t))))
+
+ '(font-lock-builtin-face ((((class grayscale) (background light)) (:weight bold :foreground "LightGray")) (((class grayscale) (background dark)) (:weight bold :foreground "DimGray")) (((class color) (min-colors 88) (background light)) (:foreground "dark slate blue")) (((class color) (min-colors 88) (background dark)) (:foreground "LightSteelBlue")) (((class color) (min-colors 16) (background light)) (:foreground "Orchid")) (((class color) (min-colors 16) (background dark)) (:foreground "LightSteelBlue")) (((class color) (min-colors 8)) (:weight bold :foreground "blue")) (t (:weight bold))))
+
+ '(font-lock-comment-delimiter-face ((default (:inherit (font-lock-comment-face)))))
+
+ '(font-lock-comment-face ((((class grayscale) (background light)) (:slant italic :weight bold :foreground "DimGray")) (((class grayscale) (background dark)) (:slant italic :weight bold :foreground "LightGray")) (((class color) (min-colors 88) (background light)) (:foreground "Firebrick")) (((class color) (min-colors 88) (background dark)) (:foreground "chocolate1")) (((class color) (min-colors 16) (background light)) (:foreground "red")) (((class color) (min-colors 16) (background dark)) (:foreground "red1")) (((class color) (min-colors 8) (background light)) (:foreground "red")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow")) (t (:slant italic :weight bold))))
+
+ '(font-lock-constant-face ((((class grayscale) (background light)) (:underline (:color foreground-color :style line) :weight bold :foreground "LightGray")) (((class grayscale) (background dark)) (:underline (:color foreground-color :style line) :weight bold :foreground "Gray50")) (((class color) (min-colors 88) (background light)) (:foreground "dark cyan")) (((class color) (min-colors 88) (background dark)) (:foreground "Aquamarine")) (((class color) (min-colors 16) (background light)) (:foreground "CadetBlue")) (((class color) (min-colors 16) (background dark)) (:foreground "Aquamarine")) (((class color) (min-colors 8)) (:foreground "magenta")) (t (:underline (:color foreground-color :style line) :weight bold))))
+
+ '(font-lock-doc-face ((t (:inherit (font-lock-string-face)))))
+
+ '(font-lock-function-name-face ((((class color) (min-colors 88) (background light)) (:foreground "Blue1")) (((class color) (min-colors 88) (background dark)) (:foreground "LightSkyBlue")) (((class color) (min-colors 16) (background light)) (:foreground "Blue")) (((class color) (min-colors 16) (background dark)) (:foreground "LightSkyBlue")) (((class color) (min-colors 8)) (:weight bold :foreground "blue")) (t (:weight bold :inverse-video t))))
+
+ '(font-lock-keyword-face ((((class grayscale) (background light)) (:weight bold :foreground "LightGray")) (((class grayscale) (background dark)) (:weight bold :foreground "DimGray")) (((class color) (min-colors 88) (background light)) (:foreground "Purple")) (((class color) (min-colors 88) (background dark)) (:foreground "Cyan1")) (((class color) (min-colors 16) (background light)) (:foreground "Purple")) (((class color) (min-colors 16) (background dark)) (:foreground "Cyan")) (((class color) (min-colors 8)) (:weight bold :foreground "cyan")) (t (:weight bold))))
+
+ '(font-lock-negation-char-face ((t nil)))
+
+ '(font-lock-preprocessor-face ((t (:inherit (font-lock-builtin-face)))))
+
+ '(font-lock-regexp-grouping-backslash ((t (:inherit (bold)))))
+
+ '(font-lock-regexp-grouping-construct ((t (:inherit (bold)))))
+
+ '(font-lock-string-face ((((class grayscale) (background light)) (:slant italic :foreground "DimGray")) (((class grayscale) (background dark)) (:slant italic :foreground "LightGray")) (((class color) (min-colors 88) (background light)) (:foreground "VioletRed4")) (((class color) (min-colors 88) (background dark)) (:foreground "LightSalmon")) (((class color) (min-colors 16) (background light)) (:foreground "RosyBrown")) (((class color) (min-colors 16) (background dark)) (:foreground "LightSalmon")) (((class color) (min-colors 8)) (:foreground "green")) (t (:slant italic))))
+
+ '(font-lock-type-face ((((class grayscale) (background light)) (:weight bold :foreground "Gray90")) (((class grayscale) (background dark)) (:weight bold :foreground "DimGray")) (((class color) (min-colors 88) (background light)) (:foreground "ForestGreen")) (((class color) (min-colors 88) (background dark)) (:foreground "PaleGreen")) (((class color) (min-colors 16) (background light)) (:foreground "ForestGreen")) (((class color) (min-colors 16) (background dark)) (:foreground "PaleGreen")) (((class color) (min-colors 8)) (:foreground "green")) (t (:underline (:color foreground-color :style line) :weight bold))))
+
+ '(font-lock-variable-name-face ((((class grayscale) (background light)) (:slant italic :weight bold :foreground "Gray90")) (((class grayscale) (background dark)) (:slant italic :weight bold :foreground "DimGray")) (((class color) (min-colors 88) (background light)) (:foreground "sienna")) (((class color) (min-colors 88) (background dark)) (:foreground "LightGoldenrod")) (((class color) (min-colors 16) (background light)) (:foreground "DarkGoldenrod")) (((class color) (min-colors 16) (background dark)) (:foreground "LightGoldenrod")) (((class color) (min-colors 8)) (:weight light :foreground "yellow")) (t (:slant italic :weight bold))))
+
+ '(font-lock-warning-face ((t (:inherit (error)))))
+
+
+ '(button ((t (:inherit (link)))))
+
+
+ '(link ((((class color) (min-colors 88) (background light)) (:underline (:color foreground-color :style line) :foreground "RoyalBlue3")) (((class color) (background light)) (:underline (:color foreground-color :style line) :foreground "blue")) (((class color) (min-colors 88) (background dark)) (:underline (:color foreground-color :style line) :foreground "cyan1")) (((class color) (background dark)) (:underline (:color foreground-color :style line) :foreground "cyan")) (t (:inherit (underline)))))
+
+
+ '(link-visited ((default (:inherit (link))) (((class color) (background light)) (:foreground "magenta4")) (((class color) (background dark)) (:foreground "violet"))))
+
+ '(fringe ((((class color) (background light)) (:background "grey95")) (((class color) (background dark)) (:background "grey10")) (t (:background "gray"))))
+
+ '(tooltip ((((class color)) (:inherit (variable-pitch) :foreground "black" :background "lightyellow")) (t (:inherit (variable-pitch)))))
+
+ '(isearch ((((class color) (min-colors 88) (background light)) (:foreground "lightskyblue1" :background "magenta3")) (((class color) (min-colors 88) (background dark)) (:foreground "brown4" :background "palevioletred2")) (((class color) (min-colors 16)) (:foreground "cyan1" :background "magenta4")) (((class color) (min-colors 8)) (:foreground "cyan1" :background "magenta4")) (t (:inverse-video t))))
+
+ '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "RosyBrown1")) (((class color) (min-colors 88) (background dark)) (:background "red4")) (((class color) (min-colors 16)) (:background "red")) (((class color) (min-colors 8)) (:background "red")) (((class color grayscale)) (:foreground "grey")) (t (:inverse-video t))))
+
+ '(lazy-highlight ((((class color) (min-colors 88) (background light)) (:background "paleturquoise")) (((class color) (min-colors 88) (background dark)) (:background "paleturquoise4")) (((class color) (min-colors 16)) (:background "turquoise3")) (((class color) (min-colors 8)) (:background "turquoise3")) (t (:underline (:color foreground-color :style line)))))
+
+ '(match ((((class color) (min-colors 88) (background light)) (:background "yellow1")) (((class color) (min-colors 88) (background dark)) (:background "RoyalBlue3")) (((class color) (min-colors 8) (background light)) (:foreground "black" :background "yellow")) (((class color) (min-colors 8) (background dark)) (:foreground "white" :background "blue")) (((type tty) (class mono)) (:inverse-video t)) (t (:background "gray"))))
+
+ '(next-error ((t (:inherit (region)))))
+
+ '(query-replace ((t (:inherit (isearch)))))
+
+
+ '(org-block ((t (:background nil))))
+ '(org-block-begin-line ((t (:background nil :foreground "gainsboro" :underline nil ))))
+ '(org-block-end-line ((t (:background nil :foreground "gainsboro" :overline nil))))
+ '(org-document-info-keyword ((t (:background nil :foreground "gainsboro"))))
+ '(org-meta-line ((t (:background nil :foreground "gainsboro"))))
+ '(org-level-1 ((t (:weight bold :foreground "RoyalBlue3" ))))
+ '(org-document-title ((t ( :foreground "DarkBlue" :weight bold :height 1.5))))
+ )

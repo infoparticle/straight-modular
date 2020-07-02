@@ -1,8 +1,5 @@
 #+TITLE: Appearance
-#+Last Saved: <2019-August-23 14:00:24>
-
-
-
+#+Last Saved: <Jul 02, 2020>
 
 ** Fringes - editor fringes
 

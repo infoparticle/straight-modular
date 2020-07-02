@@ -3,7 +3,7 @@
 #+PROPERTY: header-args :tangle yes
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
-#+Last Saved: <Jun 29, 2020>
+#+Last Saved: <Jul 02, 2020>
 
 Common UI configs
 
@@ -20,7 +20,6 @@ Common UI configs
                     :height  115
                     :weight 'normal
                     :width 'normal)
-
 #+BEGIN_SRC emacs-lisp
 (set-face-font 'default "Roboto Mono Light 10")
 (load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
@@ -135,17 +134,6 @@ Common UI configs
   )
 
 
-** dimmer
-
-#+begin_src emacs-lisp
-(use-package dimmer
-:config
-(dimmer-configure-which-key)
-(dimmer-configure-helm)
-(dimmer-mode t)
-)
-#+end_src
-
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no
@@ -208,3 +196,13 @@ This messes up the window margin configs, so simply avoiding it
                            ;; insert additional stuff if so desired
                            ))
 #+END_SRC
+** dimmer | Didn't like it, like the windows bright :)
+
+#+begin_src emacs-lisp
+(use-package dimmer
+:config
+(dimmer-configure-which-key)
+(dimmer-configure-helm)
+(dimmer-mode t)
+)
+#+end_src

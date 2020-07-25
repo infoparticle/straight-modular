@@ -40,7 +40,7 @@
  '(org-document-title ((t (:foreground "DarkBlue" :overline nil :underline nil :weight bold :height 2.8 :family "Century"))))
  '(org-ellipsis ((t (:foreground "gray" :box nil :underline nil :overline nil :weight bold))))
  '(org-level-1 ((t (:background "lavender" :foreground "RoyalBlue3" :overline t :weight bold :height 1.3))))
- '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.2 :overline t))))
  '(org-meta-line ((t (:foreground "slateblue"))))
  '(org-table ((t (:foreground "royalblue4")))))
 

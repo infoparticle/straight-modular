@@ -1,6 +1,6 @@
 (setq my-owspc-dir "~/.em/em.owspc/")
 (defun /o/scratch       () (interactive) (find-file  (concat my-owspc-dir "inbox/owspc-scratch.org")))
-(defun /o/inbox         () (interactive) (find-file  (concat my-owspc-dir "inbox/owspc-inbox.org")))
+(defun /o/inbox         () (interactive) (find-file  (concat my-owspc-dir "inbox/owspc-inbox.org/owspc-inbox.org")))
 (defun /o/backlog       () (interactive) (find-file  (concat my-owspc-dir "apps/agenda/goals-backlog.org")))
 (defun /o/web-bookmarks () (interactive) (find-file  (concat my-owspc-dir "apps/bookmarks/web-bookmarks.org")))
 (defun /o/gtd           () (interactive) (find-file  "~/.em/emacs-apps/orgagenda/gtd-inbox.org"))
@@ -12,9 +12,10 @@
   (persp-mode t)
   (persp-frame-switch "one-page")
   (delete-other-windows)
-  (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/one-page-projects.org")
-  (split-window-right)
-  (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/one-page-agenda.org"))
+  (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/one-page-agenda.org")
+  (split-window-right 45)
+  (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/main.org")
+)
 
 (defun my/open-wiki (wiki-root wiki-name)
   (if(file-directory-p wiki-root)
@@ -146,7 +147,7 @@
 
 (defun my/refer/work-projects ()
   (interactive)
-  (my/pick-proj-and-file "C:\\my\\home\\.em\\em.work-2.0\\projects"))
+  (my/pick-proj-and-file  my/work/project-dir-root))
 
 
 (defun my/refer/work-cases ()
@@ -197,9 +198,10 @@
       (let ((filename (buffer-file-name)))
         (shell-command (concat "start firefox.exe \"file://" filename "\"")))))
 
-(setq my/work/case-data-dir-root "C:/my/work/cpe/data-dir/")
-(setq my/work/case-dir-root "c:/my/home/.em/em.work-2.0/cases/")
-(setq my/work/task-dir-root "C:/my/home/.em/em.work-2.0/tasks/")
+(setq  my/work/case-data-dir-root "C:/my/work/cpe/data-dir/")
+(setq  my/work/case-dir-root      "c:/my/home/.em/em.work-2.0/cases/")
+(setq  my/work/task-dir-root      "C:/my/home/.em/em.work-2.0/tasks/")
+(setq  my/work/project-dir-root   "C:/my/home/.em/em.work-2.0/projects/")
 
 (setq my/work/personal-project-dir-root "c:/Users/gopinat/Dropbox/emacs-apps/projects/")
 
@@ -259,10 +261,18 @@
       (while (search-forward "\\" nil t)
         (replace-match "/" nil t)))))
 
-(setq chart-gallery-root "C:/my/trading/charts/")
 (defun my/trade/file-a-chart()
   (interactive)
   (progn
-    (setq chart-file-name (concat chart-gallery-root (format-time-string "%Y/%m-%b/%d-%a/%Y-%m-%d-%a.org")))
-    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/%d/.img")) :parents)
+    (setq chart-gallery-root "C:/my/trading/charts/")
+    (setq chart-file-name (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/%Y-%m-%d-%a.org")))
+    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/.img")) :parents)
+    (find-file chart-file-name)))
+
+(defun my/trade/file-a-chart-quickly()
+  (interactive)
+  (progn
+    (setq chart-gallery-root "C:/my/trading/charts/quick")
+    (setq chart-file-name (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/%Y-%m-%d-%a.org")))
+    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/.img")) :parents)
     (find-file chart-file-name)))

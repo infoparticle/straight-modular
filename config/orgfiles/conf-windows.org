@@ -1,7 +1,7 @@
 
 
 #+TITLE: Conf  Windows
-#+Last Saved: <Jul 03, 2020>
+#+Last Saved: <JUL 07, 2020>
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -110,7 +110,9 @@ c:\\opt\\irfan32\\i_view32.exe
   (setq myvar/img-name (concat (format-time-string "%Y%m%d-%H%M%S") ".png"))
   (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path myvar/img-name) t t)) ;Relative to workspace.
   (setq myvar/relative-filename (concat "./.img/" myvar/img-name))
-  (insert "[[file+sys:" (url-encode-url myvar/relative-filename) "]]" "\n")
+  (org-insert-heading)
+  (insert (concat (read-string (format"Enter Image Header (%s): " myvar/img-name) nil nil  myvar/img-name) "\n"))
+  (insert "\n[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
   )
 
 (defun org-screenshot ()
@@ -130,6 +132,9 @@ c:\\opt\\irfan32\\i_view32.exe
 
 (global-set-key [f5] 'org-screenshot)
 #+END_SRC
+
+#+RESULTS:
+: org-screenshot
 
 ** pdftools - not enabled
 

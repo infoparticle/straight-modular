@@ -1,3 +1,16 @@
+(use-package highlight-symbol
+  :defer 10
+  :bind (("M-n" . highlight-symbol-next)
+         ("M-p" . highlight-symbol-prev))
+  :init
+  (setq highlight-symbol-idle-delay 0.3)
+  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
+  (highlight-symbol-nav-mode))
+
+(when (version<= "26.0.50" emacs-version )
+  (custom-set-faces '(line-number ((t (:inherit default :foreground "gray80")))))
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
+
 (use-package expand-region
   :defer t
   )
@@ -24,11 +37,7 @@
          (hy-mode . lispy-mode)
          (lfe-mode . lispy-mode)
          (clojure-mode . lispy-mode))
-  :config
-  (lispy-set-key-theme '(paredit c-digits))
-  (ef-add-hook lispy-mode-hook
-    (if (fboundp 'turn-off-smartparens-mode)
-        (turn-off-smartparens-mode))))
+)
 
 (use-package lispyville
   :hook (lispy-mode . lispyville-mode)
@@ -44,20 +53,12 @@
   (evil-define-key 'visual lispyville-mode-map "#" #'lispyville-comment-or-uncomment)
   (evil-define-key 'visual lispyville-mode-map "\\" #'lispyville-comment-or-uncomment))
 
-(use-package highlight-symbol
-  :defer 10
-  :bind (("M-n" . highlight-symbol-next)
-         ("M-p" . highlight-symbol-prev))
-  :init
-  (setq highlight-symbol-idle-delay 0.3)
-  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
-  (highlight-symbol-nav-mode))
-
-(when (version<= "26.0.50" emacs-version )
-  (custom-set-faces '(line-number ((t (:inherit default :foreground "gray80")))))
-  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
-
 (use-package haskell-mode :defer t)
+
+(use-package origami
+  :defer t
+  :config
+  (add-hook 'prog-mode-hook #'origami-mode))
 
 (use-package web-mode
   :mode ("\\.html$" . web-mode)
@@ -96,11 +97,6 @@
 (use-package impatient-mode
   :mode ("\\.html$" . impatient-mode)
 )
-
-(use-package origami
-  :defer t
-  :config
-  (add-hook 'prog-mode-hook #'origami-mode))
 
 (use-package emmet-mode
   :diminish (emmet-mode . "ε")

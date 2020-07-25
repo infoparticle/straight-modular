@@ -1,5 +1,5 @@
 #+TITLE: Conf Programming
-#+Last Saved: <Jun 27, 2020>
+#+Last Saved: "Jul 25 Sat, 2020"
 #+property: header-args :tangle yes
 
 * Enabled Config
@@ -7,7 +7,33 @@
  :header-args: :tangle yes
  :END:
 
-** expand region
+** General
+*** highlight-symbol
+
+#+BEGIN_SRC emacs-lisp
+(use-package highlight-symbol
+  :defer 10
+  :bind (("M-n" . highlight-symbol-next)
+         ("M-p" . highlight-symbol-prev))
+  :init
+  (setq highlight-symbol-idle-delay 0.3)
+  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
+  (highlight-symbol-nav-mode))
+#+END_SRC
+
+*** Line numbers only for programming mode
+
+They can also toggled later on with =SPC+t+l=
+To add linum to your favorite modes:
+(add-hook 'org-mode-hook #'display-line-numbers-mode) ;; who needs linum in org mode!
+
+#+BEGIN_SRC emacs-lisp
+(when (version<= "26.0.50" emacs-version )
+  (custom-set-faces '(line-number ((t (:inherit default :foreground "gray80")))))
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
+#+END_SRC
+
+*** expand region
 
 #+BEGIN_SRC emacs-lisp
 (use-package expand-region
@@ -15,7 +41,8 @@
   )
 #+END_SRC
 
-** lisp - paren-face for elisp
+** Lisp
+*** lisp - paren-face for elisp
 
 #+BEGIN_SRC emacs-lisp
 (use-package paren-face
@@ -24,7 +51,7 @@
   (add-hook 'prog-mode-hook #'paren-face-mode))
 #+END_SRC
 
-** lisp - aggressive indent
+*** lisp - aggressive indent
 
 #+BEGIN_SRC emacs-lisp
 (use-package aggressive-indent
@@ -37,7 +64,12 @@
     (add-to-list 'aggressive-indent-excluded-modes i)))
 #+END_SRC
 
-** lisp - lispy/lispyvillie
+*** lisp - lispy/lispyvillie
+
+  ;;lispy config
+  :config
+  (lispy-set-key-theme '(lispy))
+
 #+BEGIN_SRC emacs-lisp
 (use-package lispy
   :hook ((common-lisp-mode . lispy-mode)
@@ -47,11 +79,7 @@
          (hy-mode . lispy-mode)
          (lfe-mode . lispy-mode)
          (clojure-mode . lispy-mode))
-  :config
-  (lispy-set-key-theme '(paredit c-digits))
-  (ef-add-hook lispy-mode-hook
-    (if (fboundp 'turn-off-smartparens-mode)
-        (turn-off-smartparens-mode))))
+)
 
 (use-package lispyville
   :hook (lispy-mode . lispyville-mode)
@@ -67,30 +95,6 @@
   (evil-define-key 'visual lispyville-mode-map "#" #'lispyville-comment-or-uncomment)
   (evil-define-key 'visual lispyville-mode-map "\\" #'lispyville-comment-or-uncomment))
 #+END_SRC
-** highlight-symbol
-
-#+BEGIN_SRC emacs-lisp
-(use-package highlight-symbol
-  :defer 10
-  :bind (("M-n" . highlight-symbol-next)
-         ("M-p" . highlight-symbol-prev))
-  :init
-  (setq highlight-symbol-idle-delay 0.3)
-  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
-  (highlight-symbol-nav-mode))
-#+END_SRC
-
-** Line numbers only for programming mode
-
-They can also toggled later on with =SPC+t+l=
-To add linum to your favorite modes:
-(add-hook 'org-mode-hook #'display-line-numbers-mode) ;; who needs linum in org mode!
-
-#+BEGIN_SRC emacs-lisp
-(when (version<= "26.0.50" emacs-version )
-  (custom-set-faces '(line-number ((t (:inherit default :foreground "gray80")))))
-  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
-#+END_SRC
 
 ** haskell
 
@@ -98,7 +102,17 @@ To add linum to your favorite modes:
 (use-package haskell-mode :defer t)
 #+END_SRC
 
-** web-dev
+** origami
+
+#+BEGIN_SRC emacs-lisp
+(use-package origami
+  :defer t
+  :config
+  (add-hook 'prog-mode-hook #'origami-mode))
+#+END_SRC
+
+** Web Dev
+*** web-dev
 
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
@@ -140,16 +154,7 @@ To add linum to your favorite modes:
 )
 #+END_SRC
 
-** origami
-
-#+BEGIN_SRC emacs-lisp
-(use-package origami
-  :defer t
-  :config
-  (add-hook 'prog-mode-hook #'origami-mode))
-#+END_SRC
-
-** web mode
+*** web mode
 http://web-mode.org/assets/theme.el
 
 (set-face-attribute 'default            nil :background "grey14" :foreground "ivory1")
@@ -212,7 +217,7 @@ http://web-mode.org/assets/theme.el
  :header-args: :tangle no
  :END:
 
-** highlight-indentation
+** highlight-inentation
 
 #+BEGIN_SRC emacs-lisp
 (use-package highlight-indentation

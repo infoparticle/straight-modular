@@ -1,8 +1,13 @@
-;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*- 
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*-
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("conf experiment"
+(("work2.0 inbox"
+ (filename . "c:/my/home/.em/em.work-2.0/inbox/work-inbox.org")
+ (front-context-string . "\n** 2020-06-11 T")
+ (rear-context-string . " 2020-07-15 Wed\n")
+ (position . 71))
+("conf experiment"
  (filename . "~/.emacs.d/config/orgfiles/conf-experiment.org")
  (front-context-string . ")\n\n#+END_SRC\n* D")
  (rear-context-string . "e bookmarks-plus")
@@ -16,8 +21,8 @@
  (filename . "c:/Users/gopinat/Downloads")
  (position . 0)
  (defaults "gopinat" "Dropbox"))
-(#1="Dropbox"
-    (filename . "c:/Users/gopinat/Dropbox")
-    (position . 0)
-    (defaults "gopinat" #1#))
+("Dropbox"
+ (filename . "c:/Users/gopinat/Dropbox")
+ (position . 0)
+ (defaults "gopinat" #1="Dropbox"))
 )

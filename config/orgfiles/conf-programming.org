@@ -1,5 +1,5 @@
 #+TITLE: Conf Programming
-#+Last Saved: "Jul 25 Sat, 2020"
+#+Last Saved: "Jul 31 Fri, 2020"
 #+property: header-args :tangle yes
 
 * Enabled Config
@@ -41,8 +41,29 @@ To add linum to your favorite modes:
   )
 #+END_SRC
 
+*** Magit
+#+BEGIN_SRC emacs-lisp
+(use-package magit :defer t)
+#+END_SRC
+*** origami
+
+#+BEGIN_SRC emacs-lisp
+(use-package origami
+  :defer t
+  :config
+  (add-hook 'prog-mode-hook #'origami-mode))
+#+END_SRC
+** Python
+
+#+BEGIN_SRC emacs-lisp
+(use-package elpy
+  :defer t
+  :init
+  (elpy-enable))
+#+END_SRC
+
 ** Lisp
-*** lisp - paren-face for elisp
+*** lisp - parken-face for elisp
 
 #+BEGIN_SRC emacs-lisp
 (use-package paren-face
@@ -100,15 +121,6 @@ To add linum to your favorite modes:
 
 #+BEGIN_SRC emacs-lisp
 (use-package haskell-mode :defer t)
-#+END_SRC
-
-** origami
-
-#+BEGIN_SRC emacs-lisp
-(use-package origami
-  :defer t
-  :config
-  (add-hook 'prog-mode-hook #'origami-mode))
 #+END_SRC
 
 ** Web Dev
@@ -228,7 +240,7 @@ http://web-mode.org/assets/theme.el
   (add-hook 'prog-mode-hook #'highlight-indentation-mode))
 
 #+END_SRC
-** rainbo-delimiters
+** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
 
 (use-package rainbow-delimiters

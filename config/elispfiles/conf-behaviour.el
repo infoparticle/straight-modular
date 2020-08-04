@@ -299,3 +299,8 @@ directory to make multiple eshell windows easier."
             (lambda()
               (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)
               (global-set-key (kbd "C-x k") #'persp-kill-buffer))))
+
+(use-package zel
+  :bind (("C-x C-r" . zel-find-file-frecent))
+  :config
+  (zel-install))

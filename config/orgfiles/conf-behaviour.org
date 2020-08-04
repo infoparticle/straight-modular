@@ -1,7 +1,7 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Jul 25 Sat, 2020"
+Last Saved: "Jul 31 Fri, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -407,6 +407,15 @@ https://github.com/Bad-ptr/persp-mode.el
               (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)
               (global-set-key (kbd "C-x k") #'persp-kill-buffer))))
 #+end_src
+** zel recent files command
+
+#+BEGIN_SRC emacs-lisp
+(use-package zel
+  :bind (("C-x C-r" . zel-find-file-frecent))
+  :config
+  (zel-install))
+
+#+END_SRC
 
 * Disabled Config
  :PROPERTIES:

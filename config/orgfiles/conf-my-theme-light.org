@@ -427,7 +427,7 @@ background color that is barely perceptible."
 
 #+RESULTS:
 
-* My org mdoe seems to be okay, don't want to mess it with below
+* My org mode seems to be okay, don't want to mess it with below
 ;; org mode
 (with-eval-after-load 'org
   (set-face 'org-archived                                 'face-faded)

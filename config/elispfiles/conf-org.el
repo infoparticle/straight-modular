@@ -128,7 +128,11 @@
 (setq org-confirm-babel-evaluate nil)
 
 (setq org-export-html-postamble nil)
-(setq org-hide-emphasis-markers t)
+(setq org-hide-emphasis-markers t
+      org-fontify-done-headline t
+      org-hide-leading-stars t
+      org-pretty-entities t
+      org-odd-levels-only t)
 
 (custom-set-faces
  '(org-ellipsis ((t (:foreground "gray" :box nil :underline nil :overline nil :weight bold)))))
@@ -144,3 +148,16 @@
       (erase-buffer)
       (insert document)
       (goto-char (point-min)))))
+
+(use-package org-bullets
+  :init
+  (setq org-bullets-bullet-list
+    '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
+  :config
+  (add-hook 'org-mode-hook (lambda ()
+                             (progn
+                               (org-bullets-mode 1)
+                               ;; (org-num-mode)
+                               ))))
+
+(setq inhibit-compacting-font-caches t) ;;game changer in windows?

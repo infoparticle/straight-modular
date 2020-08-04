@@ -103,7 +103,6 @@ Provides sane defaults and improves the vanilla emacs.
                                         ;(set-face-background hl-line-face nil)
 (eldoc-mode 1)
 (setq inhibit-compacting-font-caches t)
-
 #+END_SRC
 
 ** show trailing white spaces

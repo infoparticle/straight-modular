@@ -15,6 +15,18 @@
   :defer t
   )
 
+(use-package magit :defer t)
+
+(use-package origami
+  :defer t
+  :config
+  (add-hook 'prog-mode-hook #'origami-mode))
+
+(use-package elpy
+  :defer t
+  :init
+  (elpy-enable))
+
 (use-package paren-face
 :defer t
 :config
@@ -54,11 +66,6 @@
   (evil-define-key 'visual lispyville-mode-map "\\" #'lispyville-comment-or-uncomment))
 
 (use-package haskell-mode :defer t)
-
-(use-package origami
-  :defer t
-  :config
-  (add-hook 'prog-mode-hook #'origami-mode))
 
 (use-package web-mode
   :mode ("\\.html$" . web-mode)

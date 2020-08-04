@@ -84,9 +84,10 @@
    "oj" '(/bm/orgroot-journal       :which-key "orgroot:daily-journal")
    "ow" '(my/pick-wiki-name         :which-key "Open wiki")
    "oo" '(my/one-page-project-management         :which-key "Open one-page-project-manager")
-   "rc" '(my/refer/code              :which-key "refer:code" )
-   "rp" '(my/refer/personal-projects          :which-key "personal projects" )
-   "rw" '(my/refer/work-projects              :which-key "work projects" )
+   "rs" '(my/refer/code              :which-key "refer:code" )
+   "rP" '(my/refer/personal-projects          :which-key "personal projects" )
+   "rp" '(my/refer/work-projects              :which-key "work projects" )
+   "rc" '(my/refer/work-cases              :which-key "work cases" )
    "oi" '(hydra-open-inboxes/body              :which-key "inboxes" )
 ))
 

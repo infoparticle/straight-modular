@@ -1,5 +1,5 @@
 #+TITLE: CPP Setup
-#+Last Saved: <Oct 23, 2019>
+Last Saved: "Aug 04 Tue, 2020"
 
  https://github.com/emacs-lsp/lsp-mode
 
@@ -10,7 +10,7 @@ https://github.com/MaskRay/ccls/wiki/lsp-mode
 https://www.reddit.com/r/emacs/comments/dlf0w7/whats_your_setup_for_cc_in_emacs/
 
 
-*  My Summary
+* My Summary
 
 - cscope + emacs is done deal. Adding gnu global is also fine.
 - To get intellisense we need higher cmake/clangd/cquery/ccls than centos 7 servers.
@@ -47,10 +47,13 @@ https://shelper.github.io/posts/setup-emacs-foc-c%2B%2B-with-ccls-and-lsp/
 - CDETS
 - emacs-ycmd/ycmd
 
+#+BEGIN_SRC cpp
 lsp-mode - for general language server support;
 company-lsp - for lsp completions;
 emacs-cquery - for cquery support;
 lsp-ui - for onscreen documentation when hovering.
+#+END_SRC
+
 
 * Lisp fragments
 

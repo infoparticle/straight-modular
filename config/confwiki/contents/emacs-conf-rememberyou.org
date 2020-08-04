@@ -1,5 +1,5 @@
-#+AUTHOR: Terencio Agozzino
 #+TITLE: GNU Emacs Configuration
+#+AUTHOR: Terencio Agozzino
 
 * Table of Content                                                    :TOC:
 - [[#about][About]]

@@ -129,7 +129,7 @@
 (setq org-hide-emphasis-markers t
       org-fontify-done-headline t
       org-hide-leading-stars t
-      org-pretty-entities t
+      org-pretty-entities nil ; this enables _ ^ to behave as subscript/supersript -> annoying
       org-odd-levels-only t)
 
 (custom-set-faces

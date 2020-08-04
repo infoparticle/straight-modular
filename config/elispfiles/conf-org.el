@@ -167,16 +167,16 @@
 (add-hook 'org-mode-hook 'add-pretty-lambda)
 
 (use-package org-bullets
-  :init
-  (setq org-bullets-bullet-list
-(org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶")
-  (org-ellipsis "⤵"))
-)
-  :config
-  (add-hook 'org-mode-hook (lambda ()
-                             (progn
-                               (org-bullets-mode 1)
-                               ;; (org-num-mode)
-                               ))))
+  :custom
+  (org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
+  (org-ellipsis "⤵")
+  :hook (org-mode . org-bullets-mode))
 
 (setq inhibit-compacting-font-caches t) ;;game changer in windows?
+
+(when (member "Symbola" (font-family-list))
+  (set-fontset-font "fontset-default" nil
+                    (font-spec :size 20 :name "Symbola")))
+
+(when (member "Symbola" (font-family-list))
+  (set-fontset-font t 'unicode "Symbola" nil 'prepend))

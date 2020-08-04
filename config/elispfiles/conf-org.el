@@ -159,7 +159,7 @@
           ("#+TITLE:" . ? )
           ("Last Saved:" . 9997) ; ✍
           ("#+BEGIN_SRC" . 128187) ; 💻
-          ("#+END_SRC" . 8414) ; ⃞
+          ("#+END_SRC" . 9210) ; black dot
           )))
 
 

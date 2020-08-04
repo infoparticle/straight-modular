@@ -64,9 +64,7 @@
                              (concat org-agenda-root-dir "/gtd.org")
                              (concat org-agenda-root-dir "/anniv.org")
                              (concat org-agenda-root-dir "/tickler.org"))
-
-
-      org-ellipsis " ▽")
+)
 
 (setq org-agenda-prefix-format
       (quote
@@ -149,10 +147,31 @@
       (insert document)
       (goto-char (point-min)))))
 
+(global-prettify-symbols-mode 1)
+(defun add-pretty-lambda ()
+  "make some word or string show as pretty Unicode symbols"
+  (setq prettify-symbols-alist
+        '(
+          ("lambda" . 955) ; λ
+          ("->" . 8594)    ; →
+          ("=>" . 8658)    ; ⇒
+          ;("map" . 8614)   ; ↦
+          ("#+TITLE:" . ? )
+          ("Last Saved:" . 9997) ; ✍
+          )))
+
+
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+(add-hook 'text-mode-hook 'add-pretty-lambda)
+(add-hook 'prog-mode-hook 'add-pretty-lambda)
+(add-hook 'org-mode-hook 'add-pretty-lambda)
+
 (use-package org-bullets
   :init
   (setq org-bullets-bullet-list
-    '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
+(org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶")
+  (org-ellipsis "⤵"))
+)
   :config
   (add-hook 'org-mode-hook (lambda ()
                              (progn

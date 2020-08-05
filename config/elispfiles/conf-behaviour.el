@@ -304,3 +304,9 @@ directory to make multiple eshell windows easier."
   :bind (("C-x C-r" . zel-find-file-frecent))
   :config
   (zel-install))
+
+(use-package calfw)
+(use-package calfw-org
+  :config
+  (setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda") ; default
+  )

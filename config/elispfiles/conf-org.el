@@ -63,7 +63,9 @@
       org-agenda-files (list (concat org-agenda-root-dir "/gtd-inbox.org")
                              (concat org-agenda-root-dir "/gtd.org")
                              (concat org-agenda-root-dir "/anniv.org")
-                             (concat org-agenda-root-dir "/tickler.org"))
+                             (concat org-agenda-root-dir "/tickler.org")
+                             "c:/my/home/.em/em.work-2.0/inbox/work-inbox.org"
+)
 )
 
 (setq org-agenda-prefix-format

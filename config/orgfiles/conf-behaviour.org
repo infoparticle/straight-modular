@@ -1,7 +1,7 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Jul 31 Fri, 2020"
+Last Saved: "Aug 05 Wed, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -416,7 +416,14 @@ https://github.com/Bad-ptr/persp-mode.el
   (zel-install))
 
 #+END_SRC
-
+** calendar
+#+BEGIN_SRC emacs-lisp
+(use-package calfw)
+(use-package calfw-org
+  :config
+  (setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda") ; default
+  )
+#+END_SRC
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no

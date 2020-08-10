@@ -147,6 +147,7 @@ c:\\opt\\irfan32\\i_view32.exe
 ;; (pdf-tools-install)
 
 ** set exec paths, python interpreter and cd to tmp directory
+
 #+BEGIN_SRC emacs-lisp
 (setq my-owspc-dir "~/.em/em.owspc/")
 ;; windows python config

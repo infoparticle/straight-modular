@@ -172,7 +172,7 @@
 
 (use-package org-bullets
   :custom
-  (org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
+ ; (org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
   (org-ellipsis "⤵")
   :hook (org-mode . org-bullets-mode))
 

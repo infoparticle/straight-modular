@@ -13,10 +13,10 @@
  (rear-context-string . "e bookmarks-plus")
  (position . 3591))
 ("org-capture-last-stored"
- (filename . "~/.em/em.work-wiki/contents/work-agenda-del.org")
- (front-context-string . "* TODO blah blah")
- (rear-context-string . "11:22]\n  :END:\n\n")
- (position . 2078))
+ (filename . "~/org/journal.org")
+ (front-context-string . "******* Some top")
+ (rear-context-string . "-08-06 Thursday\n")
+ (position . 1658))
 ("Downloads"
  (filename . "c:/Users/gopinat/Downloads")
  (position . 0)

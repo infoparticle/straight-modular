@@ -1,4 +1,7 @@
 (global-set-key "\C-s" 'save-buffer)
+(global-set-key (kbd "M-<f1>") 'ivy-switch-view)
+(global-set-key (kbd "M-<f2>") 'ivy-push-view)
+(global-set-key (kbd "M-<f3>") 'ivy-pop-view)
 
 (use-package which-key
   :defer 10

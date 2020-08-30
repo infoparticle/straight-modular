@@ -2,18 +2,12 @@
 (setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
 (setq explicit-bash.exe-args '("--login" "-i"))
 
-(defun conf/ondemand/windows/spellcheck()
-  (interactive)
-  (progn
-    (setq-default ispell-program-name "C:/opt/hunspell/bin/hunspell.exe")
-    ;; "en_US" is key to lookup in `ispell-local-dictionary-alist`, please note it will be passed   to hunspell CLI as "-d" parameter
-    (setq ispell-local-dictionary "en_US")
-    (setq ispell-local-dictionary-alist
-          '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
-    (setq text-mode-hook '(lambda() (flyspell-mode t)))))
-
-
-;; (conf/windows/spellcheck)
+(setq-default ispell-program-name "C:/opt/hunspell/bin/hunspell.exe")
+;; "en_US" is key to lookup in `ispell-local-dictionary-alist`, please note it will be passed   to hunspell CLI as "-d" parameter
+(setq ispell-local-dictionary "en_US")
+(setq ispell-local-dictionary-alist
+        '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
+(setq text-mode-hook '(lambda() (flyspell-mode t)))
 
 (defun conf/ondemand/windows/gpg()
   (interactive)
@@ -49,11 +43,11 @@
 
 (defun my/img-maker ()
   (my/create-rich-doc)
-  (setq myvar/img-name (concat (format-time-string "%Y%m%d-%H%M%S") ".png"))
+  (setq myvar/img-name (concat (format-time-string "%Y-%m-%d-%H%M%S") ".png"))
   (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path myvar/img-name) t t)) ;Relative to workspace.
   (setq myvar/relative-filename (concat "./.img/" myvar/img-name))
   (org-insert-heading)
-  (insert (concat (read-string (format"Enter Image Header (%s): " myvar/img-name) nil nil  myvar/img-name) "\n"))
+  (insert (concat (read-string (format"Enter Image Header (%s): " myvar/img-name) nil nil  (concat (format-time-string "%Y-%m-%d"))) "\n"))
   (insert "\n[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
   )
 

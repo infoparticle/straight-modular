@@ -3,7 +3,7 @@
 #+PROPERTY: header-args :tangle yes
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
-#+Last Saved: <Jul 02, 2020>
+Last Saved: "Aug 30 Sun, 2020"
 
 Common UI configs
 
@@ -134,6 +134,13 @@ Common UI configs
   )
 
 
+
+** neotree
+#+BEGIN_SRC emacs-lisp
+(use-package neotree
+:config
+(setq neo-theme nil))
+#+END_SRC
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no

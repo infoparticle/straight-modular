@@ -89,3 +89,7 @@
   :after treemacs dired
 
   :config (treemacs-icons-dired-mode))
+
+(use-package neotree
+:config
+(setq neo-theme nil))

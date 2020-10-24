@@ -62,7 +62,7 @@
    ;; expand region
    ;"er" 'er/expand-region
    ;; quickly open files
-   "oi"  '(/o/inbox :which-key "owspc-inbox.org")
+   ;;"oi"  '(/o/inbox :which-key "owspc-inbox.org")
    "os"  '(/o/scratch                 :which-key "owspc-scratch.org")
    "oc"  '(/o/config                  :which-key "config.org")
    "ob"  '(/o/web-bookmarks           :which-key "web-bookmarks.org")

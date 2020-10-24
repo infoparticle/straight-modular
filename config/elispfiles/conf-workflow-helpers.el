@@ -218,7 +218,7 @@
 
   (message actual-title)
   (setq case-title-dir (concat root-dir case-title "." dir-suffix "/"))
-  (mkdir (concat case-title-dir "/.img/") :parents)
+  (mkdir (concat case-title-dir "/.imgs/") :parents)
   (mkdir (concat case-title-dir "/casedata/") :parents)
   (write-region (concat  "#+TITLE:" actual-title "\n" "#+Last Saved: <Jun 20, 2020>\n\n")
                 nil (concat case-title-dir case-title "-summary.org"))
@@ -249,9 +249,10 @@
 (split-window-right width_in_chars) (find-file  file-name))
 (defhydra hydra-open-inboxes (:color blue :hint nil :columns 1)
   "Wiki List"
-  ("w" (my/split-find-file 80 "C:\\my\\home\\.em\\em.work-2.0\\inbox\\work-inbox.org") "Work 2.0 Inbox")
-  ("q" nil "cancel" :color blue)
-)
+  ("a" (my/split-find-file 80 "c:/my/work/apm-bpm/apmbpm.git/private/agenda/inbox.org") "APM Inbox")
+  ("i" (/o/inbox) "Org Inbox")
+
+  ("q" nil "Quit" :color blue))
 
 (defun my/string-utils/convert-backward-slash-to-forward-slash ()
   (interactive)
@@ -267,13 +268,21 @@
   (progn
     (setq chart-gallery-root "C:/my/trading/charts/")
     (setq chart-file-name (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/%Y-%m-%d-%a.org")))
-    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/.img")) :parents)
+    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/.imgs")) :parents)
     (find-file chart-file-name)))
 
 (defun my/trade/file-a-chart-quickly()
   (interactive)
   (progn
     (setq chart-gallery-root "C:/my/trading/charts/quick")
-    (setq chart-file-name (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/%Y-%m-%d-%a.org")))
-    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/%d-%a/.img")) :parents)
-    (find-file chart-file-name)))
+    (setq chart-file-base-path (concat chart-gallery-root (format-time-string "%Y/%b/")))
+    (setq chart-file-name (format-time-string "%Y-%m-%d-%a"))
+    (setq chart-file-name
+          (concat (read-string (format"Enter Image Header (%s): " chart-file-name) chart-file-name nil nil) ".org")
+          )
+    (mkdir (concat chart-gallery-root (format-time-string "%Y/%b/.imgs")) :parents)
+    (setq chart-file-full-path (concat chart-file-base-path chart-file-name))
+    (write-region  (concat "| [[" chart-file-full-path "][" (format-time-string "%Y-%m-%d-%a") "]]||\n") nil (concat chart-file-base-path "Readme.org") 'append)
+    (find-file chart-file-full-path)
+    (save-buffer)
+))

@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: contact
+# key: c
+# --
+** $1
+:PROPERTIES:
+:NAME: $1
+:NICKNAME: $2
+:BIRTHDAY: $3
+:MOBILE: $4
+:EMAIL: $5
+:ADDRESS: $6
+:CATEGORY: $7
+:TAG: $8
+:COMMENTS: $9
+:CREATED: `(format-time-string "%Y-%m-%d")`
+:END:
+
+$0

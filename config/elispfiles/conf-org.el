@@ -49,6 +49,7 @@
       org-src-preserve-indentation t
       ;; org-image-actual-width nil
       org-tags-column 90
+      org-ellipsis " ⤵"
 
       ;; org agenda conf https://daryl.wakatara.com/easing-into-emacs-org-mode
       org-agenda-show-all-dates nil  ;org agenda skip empty days
@@ -135,7 +136,7 @@
       org-odd-levels-only t)
 
 (custom-set-faces
- '(org-ellipsis ((t (:foreground "gray" :box nil :underline nil :overline nil :weight bold)))))
+ '(org-ellipsis ((t (:foreground "gray95" :background "white" :box nil :underline nil :overline nil :weight normal)))))
                                         ;https://punchagan.muse-amuse.in/blog/how-i-learnt-to-use-emacs-profiler/
 ;;(setq org-agenda-inhibit-startup t) ;; ~50x speedup
 ;;(setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
@@ -170,17 +171,22 @@
 (add-hook 'prog-mode-hook 'add-pretty-lambda)
 (add-hook 'org-mode-hook 'add-pretty-lambda)
 
-(use-package org-bullets
-  :custom
- ; (org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
-  (org-ellipsis "⤵")
-  :hook (org-mode . org-bullets-mode))
-
-(setq inhibit-compacting-font-caches t) ;;game changer in windows?
-
 (when (member "Symbola" (font-family-list))
   (set-fontset-font "fontset-default" nil
                     (font-spec :size 20 :name "Symbola")))
 
 (when (member "Symbola" (font-family-list))
   (set-fontset-font t 'unicode "Symbola" nil 'prepend))
+
+(defun chunyang-org-mode-hide-stars ()
+  (font-lock-add-keywords
+   nil
+   '(("^\\*+ "
+      (0
+       (prog1 nil
+         (put-text-property (match-beginning 0) (match-end 0)
+                            'face (list :foreground
+                                        (face-attribute
+                                         'default :background)))))))))
+
+(add-hook 'org-mode-hook #'chunyang-org-mode-hide-stars)

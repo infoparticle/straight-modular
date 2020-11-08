@@ -32,17 +32,21 @@
 (defun my/create-rich-doc()
   (interactive)
   ;; (setq parent-dir (file-name-nondirectory (directory-file-name (file-name-directory buffer-file-name))))
-  (setq myvar/img-folder-path (concat default-directory ".imgs/"))
-  (if (file-exists-p myvar/img-folder-path)
-      (message "need NOT create new dirs")
+  (setq file-name-without-full-path (file-name-nondirectory buffer-file-name))
+  (if (file-exists-p (concat default-directory ".imgs/"))
+      (progn
+        (setq myvar/img-folder-path (concat default-directory ".imgs/" file-name-without-full-path))
+        (if (file-exists-p  myvar/img-folder-path)
+            (message "nothing todo")
+          (make-directory myvar/img-folder-path :parents)))
     (progn
       (setq myvar/cursor-location (point))
       (save-buffer)
       (rename-file buffer-file-name (concat buffer-file-name "-tmp"))
       ;; (make-directory buffer-file-name)
-      (setq myvar/img-folder-path (concat buffer-file-name "/.imgs/"))
+      (setq myvar/img-folder-path (concat buffer-file-name "/.imgs/" file-name-without-full-path))
       (make-directory myvar/img-folder-path :parents)
-      (setq target-file-path (concat buffer-file-name "/" (file-name-nondirectory buffer-file-name)))
+      (setq target-file-path (concat buffer-file-name "/" file-name-without-full-path))
       (rename-file (concat buffer-file-name "-tmp")  target-file-path)
       (kill-buffer)
       (find-file target-file-path)
@@ -51,8 +55,9 @@
 (defun my/img-maker ()
   (my/create-rich-doc)
   (setq myvar/img-name (concat (format-time-string "%Y-%m-%d-%H%M%S") ".png"))
-  (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path myvar/img-name) t t)) ;Relative to workspace.
-  (setq myvar/relative-filename (concat "./.imgs/" myvar/img-name))
+  (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path "/" myvar/img-name) t t)) ;Relative to workspace.
+  (setq file-name-without-full-path (file-name-nondirectory buffer-file-name))
+  (setq myvar/relative-filename (concat "./.imgs/" file-name-without-full-path "/" myvar/img-name))
   (org-insert-heading)
   (insert (concat (read-string (format"Enter Image Header (%s): " myvar/img-name) nil nil  (concat (format-time-string "%Y-%m-%d"))) "\n"))
   (insert "\n[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
@@ -70,8 +75,8 @@
   (call-process "c:\\opt\\irfan32\\i_view32.exe" nil nil nil (concat "/clippaste /convert="  myvar/img-Abs-Path))
                                         ;(raise-frame)
                                         ;(make-frame-visible)
-  (org-display-inline-images)
-  )
+  (org-display-inline-images))
+
 
 (global-set-key [f5] 'org-screenshot)
 

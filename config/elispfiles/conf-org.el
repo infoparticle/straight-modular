@@ -31,8 +31,13 @@
 
 (setq org-src-tab-acts-natively t)
 
-(setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda") ; default
+;; default for unix/windows
+(setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda")
+(setq holiday-file  "~/.em/emacs-apps/orgagenda/holiday_list.el")
+(if (file-exists-p holiday-file)
+    (load-file holiday-file))
 
+;; if the agenda folder is somewhere else in windows
 (with-system windows-nt
   (setq holiday-file  "i:/emacs-apps/orgagenda/holiday_list.el")
   (when (file-exists-p holiday-file)
@@ -67,8 +72,8 @@
                              (concat org-agenda-root-dir "/gtd.org")
                              (concat org-agenda-root-dir "/anniv.org")
                              (concat org-agenda-root-dir "/tickler.org")
-                             "c:/my/home/.em/em.work-2.0/inbox/work-inbox.org"
-)
+                            "c:/my/work/apm-bpm/apmbpm.git/private/agenda/apmteam.org"
+                       )
 )
 
 (setq org-agenda-prefix-format
@@ -189,3 +194,15 @@
                                          'default :background)))))))))
 
 (add-hook 'org-mode-hook #'chunyang-org-mode-hide-stars)
+
+(use-package toc-org :ensure t
+  :config
+  (progn
+    (add-to-list 'load-path "~/.emacs.d/toc-org")
+    (if (require 'toc-org nil t)
+        (add-hook 'org-mode-hook 'toc-org-mode)
+
+      ;; enable in markdown, too
+      (add-hook 'markdown-mode-hook 'toc-org-mode)
+      (define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point))
+    (warn "toc-org not found")))

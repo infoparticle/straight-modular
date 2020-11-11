@@ -1,5 +1,5 @@
 #+TITLE: Win Explorer Bookmarks
-Last Saved: "Nov 10 Tue, 2020"
+Last Saved: "Nov 11 Wed, 2020"
 
 
 ** Standard Config Directories
@@ -15,6 +15,3 @@ c:/my/inbox/youtube/
 * scratch
 
  twitter#baseball
-
- {C-a M-f * M-b *}
-*

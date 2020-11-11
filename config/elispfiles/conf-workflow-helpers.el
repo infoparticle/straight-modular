@@ -159,7 +159,7 @@
   (interactive)
   (my/pick-proj-and-file "C:\\my\\home\\.em\\em.work-2.0\\tasks"))
 
-(setq work-agenda-file "c:/Users/gopinat/AppData/Roaming/.em/em.work-wiki/contents/work-agenda-del.org")
+(setq work-agenda-file "c:/Users/gopinat/AppData/Roaming/.em/emacs-apps/orgagenda/gtd-inbox.org")
 (setq org-capture-templates
       '(
         ("t" "Tasks")

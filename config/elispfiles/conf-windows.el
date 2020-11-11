@@ -29,10 +29,17 @@
 
 (require 'url-util) ;needed for encoding spaces to %20
 
+
+(defun my/clean-spaces-from-path (string)
+  (replace-regexp-in-string  "-org$" ""
+                             (replace-regexp-in-string "-+" "-"
+                                                       (replace-regexp-in-string "[^[:alnum:]]" "-" string))))
+
+
 (defun my/create-rich-doc()
   (interactive)
   ;; (setq parent-dir (file-name-nondirectory (directory-file-name (file-name-directory buffer-file-name))))
-  (setq file-name-without-full-path (file-name-nondirectory buffer-file-name))
+  (setq file-name-without-full-path (my/clean-spaces-from-path (file-name-nondirectory buffer-file-name)))
   (if (file-exists-p (concat default-directory ".imgs/"))
       (progn
         (setq myvar/img-folder-path (concat default-directory ".imgs/" file-name-without-full-path))
@@ -56,11 +63,12 @@
   (my/create-rich-doc)
   (setq myvar/img-name (concat (format-time-string "%Y-%m-%d-%H%M%S") ".png"))
   (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path "/" myvar/img-name) t t)) ;Relative to workspace.
-  (setq file-name-without-full-path (file-name-nondirectory buffer-file-name))
+  (setq file-name-without-full-path (my/clean-spaces-from-path (file-name-nondirectory buffer-file-name)))
   (setq myvar/relative-filename (concat "./.imgs/" file-name-without-full-path "/" myvar/img-name))
   (org-insert-heading)
   (insert (concat (read-string (format"Enter Image Header (%s): " myvar/img-name) nil nil  (concat (format-time-string "%Y-%m-%d"))) "\n"))
-  (insert "\n[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
+  ;;(insert "\n[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
+  (insert "\n[[file:"  myvar/relative-filename "]]" "\n")
   )
 
 (defun org-screenshot ()

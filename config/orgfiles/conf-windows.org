@@ -1,7 +1,14 @@
 #+TITLE: Conf  Windows
-Last Saved: "Nov 10 Tue, 2020"
+Last Saved: "Nov 11 Wed, 2020"
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
+
+* Enabled Config
+
+ :PROPERTIES:
+ :header-args: :tangle yes
+ :END:
+
 
 ** eshell
 #+BEGIN_SRC emacs-lisp
@@ -37,41 +44,6 @@ Last Saved: "Nov 10 Tue, 2020"
 (setq text-mode-hook '(lambda() (flyspell-mode t)))
 #+END_SRC
 
-** org-agenda
-;; some of the configurations make windows painfully slow
-;; some configurations are path dependent, all these configs belong here.
-
-
-;; org-agenda
-;; (setq org-agenda-include-diary t)
-;; https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
-;; (setq org-agenda-files (list "C:/Users/gopinat.CORPDOM/Dropbox/Orgzly/gtd-inbox.org"
-;;                              "C:/Users/gopinat.CORPDOM/Dropbox/Orgzly/gtd.org"
-;;                              "C:/Users/gopinat.CORPDOM/Dropbox/Orgzly/tickler.org"))
-
-(defun my-org-agenda-skip-all-siblings-but-first ()
-  "Skip all but the first non-done entry."
-  (let (should-skip-entry)
-    (unless (org-current-is-todo)
-      (setq should-skip-entry t))
-    (save-excursion
-      (while (and (not should-skip-entry) (org-goto-sibling t))
-        (when (org-current-is-todo)
-          (setq should-skip-entry t))))
-    (when should-skip-entry
-      (or (outline-next-heading)
-          (goto-char (point-max))))))
-
-(setq org-agenda-custom-commands
-      '(("o" "At the office" tags-todo "@office"
-         ((org-agenda-overriding-header "Office")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))))
-
-
-
-(defun org-current-is-todo ()
-  (string= "TODO" (org-get-todo-state)))
-
 ** gpg
 #+BEGIN_SRC emacs-lisp
 (defun conf/ondemand/windows/gpg()
@@ -94,10 +66,17 @@ c:\\opt\\irfan32\\i_view32.exe
 #+BEGIN_SRC emacs-lisp
 (require 'url-util) ;needed for encoding spaces to %20
 
+
+(defun my/clean-spaces-from-path (string)
+  (replace-regexp-in-string  "-org$" ""
+                             (replace-regexp-in-string "-+" "-"
+                                                       (replace-regexp-in-string "[^[:alnum:]]" "-" string))))
+
+
 (defun my/create-rich-doc()
   (interactive)
   ;; (setq parent-dir (file-name-nondirectory (directory-file-name (file-name-directory buffer-file-name))))
-  (setq file-name-without-full-path (file-name-nondirectory buffer-file-name))
+  (setq file-name-without-full-path (my/clean-spaces-from-path (file-name-nondirectory buffer-file-name)))
   (if (file-exists-p (concat default-directory ".imgs/"))
       (progn
         (setq myvar/img-folder-path (concat default-directory ".imgs/" file-name-without-full-path))
@@ -121,11 +100,12 @@ c:\\opt\\irfan32\\i_view32.exe
   (my/create-rich-doc)
   (setq myvar/img-name (concat (format-time-string "%Y-%m-%d-%H%M%S") ".png"))
   (setq myvar/img-Abs-Path (replace-regexp-in-string "/" "\\" (concat myvar/img-folder-path "/" myvar/img-name) t t)) ;Relative to workspace.
-  (setq file-name-without-full-path (file-name-nondirectory buffer-file-name))
+  (setq file-name-without-full-path (my/clean-spaces-from-path (file-name-nondirectory buffer-file-name)))
   (setq myvar/relative-filename (concat "./.imgs/" file-name-without-full-path "/" myvar/img-name))
   (org-insert-heading)
   (insert (concat (read-string (format"Enter Image Header (%s): " myvar/img-name) nil nil  (concat (format-time-string "%Y-%m-%d"))) "\n"))
-  (insert "\n[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
+  ;;(insert "\n[[file:" (url-encode-url myvar/relative-filename) "]]" "\n")
+  (insert "\n[[file:"  myvar/relative-filename "]]" "\n")
   )
 
 (defun org-screenshot ()
@@ -148,16 +128,6 @@ c:\\opt\\irfan32\\i_view32.exe
 
 #+RESULTS:
 : org-screenshot
-
-** pdftools - not enabled
-
-;; pdf-tools
-;;; put precompiled epdfinfo.exe ~/.emacs.d/elpa/pdf-tools-yyyymmdd.vvv/epdfinfo.exe
-;; more tips: http://pragmaticemacs.com/emacs/more-pdf-tools-tweaks/
-;; (use-package pdf-tools :ensure t
-;;   :config
-;;   (setenv "PATH" (concat "C:\\opt\\emaxw64\\bin;" (getenv "PATH"))))
-;; (pdf-tools-install)
 
 ** set exec paths, python interpreter and cd to tmp directory
 
@@ -193,3 +163,53 @@ c:\\opt\\irfan32\\i_view32.exe
               (counsel--elisp-to-pcre
                (ivy--regex input t))))))
 #+END_SRC
+* Disabled Config
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
+
+
+** pdftools - not enabled
+
+;; pdf-tools
+;;; put precompiled epdfinfo.exe ~/.emacs.d/elpa/pdf-tools-yyyymmdd.vvv/epdfinfo.exe
+;; more tips: http://pragmaticemacs.com/emacs/more-pdf-tools-tweaks/
+;; (use-package pdf-tools :ensure t
+;;   :config
+;;   (setenv "PATH" (concat "C:\\opt\\emaxw64\\bin;" (getenv "PATH"))))
+;; (pdf-tools-install)
+
+** org-agenda
+;; some of the configurations make windows painfully slow
+;; some configurations are path dependent, all these configs belong here.
+
+
+;; org-agenda
+;; (setq org-agenda-include-diary t)
+;; https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
+;; (setq org-agenda-files (list "C:/Users/gopinat.CORPDOM/Dropbox/Orgzly/gtd-inbox.org"
+;;                              "C:/Users/gopinat.CORPDOM/Dropbox/Orgzly/gtd.org"
+;;                              "C:/Users/gopinat.CORPDOM/Dropbox/Orgzly/tickler.org"))
+
+(defun my-org-agenda-skip-all-siblings-but-first ()
+  "Skip all but the first non-done entry."
+  (let (should-skip-entry)
+    (unless (org-current-is-todo)
+      (setq should-skip-entry t))
+    (save-excursion
+      (while (and (not should-skip-entry) (org-goto-sibling t))
+        (when (org-current-is-todo)
+          (setq should-skip-entry t))))
+    (when should-skip-entry
+      (or (outline-next-heading)
+          (goto-char (point-max))))))
+
+(setq org-agenda-custom-commands
+      '(("o" "At the office" tags-todo "@office"
+         ((org-agenda-overriding-header "Office")
+          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))))
+
+
+
+(defun org-current-is-todo ()
+  (string= "TODO" (org-get-todo-state)))

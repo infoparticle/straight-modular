@@ -1,0 +1,20 @@
+#+TITLE: Win Explorer Bookmarks
+Last Saved: "Nov 10 Tue, 2020"
+
+
+** Standard Config Directories
+
+| ~/.emacs.d | emacs directory |
+|            |                 |
+
+** bookmarks
+
+
+c:/my/inbox/youtube/
+
+* scratch
+
+ twitter#baseball
+
+ {C-a M-f * M-b *}
+*

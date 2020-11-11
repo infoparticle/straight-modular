@@ -93,3 +93,12 @@
   (setq helm-grep-ag-command "C:\\opt\\ripgrep\\rg.exe --smart-case --no-heading --line-number %s %s %s"))
 
 (cd "c:/my/tmp")
+
+(with-eval-after-load 'counsel
+  (when (eq system-type 'windows-nt)
+    (defun counsel-locate-cmd-es (input)
+      "Return a shell command based on INPUT."
+      (counsel-require-program "es.exe")
+      (format "es.exe -r %s"
+              (counsel--elisp-to-pcre
+               (ivy--regex input t))))))

@@ -49,8 +49,10 @@
       org-src-preserve-indentation t
       ;; org-image-actual-width nil
       org-tags-column 90
-      org-ellipsis " ⤵"
-
+      org-ellipsis "   [+]"
+      org-adapt-indentation t
+      org-hide-leading-stars t
+      org-odd-levels-only t
       ;; org agenda conf https://daryl.wakatara.com/easing-into-emacs-org-mode
       org-agenda-show-all-dates nil  ;org agenda skip empty days
       org-agenda-skip-deadline-if-done t
@@ -134,10 +136,7 @@
       org-hide-leading-stars t
       org-pretty-entities nil ; this enables _ ^ to behave as subscript/supersript -> annoying
       org-odd-levels-only t)
-
-(custom-set-faces
- '(org-ellipsis ((t (:foreground "gray95" :background "white" :box nil :underline nil :overline nil :weight normal)))))
-                                        ;https://punchagan.muse-amuse.in/blog/how-i-learnt-to-use-emacs-profiler/
+                                       ;https://punchagan.muse-amuse.in/blog/how-i-learnt-to-use-emacs-profiler/
 ;;(setq org-agenda-inhibit-startup t) ;; ~50x speedup
 ;;(setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
 (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))

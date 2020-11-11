@@ -1,5 +1,5 @@
 #+TITLE: Conf  Windows
-Last Saved: "Nov 08 Sun, 2020"
+Last Saved: "Nov 10 Tue, 2020"
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -180,3 +180,16 @@ c:\\opt\\irfan32\\i_view32.exe
 (when (file-exists-p "c:/my/opt/putty/plink.exe")
   (setq exec-path (append '("C:/my/opt/putty") exec-path))
   )
+
+** search with everything
+
+#+BEGIN_SRC elisp
+(with-eval-after-load 'counsel
+  (when (eq system-type 'windows-nt)
+    (defun counsel-locate-cmd-es (input)
+      "Return a shell command based on INPUT."
+      (counsel-require-program "es.exe")
+      (format "es.exe -r %s"
+              (counsel--elisp-to-pcre
+               (ivy--regex input t))))))
+#+END_SRC

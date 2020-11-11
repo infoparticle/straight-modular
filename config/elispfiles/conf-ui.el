@@ -1,5 +1,5 @@
 (set-face-font 'default "Roboto Mono Light 10")
-(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
+;(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
 
 (with-system windows-nt
   (load-user-file "conf-ui-windows.el"))

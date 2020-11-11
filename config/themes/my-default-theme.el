@@ -80,16 +80,6 @@
  '(next-error ((t (:inherit (region)))))
 
  '(query-replace ((t (:inherit (isearch)))))
-
-
- '(org-block ((t (:background nil))))
- '(org-block-begin-line ((t (:background nil :foreground "gainsboro" :underline nil ))))
- '(org-block-end-line ((t (:background nil :foreground "gainsboro" :overline nil))))
- '(org-document-info-keyword ((t (:background nil :foreground "gainsboro"))))
- '(org-meta-line ((t (:background nil :foreground "gainsboro"))))
- '(org-level-1 ((t (:weight bold :foreground "RoyalBlue3" ))))
- '(org-document-title ((t ( :foreground "DarkBlue" :weight bold :height 1.5))))
- '(org-link ((t (:foreground "royalblue3" :background "white smoke" :underline nil))))
  )
 
 

@@ -3,7 +3,7 @@
 #+PROPERTY: header-args :tangle yes
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
-Last Saved: "Aug 30 Sun, 2020"
+Last Saved: "Nov 10 Tue, 2020"
 
 Common UI configs
 
@@ -22,7 +22,7 @@ Common UI configs
                     :width 'normal)
 #+BEGIN_SRC emacs-lisp
 (set-face-font 'default "Roboto Mono Light 10")
-(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
+;(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
 #+END_SRC
 
 ** load windows/linux specific ui configs

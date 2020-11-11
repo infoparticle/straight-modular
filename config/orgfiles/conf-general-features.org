@@ -1,3 +1,18 @@
+#+TITLE: Conf Behaviour
+#+AUTHOR: Gopinath Sadasivam
+#+BABEL: :cache yes
+Last Saved: "Nov 10 Tue, 2020"
+
+* Enabled Config
+ :PROPERTIES:
+ :header-args: :tangle yes
+ :END:
+** ace-windows : C-x o
+  (set-face-attribute
+   'aw-mode-line-face nil
+   :inherit 'mode-line-buffer-id
+   :foreground "lawn green")
+#+BEGIN_SRC emacs-lisp
 (defun joe-scroll-other-window()
   (interactive)
   (scroll-other-window 1))
@@ -50,7 +65,10 @@
     (add-to-list 'aw-dispatch-alist '(?\; hydra-window-frame/body) t))
   (ace-window-display-mode -1) ;don't clutter mode-line
   (global-set-key (kbd "C-x o") 'ace-window))
+#+END_SRC
+** recentf : SPC f r
 
+#+BEGIN_SRC emacs-lisp
 (use-package recentf
   :defer t
   :init
@@ -63,7 +81,11 @@
                        (expand-file-name ".recentf" user-emacs-directory)
                        )
                  (recentf-mode t)))
+#+END_SRC
 
+** ivy
+
+#+BEGIN_SRC emacs-lisp
 (use-package ivy
   :diminish (ivy-mode . "")
   :bind
@@ -92,7 +114,13 @@
   (setq ivy-re-builders-alist
         ;; allow input not in order
         '((t   . ivy--regex-ignore-order))))
+#+END_SRC
 
+** avy and counse-ace-link
+
+(ace-link-setup-default)
+("o" counsel-ace-link "url")
+#+BEGIN_SRC emacs-lisp
 (use-package avy :defer t
 :config
 (defhydra hydra-avy (:color teal)
@@ -100,12 +128,17 @@
   ("w" avy-goto-word-0 "word")
   ("l" avy-goto-line "line")
   ("p" avy-pop-mark "pop")))
+#+END_SRC
+** helm
 
+#+BEGIN_SRC emacs-lisp
 (use-package helm
 :config
   (global-set-key (kbd "C-c k") 'helm-do-grep-ag)
 )
-
+#+END_SRC
+** counsel
+#+BEGIN_SRC emacs-lisp
 (use-package counsel
   :config
   (setq ivy-use-virtual-buffers t)
@@ -127,14 +160,23 @@
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
   (setq projectile-completion-system 'ivy)
   )
-
+#+END_SRC
+** swiper
+#+BEGIN_SRC emacs-lisp
 (use-package swiper
   :config)
-
+#+END_SRC
+** smex
+just install it let counsel-M-x use smex.
+#+BEGIN_SRC emacs-lisp
 (use-package smex
   :config
   (smex-initialize))
+#+END_SRC
 
+** yasnippet
+
+#+BEGIN_SRC emacs-lisp
 (use-package yasnippet
   :defer t
   :init
@@ -145,7 +187,10 @@
   :defer t
   :config
   )
+#+END_SRC
 
+** evil-collection
+#+begin_src emacs-lisp
 (use-package evil-collection
   :custom (evil-collection-setup-minibuffer t)
   :init
@@ -157,7 +202,13 @@
     (defalias #'forward-evil-word #'forward-evil-symbol)
     ;; make evil-search-word look for symbol rather than word boundaries
     (setq-default evil-symbol-word-search t))
+#+end_src
+** dired configs
 
+http://ergoemacs.org/emacs/emacs_dired_tips.html
+https://github.com/magnars/.emacs.d/blob/master/settings/setup-dired.el
+
+#+BEGIN_SRC emacs-lisp
 (setq dired-recursive-copies (quote always)) ;no asking
 (setq dired-recursive-deletes (quote top)) ; ask once
 (setq dired-dwim-target t)
@@ -197,17 +248,41 @@
             ;(set-face-foreground 'diredp-date-time   "#74749A9AF7F7")
 ))
 
+
+#+END_SRC
+
+a: list all files
+h, --human-readable: with -l, print sizes in human readable format (e.g., 1K 234M 2G)
+l: use a long listing format
+group-directories-first: group directories before files
+X: sort alphabetically by entry extension
+U: do not sort; list entries in directory order
+t: sort by modification time, newest first
+S: sort by file size
+
+** Company mode
+#+BEGIN_SRC emacs-lisp
 (use-package company
   :config
   (progn
     (add-hook 'after-init-hook 'global-company-mode)))
+#+END_SRC
+** projectile
 
+Have to come before loading org mode, to setup wiki workspaces (SPC-p-w)
+Let's not defer it must be loaded to work with org-wiki setups.
+
+#+BEGIN_SRC emacs-lisp
 (use-package projectile
   :diminish projectile-mode
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode))
+#+END_SRC
 
+** org save,toggle and byte-compile config files!
+
+#+BEGIN_SRC emacs-lisp
 (defun my/tangle-dotfiles ()
   (interactive)
   "If the current file is in '~/.dotfiles', the code blocks are tangled"
@@ -221,7 +296,10 @@
           (directory-files (concat user-emacs-directory "config/orgfiles/") t ".el[c]*$"))))
 
 (add-hook 'after-save-hook #'my/tangle-dotfiles)
+#+END_SRC
 
+** super-save
+#+BEGIN_SRC emacs-lisp
 (use-package super-save
   :config
   (setq super-save-auto-save-when-idle t)
@@ -229,7 +307,10 @@
   (setq super-save-remote-files nil) ;don't autosave remote files
   (setq super-save-exclude '(".gpg")) ;avoid auto saving gpg files
   (super-save-mode +1))
+#+END_SRC
 
+** engine-mode
+#+BEGIN_SRC emacs-lisp
   (use-package engine-mode
     :defer 3
     :config
@@ -241,7 +322,10 @@
       "https://duckduckgo.com/?q=%s"
       :keybinding "d")
 )
+#+END_SRC
+** eshell
 
+#+BEGIN_SRC emacs-lisp
 (defun eshell/clear ()
   "Clear the eshell buffer."
   (let ((inhibit-read-only t))
@@ -284,14 +368,37 @@ directory to make multiple eshell windows easier."
             (lambda ()
               (bind-keys :map eshell-mode-map
                          ("C-d" . ha/eshell-quit-or-delete-char))))
+#+END_SRC
+** zoom
+  (custom-set-variables
+   '(zoom-size '(0.618 . 0.618))
+   '(zoom-ignored-major-modes '(dired-mode markdown-mode))
+   '(zoom-ignored-buffer-names '("zoom.el" "init.el" "index.org"))
+   '(zoom-ignored-buffer-name-regexps '("^*calc"))
+   '(zoom-ignore-predicates '((lambda () (> (count-lines (point-min) (point-max)) 20))))
 
+(use-package zoom
+  :config
+  (zoom-mode t)
+  (custom-set-variables
+   '(zoom-ignored-buffer-names '("index.org"))
+   '(zoom-size '(0.618 . 0.618)))
+)
+just zoom-window is sufficient!
+
+#+BEGIN_SRC emacs-lisp
 (use-package zoom-window
 :config
 (global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
 (custom-set-variables
  '(zoom-window-mode-line-color "lightGreen"))
 )
+#+END_SRC
+** buffer management: persp-mode
 
+https://github.com/Bad-ptr/persp-mode.el
+
+#+begin_src emacs-lisp
 (use-package persp-mode
   :config
   (persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
@@ -299,14 +406,181 @@ directory to make multiple eshell windows easier."
             (lambda()
               (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)
               (global-set-key (kbd "C-x k") #'persp-kill-buffer))))
+#+end_src
+** zel recent files command
 
+#+BEGIN_SRC emacs-lisp
 (use-package zel
   :bind (("C-x C-r" . zel-find-file-frecent))
   :config
   (zel-install))
 
+#+END_SRC
+** calendar
+#+BEGIN_SRC emacs-lisp
 (use-package calfw)
 (use-package calfw-org
   :config
   (setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda") ; default
   )
+#+END_SRC
+
+** hyperbole
+(use-package hyperbole :ensure t)
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/hyperbole-7.1.3"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/hyperbole-7.1.3/kotl"))
+(autoload 'hyperbole (expand-file-name "~/.emacs.d/elpa/hyperbole-7.1.3"))
+(use-package hyperbole)
+(load "~/.emacs.d/elpa/hyperbole-7.1.3/hyperbole.el")
+#+END_SRC
+* Disabled Config
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
+
+** buffer management: eye-browse : SPC e
+
+#+BEGIN_SRC emacs-lisp
+(use-package eyebrowse
+  :after (evil)
+  :config
+  (eyebrowse-mode t)
+  ;; (eyebrowse-setup-evil-keys)
+  (setq eyebrowse-mode-line-separator "]   ["
+	eyebrowse-new-workspace t
+	eyebrowse-wrap-around t
+	eyebrowse-mode-line-style t))
+
+(use-package hydra
+  :after eyebrowse
+  :config
+  (defhydra hydra-eyebrowse-nav (:hint nil)
+    "
+_n_: next            _0_: window config 0
+_p_: prev            _1_: window config 1
+_l_: last            _2_: window config 2
+_c_: create config   _3_: window config 3
+_D_: delete config   _4_: window config 4
+_r_: rename config   _q_:quit"
+    ("n" eyebrowse-next-window-config)
+    ("p" eyebrowse-prev-window-config)
+    ("l" eyebrowse-last-window-config)
+    ("c" eyebrowse-create-window-config)
+    ("D" eyebrowse-close-window-config)
+    ("r" eyebrowse-rename-window-config)
+    ("0" eyebrowse-switch-to-window-config-0)
+    ("1" eyebrowse-switch-to-window-config-1)
+    ("2" eyebrowse-switch-to-window-config-2)
+    ("3" eyebrowse-switch-to-window-config-3)
+    ("4" eyebrowse-switch-to-window-config-4)
+    ("q" nil :color blue))
+  (global-set-key (kbd "C-;") 'hydra-eyebrowse-nav/body)
+  )
+#+END_SRC
+** dired-hacks, dired-subtree, dired-narrow
+
+
+#+begin_src emacs-lisp
+
+(use-package dired-hacks
+  :config
+  (progn
+    (use-package dired-subtree
+      :config
+      (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+      (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
+      )
+
+    (use-package dired-narrow
+      :bind (:map dired-mode-map
+                  ("/" . dired-narrow)))
+    )
+  )
+#+end_src
+
+*** dired-sidebar
+#+begin_src emacs-lisp
+(use-package vscode-icon)
+(use-package dired-sidebar
+  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
+  :commands (dired-sidebar-toggle-sidebar)
+  :init
+  (add-hook 'dired-sidebar-mode-hook
+            (lambda ()
+              (unless (file-remote-p default-directory)
+                (auto-revert-mode))))
+  :config
+  (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
+  (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
+
+  (setq dired-sidebar-subtree-line-prefix "__")
+  (setq dired-sidebar-theme 'vscode)
+  (setq dired-sidebar-use-term-integration t)
+  (setq dired-sidebar-use-custom-font t))
+#+end_src
+** Hydra helpers zoom in and zoom out
+#+BEGIN_SRC emacs-lisp
+(use-package hydra
+  :config
+  (key-chord-define-global "QZ"
+                           (defhydra hydra-zoom ()
+                             "zoom"
+                             ("+" text-scale-increase "in")
+                             ("-" text-scale-decrease "out")
+                             ("0" (text-scale-adjust 0) "reset")
+                             ("q" nil "quit" :color blue))))
+#+END_SRC
+** purpose
+#+BEGIN_SRC emacs-lisp
+(use-package window-purpose
+  :config
+  (define-key purpose-mode-map (kbd "C-c ,") nil)
+  (define-key purpose-mode-map (kbd "C-c w") purpose-mode-prefix-map)
+
+  (purpose-add-user-purposes
+   :modes  '((org-mode . edit)
+             (org-mode . edit)))
+  (purpose-compile-user-configuration)
+  (purpose-x-code1-setup)
+  (purpose-x-popwin-setup)
+  (purpose-x-kill-setup)
+  (purpose-x-magit-single-on)
+
+  (purpose-mode t)
+
+  (add-hook 'after-init-hook
+            (lambda ()
+              (when (file-exists-p purpose-default-layout-file)
+                (purpose-load-window-layout-file))
+              (select-window (get-largest-window)))))
+#+END_SRC
+
+** all-the-icons
+looks like mode-line needs utf-8 icons can be inserted in buffer but not in modeline as of now
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons
+  :if (display-graphic-p)
+  :config
+  (add-hook 'after-change-major-mode-hook
+            (lambda ()
+              (let* ((icon (all-the-icons-icon-for-mode major-mode))
+                     (face-prop (and (stringp icon) (get-text-property 0 'face icon))))
+                (when (and (stringp icon) (not (string= major-mode icon)) face-prop)
+                  (setq mode-name (propertize icon 'display '(:ascent center))))))))
+#+END_SRC
+
+
+  (use-package engine-mode
+    :defer 3
+    :config
+    (defengine amazon
+      "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=%s"
+      :keybinding "a")
+
+    (defengine duckduckgo
+      "https://duckduckgo.com/?q=%s"
+      :keybinding "d")
+
+      https://quixy.swinfra.net/quixy/query/detail.php?ISSUEID=QCIM8D112020

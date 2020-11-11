@@ -36,12 +36,12 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-config-directory)))
 
+(load-user-file "conf-org.el")
 (load-user-file "conf-ui.el")
-(load-user-file "conf-behaviour.el")
+(load-user-file "conf-general-features.el")
 (load-user-file "conf-defaults.el")
 (load-user-file "conf-evil.el")
-(load-user-file "conf-org.el")
-(load-user-file "conf-behaviour-helpers.el")
+(load-user-file "conf-general-utils.el")
 (load-user-file "conf-workflow-helpers.el")
 (load-user-file "conf-programming.el")
 

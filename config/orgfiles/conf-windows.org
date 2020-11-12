@@ -3,6 +3,18 @@ Last Saved: "Nov 11 Wed, 2020"
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
+**** Table of Contents                                                                 :TOC_7:
+- [[#enabled-config][Enabled Config]]
+  - [[#eshell][eshell]]
+  - [[#spell-check][spell check]]
+  - [[#gpg][gpg]]
+  - [[#screenshot][screenshot]]
+  - [[#set-exec-paths-python-interpreter-and-cd-to-tmp-directory][set exec paths, python interpreter and cd to tmp directory]]
+  - [[#search-with-everything][search with everything]]
+- [[#disabled-config][Disabled Config]]
+  - [[#pdftools---not-enabled][pdftools - not enabled]]
+  - [[#org-agenda][org-agenda]]
+
 * Enabled Config
 
  :PROPERTIES:

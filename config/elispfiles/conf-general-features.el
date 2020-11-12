@@ -311,8 +311,4 @@ directory to make multiple eshell windows easier."
   (setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda") ; default
   )
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/hyperbole-7.1.3"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/hyperbole-7.1.3/kotl"))
-(autoload 'hyperbole (expand-file-name "~/.emacs.d/elpa/hyperbole-7.1.3"))
-(use-package hyperbole)
-(load "~/.emacs.d/elpa/hyperbole-7.1.3/hyperbole.el")
+(use-package hyperbole :ensure t)

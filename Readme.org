@@ -1,0 +1,75 @@
+#+TITLE: .emacs.d config
+Last Saved: "Nov 12 Thu, 2020"
+
+*** Table of contents                                                                   :TOC_7:
+- [[#intro][Intro]]
+- [[#release-notes][Release Notes]]
+    - [[#version-20--nov-12-2020-thu][Version 2.0 | Nov 12, 2020 Thu]]
+        - [[#features][FEATURES]]
+        - [[#installation-notes][Installation Notes]]
+    - [[#version-10--aug-30-2019][Version 1.0 | Aug 30, 2019]]
+        - [[#features-1][FEATURES]]
+
+* Intro
+
+This is my emacs config based on literate programming. This config has been evolving from past 2 years (since 2018) and it keeps on evolving!
+
+* Release Notes
+
+*** Version 2.0 | Nov 12, 2020 Thu
+
+This release contains a feature rich stable emacs config!
+
+***** FEATURES
+- *General Features:*
+  - A beautiful light theme (simplified modeline, beautified org mode, fonts)
+
+- *Note Making Features:*
+  - toc_org to create table of contents
+  - org odd stars header scheme
+  - A screenshot function that captures and stores under ~.imgs/<docname>~ and creates a rich document!
+  - hyperbole and koutliner
+  - wiki creation (using templates), search and navigation handling
+  - Global search of files using everything.exe (es.exe)
+  - Encrypted notes using GNU GPG (for saving passwords)
+
+- *Project Management:*
+  - org-agenda (with habits, anniversary and holidays)
+  - ledger support for financial transactions (but I prefer simple org-tables with formulas)
+
+- *Coding:*
+  - lsp servers
+  - config supporting python, lisp, C/C++ etc., org-babel for literate coding
+  - magit for git
+  - eshell configs for quick shell
+
+- *Custom Work Flows Supported:*
+  - Note taking app that becomes *Massive Second Brain* via wikis, which is also fulltext search enabled using github!
+  - wiki creation, search, navigation and uploading it git servers.
+  - quick file charts (organize financial charts)
+  - Journaling, Calendaring and Addressbook
+
+The above list reflects only most important tweaks!
+
+***** Installation Notes
+
+To install in windows,
+- make sure you have git installed
+- If you are behind proxy, make sure  proxy is configured both in git and emacs
+- Install the Roberto fonts
+
+*Known Problems*
+
+- Straight doesn't install Hyperbole properly, copy all the hyperbole directories (kotl) from ~straight/repos/hyperbole~ to =straight/build/hyperbole=
+
+*** Version 1.0 | Aug 30, 2019
+
+First Basic Stable Version
+
+***** FEATURES
+
+- evil integration
+- ivy/counsel filtering tools
+- hydras
+- basic wikis
+- Appearance tweaks

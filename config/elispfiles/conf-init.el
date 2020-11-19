@@ -6,12 +6,19 @@
         ("http" . "15.122.63.30:8080")
         ("https" . "15.122.63.30:8080")))
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;(require 'package)
+;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
+
+(setq load-prefer-newer t)
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")))
+
+;(package-initialize)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -61,12 +68,12 @@
 
 (with-system windows-nt
   (load-user-file "conf-windows.el")
-  (setq custom-file (expand-file-name "conf-windows-custom.el" user-config-directory))
+  (setq custom-file (expand-file-name "../custom-configs/conf-windows-custom.el" user-config-directory))
   (load custom-file)
   ;;(load-user-file "conf-my-theme-light.el")
   )
 
 (with-system gnu/linux
   (load-user-file "conf-linux.el")
-  (setq custom-file (expand-file-name "conf-linux-custom.el" user-config-directory))
+  (setq custom-file (expand-file-name "../custom-config/conf-linux-custom.el" user-config-directory))
   (load custom-file))

@@ -31,21 +31,7 @@
 
 (setq org-src-tab-acts-natively t)
 
-;; default for unix/windows
-(setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda")
-(setq holiday-file  "~/.em/emacs-apps/orgagenda/holiday_list.el")
-(if (file-exists-p holiday-file)
-    (load-file holiday-file))
-
-;; if the agenda folder is somewhere else in windows
-(with-system windows-nt
-  (setq holiday-file  "i:/emacs-apps/orgagenda/holiday_list.el")
-  (when (file-exists-p holiday-file)
-    (setq org-agenda-root-dir "i:/emacs-apps/orgagenda")
-    (load-file holiday-file)))
-
-(setq org-log-done t
-      org-link-file-path-type 'relative
+(setq  org-link-file-path-type 'relative
       org-log-into-drawer t
       org-startup-indented t
       org-src-window-setup 'current-window
@@ -58,31 +44,7 @@
       org-adapt-indentation t
       org-hide-leading-stars t
       org-odd-levels-only t
-      ;; org agenda conf https://daryl.wakatara.com/easing-into-emacs-org-mode
-      org-agenda-show-all-dates nil  ;org agenda skip empty days
-      org-agenda-skip-deadline-if-done t
-      org-deadline-warning-days 4
-      org-agenda-skip-deadline-prewarning-if-scheduled t
-      org-agenda-skip-scheduled-if-deadline-is-shown t
-      org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled) ;;http://pragmaticemacs.com/emacs/org-mode-basics-vii-a-todo-list-with-schedules-and-deadlines/
-      org-agenda-todo-list-sublevels t
-      org-agenda-deadline-leaders '("" "In %3d d.: " "%2d d. ago: ")
-      org-agenda-scheduled-leaders '("" "Sched.%2dx: ")
-      org-agenda-files (list (concat org-agenda-root-dir "/gtd-inbox.org")
-                             (concat org-agenda-root-dir "/gtd.org")
-                             (concat org-agenda-root-dir "/anniv.org")
-                             (concat org-agenda-root-dir "/tickler.org")
-                            "c:/my/work/apm-bpm/apmbpm.git/private/agenda/apmteam.org"
-                       )
 )
-
-(setq org-agenda-prefix-format
-      (quote
-       ((agenda . "%-12c%?-12t% s")
-        (timeline . "% s")
-        (todo . "%-12c")
-        (tags . "%-12c")
-        (search . "%-12c"))))
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|txt\\)$" . org-mode))
 
 ;; fix auto refresh of inline images after babel exec
@@ -145,6 +107,47 @@
 ;;(setq org-agenda-inhibit-startup t) ;; ~50x speedup
 ;;(setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
 (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+;; default for unix/windows
+(setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda")
+(setq holiday-file  "~/.em/emacs-apps/orgagenda/holiday_list.el")
+(if (file-exists-p holiday-file)
+    (load-file holiday-file))
+
+;; if the agenda folder is somewhere else in windows
+(with-system windows-nt
+  (setq holiday-file  "i:/emacs-apps/orgagenda/holiday_list.el")
+  (when (file-exists-p holiday-file)
+    (setq org-agenda-root-dir "i:/emacs-apps/orgagenda")
+    (load-file holiday-file)))
+
+(setq org-log-done t
+      ;; org agenda conf https://daryl.wakatara.com/easing-into-emacs-org-mode
+      org-agenda-show-all-dates nil  ;org agenda skip empty days
+      org-agenda-skip-deadline-if-done t
+      org-deadline-warning-days 4
+      org-agenda-skip-deadline-prewarning-if-scheduled t
+      org-agenda-skip-scheduled-if-deadline-is-shown t
+      org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled) ;;http://pragmaticemacs.com/emacs/org-mode-basics-vii-a-todo-list-with-schedules-and-deadlines/
+      org-agenda-todo-list-sublevels t
+      org-agenda-deadline-leaders '("" "In %3d d.: " "%2d d. ago: ")
+      org-agenda-scheduled-leaders '("" "Sched.%2dx: ")
+      org-agenda-files (list (concat org-agenda-root-dir "/gtd-inbox.org")
+                             (concat org-agenda-root-dir "/gtd.org")
+                             (concat org-agenda-root-dir "/anniv.org")
+                             (concat org-agenda-root-dir "/tickler.org")
+                            "c:/my/work/apm-bpm/apmbpm.git/private/agenda/apmteam.org"
+                       )
+
+)
+
+(setq org-agenda-prefix-format
+      (quote
+       ((agenda . "%-12c%?-12t% s")
+        (timeline . "% s")
+        (todo . "%-12c")
+        (tags . "%-12c")
+        (search . "%-12c"))))
 
 (defun my/org/org-reformat-buffer ()
   (interactive)

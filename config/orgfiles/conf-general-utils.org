@@ -1,7 +1,7 @@
 #+TITLE: Conf General Utils
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Nov 11 Wed, 2020"
+Last Saved: "Nov 19 Thu, 2020"
 
 
 * Enabled Config

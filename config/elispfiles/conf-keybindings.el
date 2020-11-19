@@ -45,8 +45,8 @@
    "2"   '(split-window-below         :which-key "split-window-below")
    "3"   '(split-window-right         :which-key "split-window-right")
    "B"   '(counsel-bookmark           :which-key "bookmarks")
-  ;"a"   '(org-agenda                 :which-key "org-agenda")
-   "a"   '(hydra-avy/body             :which-key "hydra-avy")
+   "a"   '(org-agenda                 :which-key "org-agenda")
+  ;"a"   '(hydra-avy/body             :which-key "hydra-avy")
    "A"   '(cfw:open-org-calendar      :which-key "open-org-calendar")
 
    "c"   '(org-capture                :which-key "org-capture")

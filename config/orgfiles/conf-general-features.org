@@ -1,7 +1,7 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Nov 12 Thu, 2020"
+Last Saved: "Nov 19 Thu, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -283,17 +283,28 @@ Let's not defer it must be loaded to work with org-wiki setups.
 ** org save,toggle and byte-compile config files!
 
 #+BEGIN_SRC emacs-lisp
+(defun my/tangle-all-dotfiles ()
+  (interactive)
+  "go through all config org files and output compiled elisp in elispfiles"
+  ;; move compiled files to elispfiles folder
+  (mapc '(lambda(x) (org-babel-tangle-file x "emacs-lisp"))
+        (directory-files (concat user-emacs-directory "config/orgfiles/") t ".org$"))
+
+  ;; move compiled files to elispfiles folder
+  (mapc '(lambda(x) (rename-file x (concat user-emacs-directory "config/elispfiles/") t))
+        (directory-files (concat user-emacs-directory "config/orgfiles/") t ".el[c]*$"))
+
+  (byte-recompile-directory (concat user-emacs-directory "config/elispfiles/") 0))
+
 (defun my/tangle-dotfiles ()
   (interactive)
-  "If the current file is in '~/.dotfiles', the code blocks are tangled"
+  "If the current file is in 'config/orgfiles', the code blocks are tangled"
   (when (equal (file-name-directory (directory-file-name buffer-file-name)) (concat user-emacs-directory "config/orgfiles/"))
     (org-babel-tangle)
     (message "%s tangled" buffer-file-name)
-    (if (file-exists-p (concat buffer-file-name "c"))
-        (delete-file (concat buffer-file-name "c")))
-    (my/byte-compile-init-dir)
     (mapc '(lambda(x) (rename-file x (concat user-emacs-directory "config/elispfiles/") t))
-          (directory-files (concat user-emacs-directory "config/orgfiles/") t ".el[c]*$"))))
+          (directory-files (concat user-emacs-directory "config/orgfiles/") t ".el[c]*$"))
+    (byte-recompile-directory (concat user-emacs-directory "config/elispfiles/") 0)))
 
 (add-hook 'after-save-hook #'my/tangle-dotfiles)
 #+END_SRC

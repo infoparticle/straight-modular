@@ -17,6 +17,12 @@
   (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/main.org")
 )
 
+(defun my/open-ginbox()
+    (interactive)
+    (counsel-find-file  "c:/my/ginbox")
+)
+(global-set-key [f2] 'my/open-ginbox)
+
 (defun my/open-wiki (wiki-root wiki-name)
   (if(file-directory-p wiki-root)
       (progn

@@ -1,0 +1,7 @@
+#+TITLE: Journal [emacs config]
+Last Saved: "Nov 19 Thu, 2020"
+
+*** Table of contents                                                                   :TOC_7:
+-  [[#2020-11-19-thu--improve-org-agenda][2020-11-19 Thu | improve org-agenda]]
+
+*  TODO 2020-11-19 Thu | improve org-agenda

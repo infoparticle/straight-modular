@@ -28,10 +28,10 @@
  (rear-context-string . "e bookmarks-plus")
  (position . 3591))
 ("org-capture-last-stored"
- (filename . "~/.em/em.work-wiki/contents/work-agenda-del.org")
- (front-context-string . "* TODO another t")
- (rear-context-string . "11:46]\n  :END:\n\n")
- (position . 2734))
+ (filename . "c:/my/tmp/tmprepo/org-linkz/Linkz.org")
+ (front-context-string . "*** [[file:c:/my")
+ (rear-context-string . "tclass\n\n* INBOX\n")
+ (position . 480))
 ("Downloads"
  (filename . "c:/Users/gopinat/Downloads")
  (position . 0)

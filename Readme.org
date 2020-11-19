@@ -32,10 +32,12 @@ This release contains a feature rich stable emacs config!
   - wiki creation (using templates), search and navigation handling
   - Global search of files using everything.exe (es.exe)
   - Encrypted notes using GNU GPG (for saving passwords)
+  - Spell Check
 
 - *Project Management:*
   - org-agenda (with habits, anniversary and holidays)
   - ledger support for financial transactions (but I prefer simple org-tables with formulas)
+  - NeoTree
 
 - *Coding:*
   - lsp servers

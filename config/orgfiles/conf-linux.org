@@ -1,0 +1,16 @@
+#+TITLE: Linux Configs
+#+AUTHOR: Gopinath Sadasivam
+#+BABEL: :cache yes
+#+PROPERTY: header-args :tangle yes
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+* Enabled Config
+ :PROPERTIES:
+ :header-args: :tangle yes
+ :END:
+
+** Linux only config
+#+BEGIN_SRC emacs-lisp
+(message "linux conf loaded!")
+#+END_SRC

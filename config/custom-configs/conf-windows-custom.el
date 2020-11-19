@@ -12,7 +12,11 @@
  '(ox-clip-w32-cmd
    "c:/opt/anaconda3/python.exe c:/Users/gopinat/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py")
  '(safe-local-variable-values
-   '((checkdoc-package-keywords-flag)
+   '((eval add-hook 'after-save-hook
+           (lambda nil
+             (org-html-export-to-html t))
+           t t)
+     (checkdoc-package-keywords-flag)
      (eval progn
            (pp-buffer)
            (indent-buffer))))

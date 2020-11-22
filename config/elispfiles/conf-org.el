@@ -32,7 +32,6 @@
 (setq org-src-tab-acts-natively t)
 
 (setq  org-link-file-path-type 'relative
-      org-log-into-drawer t
       org-startup-indented t
       org-src-window-setup 'current-window
       org-indent-indentation-per-level 2
@@ -103,9 +102,62 @@
       org-hide-leading-stars t
       org-pretty-entities nil ; this enables _ ^ to behave as subscript/supersript -> annoying
       org-odd-levels-only t)
-                                       ;https://punchagan.muse-amuse.in/blog/how-i-learnt-to-use-emacs-profiler/
+
+(setq default-agenda-file "~/.em/emacs-apps/orgagenda/gtd-inbox.org")
+(setq apm-agenda-file "C:/my/work/apm-bpm/apmbpm.git/private/agenda/apm-agenda.org")
+
+(use-package doct
+  :commands (doct)
+  :init (setq org-capture-templates
+              (doct '(("TODO"
+                       :keys "t"
+                       :children (("gtd-inbox"
+                                   :keys "g"
+                                   :template ("* TODO %^{Description}"
+                                              "SCHEDULED: %U")
+                                   :headline "Tasks"
+                                   :file default-agenda-file)
+                                  ("apm-agenda"
+                                   :keys "a"
+                                   :template ("* TODO %^{Description}"
+                                              "SCHEDULED: %U"
+                                              ":PROPERTIES:"
+                                              ":Created: %U"
+                                              ":agenda-group: %^{Work|Home|Habit|Project}"
+                                              ":END:"
+                                              ":LOGBOOK:"
+                                              "- State \"TODO\"       from \"\"           %U"
+                                              ":END:")
+                                   :headline "Tasks"
+                                   :file apm-agenda-file)))
+
+                      ("Journal"
+                       :keys "j"
+                       :prepend t
+                       :children (("general"
+                                   :keys "g"
+                                   :file "~/.em/em.ginbox/general-inbox.org"
+                                   :template ("* %?" "%U")
+                                   :datetree t)
+                                  ("apm-journal"
+                                   :keys "a"
+                                   :file "c:/my/work/apm-bpm/apmbpm.git/private/agenda/apm-journal.org"
+                                   :template ("* %?" "%U")
+                                   :datetree t)
+                                  ))
+
+                      ("Bookmarks"
+                       :keys "b"
+                       :prepend t
+                       :file "c:/my/gitrepos/bookmarks.git/partial/bookmarks-inbox.org"
+                       :template ("* bm")
+                       )
+                      ))))
+
+;;https://punchagan.muse-amuse.in/blog/how-i-learnt-to-use-emacs-profiler/
 ;;(setq org-agenda-inhibit-startup t) ;; ~50x speedup
 ;;(setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
+
 (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 ;; default for unix/windows
@@ -122,24 +174,24 @@
     (load-file holiday-file)))
 
 (setq org-log-done t
+      org-log-into-drawer t
       ;; org agenda conf https://daryl.wakatara.com/easing-into-emacs-org-mode
       org-agenda-show-all-dates nil  ;org agenda skip empty days
       org-agenda-skip-deadline-if-done t
-      org-deadline-warning-days 4
+      org-deadline-warning-days 7
       org-agenda-skip-deadline-prewarning-if-scheduled t
       org-agenda-skip-scheduled-if-deadline-is-shown t
       org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled) ;;http://pragmaticemacs.com/emacs/org-mode-basics-vii-a-todo-list-with-schedules-and-deadlines/
       org-agenda-todo-list-sublevels t
       org-agenda-deadline-leaders '("" "In %3d d.: " "%2d d. ago: ")
       org-agenda-scheduled-leaders '("" "Sched.%2dx: ")
-      org-agenda-files (list (concat org-agenda-root-dir "/gtd-inbox.org")
+      org-agenda-files (list (concat org-agenda-root-dir "/gtd-inbox.org") ;; default-agenda-file
                              (concat org-agenda-root-dir "/gtd.org")
                              (concat org-agenda-root-dir "/anniv.org")
                              (concat org-agenda-root-dir "/tickler.org")
-                            "c:/my/work/apm-bpm/apmbpm.git/private/agenda/apmteam.org"
-                       )
+                             apm-agenda-file)
 
-)
+      )
 
 (setq org-agenda-prefix-format
       (quote
@@ -148,6 +200,28 @@
         (todo . "%-12c")
         (tags . "%-12c")
         (search . "%-12c"))))
+
+(use-package org-super-agenda
+  :ensure t
+  :config
+  (setq org-super-agenda-groups
+        '((:name "Today"
+                 :time-grid t
+                 :scheduled today)
+          (:name "Due today"
+                 :deadline today)
+          (:name "Important"
+                 :priority "A")
+          (:name "Overdue"
+                 :deadline past)
+          (:name "Due soon"
+                 :deadline future)
+          (:name "Waiting"
+                 :todo "WAIT")
+          (:name "Home"
+                 :tag "Home")
+
+          )))
 
 (defun my/org/org-reformat-buffer ()
   (interactive)
@@ -209,3 +283,29 @@
       (add-hook 'markdown-mode-hook 'toc-org-mode)
       (define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point))
     (warn "toc-org not found")))
+
+(defun my/tangle-all-config-files ()
+  (interactive)
+  "go through all config org files and output compiled elisp in elispfiles"
+  ;; move compiled files to elispfiles folder
+  (mapc '(lambda(x) (org-babel-tangle-file x "emacs-lisp"))
+        (directory-files (concat user-emacs-directory "config/orgfiles/") t ".org$"))
+
+  ;; move compiled files to elispfiles folder
+  (mapc '(lambda(x) (rename-file x (concat user-emacs-directory "config/elispfiles/") t))
+        (directory-files (concat user-emacs-directory "config/orgfiles/") t ".el[c]*$"))
+
+  (byte-recompile-directory (concat user-emacs-directory "config/elispfiles/") 0))
+
+(defun my/tangle-this-config-file ()
+  (interactive)
+  "If the current file is in 'config/orgfiles', the code blocks are tangled"
+  (when (equal (file-name-directory (directory-file-name buffer-file-name)) (concat user-emacs-directory "config/orgfiles/"))
+    (progn
+      (org-babel-tangle)
+      (message "%s tangled" buffer-file-name)
+      (mapc '(lambda(x) (rename-file x (concat user-emacs-directory "config/elispfiles/") t))
+            (directory-files (concat user-emacs-directory "config/orgfiles/") t ".el[c]*$"))
+      (byte-recompile-directory (concat user-emacs-directory "config/elispfiles/") 0))))
+
+;;(add-hook 'after-save-hook #'my/tangle-dotfiles)

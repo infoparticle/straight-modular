@@ -208,31 +208,6 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode))
 
-(defun my/tangle-all-dotfiles ()
-  (interactive)
-  "go through all config org files and output compiled elisp in elispfiles"
-  ;; move compiled files to elispfiles folder
-  (mapc '(lambda(x) (org-babel-tangle-file x "emacs-lisp"))
-        (directory-files (concat user-emacs-directory "config/orgfiles/") t ".org$"))
-
-  ;; move compiled files to elispfiles folder
-  (mapc '(lambda(x) (rename-file x (concat user-emacs-directory "config/elispfiles/") t))
-        (directory-files (concat user-emacs-directory "config/orgfiles/") t ".el[c]*$"))
-
-  (byte-recompile-directory (concat user-emacs-directory "config/elispfiles/") 0))
-
-(defun my/tangle-dotfiles ()
-  (interactive)
-  "If the current file is in 'config/orgfiles', the code blocks are tangled"
-  (when (equal (file-name-directory (directory-file-name buffer-file-name)) (concat user-emacs-directory "config/orgfiles/"))
-    (org-babel-tangle)
-    (message "%s tangled" buffer-file-name)
-    (mapc '(lambda(x) (rename-file x (concat user-emacs-directory "config/elispfiles/") t))
-          (directory-files (concat user-emacs-directory "config/orgfiles/") t ".el[c]*$"))
-    (byte-recompile-directory (concat user-emacs-directory "config/elispfiles/") 0)))
-
-(add-hook 'after-save-hook #'my/tangle-dotfiles)
-
 (use-package super-save
   :config
   (setq super-save-auto-save-when-idle t)

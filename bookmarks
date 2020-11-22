@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("private journal 2020"
+(("org-refile-last-stored"
+ (filename . "~/.em/emacs-apps/orgagenda/gtd-inbox.org")
+ (front-context-string . "*** TODO Sample ")
+ (rear-context-string . " 22:28]\n:END:\n\n\n")
+ (position . 534))
+("private journal 2020"
  (filename . "e:/mydata/private/personal/contents/journal/2020.org")
  (front-context-string . "*** Oct 08 07:13")
  (rear-context-string . "htenment Now!\n\n\n")
@@ -28,10 +33,10 @@
  (rear-context-string . "e bookmarks-plus")
  (position . 3591))
 ("org-capture-last-stored"
- (filename . "c:/my/tmp/tmprepo/org-linkz/Linkz.org")
- (front-context-string . "*** [[file:c:/my")
- (rear-context-string . "tclass\n\n* INBOX\n")
- (position . 480))
+ (filename . "c:/my/work/apm-bpm/apmbpm.git/private/agenda/apm-journal.org")
+ (front-context-string . "******* Lets see")
+ (rear-context-string . "20-11-20 Friday\n")
+ (position . 451))
 ("Downloads"
  (filename . "c:/Users/gopinat/Downloads")
  (position . 0)

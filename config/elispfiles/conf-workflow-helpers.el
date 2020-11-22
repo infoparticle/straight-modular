@@ -19,7 +19,7 @@
 
 (defun my/open-ginbox()
     (interactive)
-    (counsel-find-file  "c:/my/ginbox")
+    (counsel-find-file  "~/.em/em.ginbox")
 )
 (global-set-key [f2] 'my/open-ginbox)
 
@@ -165,39 +165,6 @@
   (interactive)
   (my/pick-proj-and-file "C:\\my\\home\\.em\\em.work-2.0\\tasks"))
 
-(setq work-agenda-file "c:/Users/gopinat/AppData/Roaming/.em/emacs-apps/orgagenda/gtd-inbox.org")
-(setq org-capture-templates
-      '(
-        ("t" "Tasks")
-
-        ;; TODO     (t) Todo template
-        ("tc" "TODO" entry (file work-agenda-file)
-         "* TODO %?
-  :PROPERTIES:
-  :Created: %U
-  :Type:  %^{Type|Case|Task|Project}
-
-  :END:
-  :LOGBOOK:
-  - State \"TODO\"       from \"\"           %U
-  :END:" :empty-lines 1)
-
-
-        ("j" "Journal" entry (file+datetree "~/org/journal.org")
-         "* %?\nEntered on %U\n  %i\n  %a")
-
-        ("i" "inbox" entry (file+datetree "~/org/org-inbox.org")
-         "* %?
-  :PROPERTIES:
-  :Created: %U
-  :Category:  %^{Category|Work|Philosophy|Trading|Others}
-  :END:" :empty-lines 1)
-        ("E" "Create Event and Clock In" entry
-         (file+datetree+prompt "~/org/events.org")
-         "* %?\n%T" :clock-in t :clock-keep t)
-        )
-      )
-
 (defun open-in-browser()
   "open buffer in browser, unless it is not a file. Then fail silently (ouch)."
   (interactive)
@@ -255,7 +222,7 @@
 (split-window-right width_in_chars) (find-file  file-name))
 (defhydra hydra-open-inboxes (:color blue :hint nil :columns 1)
   "Wiki List"
-  ("a" (my/split-find-file 80 "c:/my/work/apm-bpm/apmbpm.git/private/agenda/inbox.org") "APM Inbox")
+  ("a" (find-file "c:/my/work/apm-bpm/apmbpm.git/private/agenda/apm-journal.org") "APM Inbox")
   ("i" (/o/inbox) "Org Inbox")
 
   ("q" nil "Quit" :color blue))

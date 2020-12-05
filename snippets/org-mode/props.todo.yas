@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name:props.todo
+# key:p.t
+# --
+*** $1 $0
+
+:PROPERTIES:
+:Area:
+:LongRangeImpact:
+:ValueRank: high
+:TimeSensitivity:
+:Type: ${1:$$(yas-choose-value '("PROJECT" "HABIT" "HOBBY" "FUN" "TODO"))}
+:UpdateCycle:
+:END:

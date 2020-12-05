@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: meeting
+# key: m
+# --
+* MEETING $1
+:PROPERTIES:
+:Title: $1
+:Date: `(format-time-string "%Y-%m-%d %a %H:%M:%S")`
+:Who: $2
+:END:
+
+$0
+*Next Action*

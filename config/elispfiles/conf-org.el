@@ -38,7 +38,7 @@
       org-src-fontify-natively t
       org-src-preserve-indentation t
       ;; org-image-actual-width nil
-      org-tags-column 90
+      org-tags-column 50
       org-ellipsis "   [+]"
       org-adapt-indentation t
       org-hide-leading-stars t
@@ -103,33 +103,37 @@
       org-pretty-entities nil ; this enables _ ^ to behave as subscript/supersript -> annoying
       org-odd-levels-only t)
 
-(setq default-agenda-file "~/.em/emacs-apps/orgagenda/gtd-inbox.org")
-(setq apm-agenda-file "C:/my/work/apm-bpm/apmbpm.git/private/agenda/apm-agenda.org")
+(setq life-agenda-file "~/.em/emacs-apps/orgagenda/life-inbox.org")
+(setq work-agenda-file "~/.em/emacs-apps/orgagenda/work-inbox.org")
 
 (use-package doct
   :commands (doct)
   :init (setq org-capture-templates
               (doct '(("TODO"
                        :keys "t"
-                       :children (("gtd-inbox"
-                                   :keys "g"
-                                   :template ("* TODO %^{Description}"
-                                              "SCHEDULED: %U")
-                                   :headline "Tasks"
-                                   :file default-agenda-file)
-                                  ("apm-agenda"
-                                   :keys "a"
+                       :children (("life"
+                                   :keys "l"
                                    :template ("* TODO %^{Description}"
                                               "SCHEDULED: %U"
                                               ":PROPERTIES:"
+                                              ":Category: %^{Home|Family|Friends|Learnings|Misc}"
+                                              ":END:"
+                                              )
+                                   :headline "Tasks"
+                                   :file life-agenda-file)
+                                  ("work"
+                                   :keys "w"
+                                   :template ("* TODO %^{Description}"
+                                              "SCHEDULED: %U"
+                                              ":PROPERTIES:"
+                                              ":Category: %^{Work|Project}"
                                               ":Created: %U"
-                                              ":agenda-group: %^{Work|Home|Habit|Project}"
                                               ":END:"
                                               ":LOGBOOK:"
                                               "- State \"TODO\"       from \"\"           %U"
                                               ":END:")
                                    :headline "Tasks"
-                                   :file apm-agenda-file)))
+                                   :file work-agenda-file)))
 
                       ("Journal"
                        :keys "j"
@@ -158,7 +162,10 @@
 ;;(setq org-agenda-inhibit-startup t) ;; ~50x speedup
 ;;(setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
 
-(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+(setq org-todo-keywords '((sequence "PROJECT(p) TODO(t)"  "WAITING(w)" "|" "DONE(d)" "KILLED(k)"))
+      org-tag-alist '(("hv" . ?h)
+                      ("mv" . ?m)
+                      ("lv" . ?l)))
 
 ;; default for unix/windows
 (setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda")
@@ -175,6 +182,9 @@
 
 (setq org-log-done t
       org-log-into-drawer t
+      org-agenda-start-day "1d"
+      org-agenda-span 5
+      org-agenda-start-on-weekday nil
       ;; org agenda conf https://daryl.wakatara.com/easing-into-emacs-org-mode
       org-agenda-show-all-dates nil  ;org agenda skip empty days
       org-agenda-skip-deadline-if-done t
@@ -185,24 +195,33 @@
       org-agenda-todo-list-sublevels t
       org-agenda-deadline-leaders '("" "In %3d d.: " "%2d d. ago: ")
       org-agenda-scheduled-leaders '("" "Sched.%2dx: ")
-      org-agenda-files (list (concat org-agenda-root-dir "/gtd-inbox.org") ;; default-agenda-file
-                             (concat org-agenda-root-dir "/gtd.org")
-                             (concat org-agenda-root-dir "/anniv.org")
-                             (concat org-agenda-root-dir "/tickler.org")
-                             apm-agenda-file)
+      org-agenda-files (list ;;(concat org-agenda-root-dir "/gtd-inbox.org") ;; default-agenda-file
+                        (concat org-agenda-root-dir "/gtd.org")
+                        (concat org-agenda-root-dir "/anniv.org")
+                        (concat org-agenda-root-dir "/tickler.org")
+                        work-agenda-file
+                        life-agenda-file
+                        )
 
       )
 
 (setq org-agenda-prefix-format
-      (quote
-       ((agenda . "%-12c%?-12t% s")
+      '((agenda  . "%i %12:c%?-12t   %s")
+        (todo  . " %(let ((scheduled (org-get-scheduled-time (point)))) (if scheduled (format-time-string \"%Y-%m-%d\" scheduled) \"\")) %i %12:c  ")
+        (tags  . " %i %15:c")
         (timeline . "% s")
-        (todo . "%-12c")
-        (tags . "%-12c")
-        (search . "%-12c"))))
+        (search . " %i %-12:c")))
+
+(defun my-custom-agenda-fn ()
+  (setq truncate-lines t))
+
+(add-hook 'org-agenda-finalize-hook 'my-custom-agenda-fn)
 
 (use-package org-super-agenda
   :ensure t
+  :init (progn
+          (org-super-agenda-mode)
+          )
   :config
   (setq org-super-agenda-groups
         '((:name "Today"
@@ -219,9 +238,7 @@
           (:name "Waiting"
                  :todo "WAIT")
           (:name "Home"
-                 :tag "Home")
-
-          )))
+                 :tag "Home"))))
 
 (defun my/org/org-reformat-buffer ()
   (interactive)
@@ -236,14 +253,16 @@
   "make some word or string show as pretty Unicode symbols"
   (setq prettify-symbols-alist
         '(
-          ("lambda" . 955) ; λ
-          ("->" . 8594)    ; →
-          ("=>" . 8658)    ; ⇒
-          ;("map" . 8614)   ; ↦
+          ("lambda" . 955)
+          ("->" . 8594)
+          ("=>" . 8658)
           ("#+TITLE:" . ? )
-          ("Last Saved:" . 9997) ; ✍
-          ("#+BEGIN_SRC" . 128187) ; 💻
-          ("#+END_SRC" . 9210) ; black dot
+          ("Last Saved:" . 9997)
+          ("#+BEGIN_SRC" . 128187)
+          ("#+END_SRC" . 9210)
+          (push '("[ ]" .  "☐") prettify-symbols-alist)
+          (push '("[X]" . "☑" ) prettify-symbols-alist)
+          (push '("[-]" . "❍" ) prettify-symbols-alist)
           )))
 
 

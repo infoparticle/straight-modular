@@ -93,6 +93,13 @@
         ;; allow input not in order
         '((t   . ivy--regex-ignore-order))))
 
+
+(use-package ivy-posframe :ensure t
+  :config
+  (progn
+    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+    (ivy-posframe-mode 1)))
+
 (use-package avy :defer t
 :config
 (defhydra hydra-avy (:color teal)

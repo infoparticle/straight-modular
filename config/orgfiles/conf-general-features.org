@@ -1,7 +1,7 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Nov 19 Thu, 2020"
+Last Saved: "Dec 04 Fri, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -83,7 +83,7 @@ Last Saved: "Nov 19 Thu, 2020"
                  (recentf-mode t)))
 #+END_SRC
 
-** ivy
+** ivy, ivy-posframe
 
 #+BEGIN_SRC emacs-lisp
 (use-package ivy
@@ -114,6 +114,14 @@ Last Saved: "Nov 19 Thu, 2020"
   (setq ivy-re-builders-alist
         ;; allow input not in order
         '((t   . ivy--regex-ignore-order))))
+
+
+(use-package ivy-posframe :ensure t
+  :config
+  (progn
+    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+    (ivy-posframe-mode 1)))
+
 #+END_SRC
 
 ** avy and counse-ace-link

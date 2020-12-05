@@ -2,7 +2,7 @@
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
-Last Saved: "Nov 22 Sun, 2020"
+Last Saved: "Dec 05 Sat, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -67,7 +67,7 @@ Last Saved: "Nov 22 Sun, 2020"
       org-src-fontify-natively t
       org-src-preserve-indentation t
       ;; org-image-actual-width nil
-      org-tags-column 90
+      org-tags-column 50
       org-ellipsis "   [+]"
       org-adapt-indentation t
       org-hide-leading-stars t
@@ -169,33 +169,37 @@ Last Saved: "Nov 22 Sun, 2020"
 
 #+BEGIN_SRC emacs-lisp
 
-(setq default-agenda-file "~/.em/emacs-apps/orgagenda/gtd-inbox.org")
-(setq apm-agenda-file "C:/my/work/apm-bpm/apmbpm.git/private/agenda/apm-agenda.org")
+(setq life-agenda-file "~/.em/emacs-apps/orgagenda/life-inbox.org")
+(setq work-agenda-file "~/.em/emacs-apps/orgagenda/work-inbox.org")
 
 (use-package doct
   :commands (doct)
   :init (setq org-capture-templates
               (doct '(("TODO"
                        :keys "t"
-                       :children (("gtd-inbox"
-                                   :keys "g"
-                                   :template ("* TODO %^{Description}"
-                                              "SCHEDULED: %U")
-                                   :headline "Tasks"
-                                   :file default-agenda-file)
-                                  ("apm-agenda"
-                                   :keys "a"
+                       :children (("life"
+                                   :keys "l"
                                    :template ("* TODO %^{Description}"
                                               "SCHEDULED: %U"
                                               ":PROPERTIES:"
+                                              ":Category: %^{Home|Family|Friends|Learnings|Misc}"
+                                              ":END:"
+                                              )
+                                   :headline "Tasks"
+                                   :file life-agenda-file)
+                                  ("work"
+                                   :keys "w"
+                                   :template ("* TODO %^{Description}"
+                                              "SCHEDULED: %U"
+                                              ":PROPERTIES:"
+                                              ":Category: %^{Work|Project}"
                                               ":Created: %U"
-                                              ":agenda-group: %^{Work|Home|Habit|Project}"
                                               ":END:"
                                               ":LOGBOOK:"
                                               "- State \"TODO\"       from \"\"           %U"
                                               ":END:")
                                    :headline "Tasks"
-                                   :file apm-agenda-file)))
+                                   :file work-agenda-file)))
 
                       ("Journal"
                        :keys "j"
@@ -228,7 +232,10 @@ Last Saved: "Nov 22 Sun, 2020"
 ;;(setq org-agenda-inhibit-startup t) ;; ~50x speedup
 ;;(setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
 
-(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+(setq org-todo-keywords '((sequence "PROJECT(p) TODO(t)"  "WAITING(w)" "|" "DONE(d)" "KILLED(k)"))
+      org-tag-alist '(("hv" . ?h)
+                      ("mv" . ?m)
+                      ("lv" . ?l)))
 
 ;; default for unix/windows
 (setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda")
@@ -245,6 +252,9 @@ Last Saved: "Nov 22 Sun, 2020"
 
 (setq org-log-done t
       org-log-into-drawer t
+      org-agenda-start-day "1d"
+      org-agenda-span 5
+      org-agenda-start-on-weekday nil
       ;; org agenda conf https://daryl.wakatara.com/easing-into-emacs-org-mode
       org-agenda-show-all-dates nil  ;org agenda skip empty days
       org-agenda-skip-deadline-if-done t
@@ -255,14 +265,30 @@ Last Saved: "Nov 22 Sun, 2020"
       org-agenda-todo-list-sublevels t
       org-agenda-deadline-leaders '("" "In %3d d.: " "%2d d. ago: ")
       org-agenda-scheduled-leaders '("" "Sched.%2dx: ")
-      org-agenda-files (list (concat org-agenda-root-dir "/gtd-inbox.org") ;; default-agenda-file
-                             (concat org-agenda-root-dir "/gtd.org")
-                             (concat org-agenda-root-dir "/anniv.org")
-                             (concat org-agenda-root-dir "/tickler.org")
-                             apm-agenda-file)
+      org-agenda-files (list ;;(concat org-agenda-root-dir "/gtd-inbox.org") ;; default-agenda-file
+                        (concat org-agenda-root-dir "/gtd.org")
+                        (concat org-agenda-root-dir "/anniv.org")
+                        (concat org-agenda-root-dir "/tickler.org")
+                        work-agenda-file
+                        life-agenda-file
+                        )
 
       )
 
+(setq org-agenda-prefix-format
+      '((agenda  . "%i %12:c%?-12t   %s")
+        (todo  . " %(let ((scheduled (org-get-scheduled-time (point)))) (if scheduled (format-time-string \"%Y-%m-%d\" scheduled) \"\")) %i %12:c  ")
+        (tags  . " %i %15:c")
+        (timeline . "% s")
+        (search . " %i %-12:c")))
+
+(defun my-custom-agenda-fn ()
+  (setq truncate-lines t))
+
+(add-hook 'org-agenda-finalize-hook 'my-custom-agenda-fn)
+
+#+END_SRC
+;;older format
 (setq org-agenda-prefix-format
       (quote
        ((agenda . "%-12c%?-12t% s")
@@ -271,15 +297,20 @@ Last Saved: "Nov 22 Sun, 2020"
         (tags . "%-12c")
         (search . "%-12c"))))
 
-#+END_SRC
-
 ** org-super-agenda
 
 see also: https://dustinlacewell.github.io/emacs.d/#org4406fcb
 
+:transformer (--> it
+                                   (propertize it 'face '(:background "gray95")))
+
+;;(add-hook 'org-agenda-mode-hook (lambda() (org-agenda-day-view))) ;not working
 #+BEGIN_SRC emacs-lisp
 (use-package org-super-agenda
   :ensure t
+  :init (progn
+          (org-super-agenda-mode)
+          )
   :config
   (setq org-super-agenda-groups
         '((:name "Today"
@@ -296,9 +327,7 @@ see also: https://dustinlacewell.github.io/emacs.d/#org4406fcb
           (:name "Waiting"
                  :todo "WAIT")
           (:name "Home"
-                 :tag "Home")
-
-          )))
+                 :tag "Home"))))
 #+END_SRC
 ** org-helpers
 
@@ -336,14 +365,16 @@ See https://unicodelookup.com for more."
   "make some word or string show as pretty Unicode symbols"
   (setq prettify-symbols-alist
         '(
-          ("lambda" . 955) ; λ
-          ("->" . 8594)    ; →
-          ("=>" . 8658)    ; ⇒
-          ;("map" . 8614)   ; ↦
+          ("lambda" . 955)
+          ("->" . 8594)
+          ("=>" . 8658)
           ("#+TITLE:" . ? )
-          ("Last Saved:" . 9997) ; ✍
-          ("#+BEGIN_SRC" . 128187) ; 💻
-          ("#+END_SRC" . 9210) ; black dot
+          ("Last Saved:" . 9997)
+          ("#+BEGIN_SRC" . 128187)
+          ("#+END_SRC" . 9210)
+          (push '("[ ]" .  "☐") prettify-symbols-alist)
+          (push '("[X]" . "☑" ) prettify-symbols-alist)
+          (push '("[-]" . "❍" ) prettify-symbols-alist)
           )))
 
 
@@ -352,9 +383,6 @@ See https://unicodelookup.com for more."
 (add-hook 'prog-mode-hook 'add-pretty-lambda)
 (add-hook 'org-mode-hook 'add-pretty-lambda)
 #+END_SRC
-
-#+RESULTS:
-| #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | org-bullets-mode | add-pretty-lambda | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-indent-mode |
 
 ** fonts
 

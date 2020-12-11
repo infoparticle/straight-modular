@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-#+Last Saved: <Jun 29, 2020>
+Last Saved: "Dec 12 Sat, 2020"
 
 
 * Enabled Config
@@ -88,3 +88,30 @@ some experiments!:
  :PROPERTIES:
  :header-args: :tangle no
  :END:
+
+** no modeline - but with title
+
+Needs more work, but existing modeline is good enough
+
+ #+BEGIN_SRC emacs-lisp
+
+(setq-default mode-line-format " ")
+
+(setq helm-mode-line-string nil)
+(setq m/header-icon-face 'all-the-icons-lblue)
+
+(setq-default header-line-format
+		'("            "
+		  (:eval (all-the-icons-icon-for-mode major-mode :face m/header-icon-face))
+		  "   "
+		  (:eval (if buffer-file-name
+			     (s-join "." (butlast (split-string (file-name-nondirectory (buffer-file-name)) "\\.")))
+			   (buffer-name)))))
+(defun m/noheader()
+  (with-helm-buffer
+    (setq header-line-format nil)))
+
+(add-hook 'helm-after-initialize-hook 'm/noheader)
+
+(message "Conf experiment loaded!")
+#+END_SRC

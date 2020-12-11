@@ -1,5 +1,5 @@
 #+TITLE: Conf  Windows
-Last Saved: "Nov 15 Sun, 2020"
+Last Saved: "Dec 11 Fri, 2020"
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -137,7 +137,6 @@ c:\\opt\\irfan32\\i_view32.exe
 
 (global-set-key [f5] 'org-screenshot)
 #+END_SRC
-#+RESULTS:
 
 ** set exec paths, python interpreter and cd to tmp directory
 

@@ -1,12 +1,13 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Dec 04 Fri, 2020"
+Last Saved: "Dec 11 Fri, 2020"
 
 * Enabled Config
  :PROPERTIES:
  :header-args: :tangle yes
  :END:
+
 ** ace-windows : C-x o
   (set-face-attribute
    'aw-mode-line-face nil
@@ -428,6 +429,7 @@ https://github.com/Bad-ptr/persp-mode.el
 #+BEGIN_SRC emacs-lisp
 (use-package hyperbole :ensure t)
 #+END_SRC
+
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no

@@ -33,10 +33,10 @@
  (rear-context-string . "e bookmarks-plus")
  (position . 3591))
 ("org-capture-last-stored"
- (filename . "~/.em/emacs-apps/orgagenda/work-inbox.org")
- (front-context-string . "*** TODO reachou")
- (rear-context-string . "at 09:37]\n:END:\n")
- (position . 659))
+ (filename . "c:/my/gitrepos/bookmarks.git/partial/bookmarks-inbox.org")
+ (front-context-string . "* [[https://emac")
+ (rear-context-string)
+ (position . 1))
 ("Downloads"
  (filename . "c:/Users/gopinat/Downloads")
  (position . 0)

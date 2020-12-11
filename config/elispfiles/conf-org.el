@@ -212,6 +212,17 @@
         (timeline . "% s")
         (search . " %i %-12:c")))
 
+
+(defface org-checkbox-done-text
+  '((t (:foreground "#71696A" :strike-through t)))
+  "Face for the text part of a checked org-mode checkbox.")
+
+(font-lock-add-keywords
+ 'org-mode
+ `(("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:X\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)"
+    1 'org-checkbox-done-text prepend))
+ 'append)
+
 (defun my-custom-agenda-fn ()
   (setq truncate-lines t))
 
@@ -257,12 +268,27 @@
           ("->" . 8594)
           ("=>" . 8658)
           ("#+TITLE:" . ? )
+
           ("Last Saved:" . 9997)
+          ("#+BEGIN_SRC" . 955)
+          ("#+END_SRC" . 8945)
+          ("#+begin_src" . 955)
+          ("#+end_src" . 8945)
+          ("#+RESULTS:" . 187)
           ("#+BEGIN_SRC" . 128187)
           ("#+END_SRC" . 9210)
-          (push '("[ ]" .  "☐") prettify-symbols-alist)
-          (push '("[X]" . "☑" ) prettify-symbols-alist)
-          (push '("[-]" . "❍" ) prettify-symbols-alist)
+          (":PROPERTIES:" . ":")
+          (":END:" . 8945)
+          ("#+BEGIN_EXAMPLE" . "~")
+          ("#+begin_example"  . "~")
+          ("#+END_EXAMPLE" . "~")
+          ("#+end_example" . "~")
+          ("#+begin_quote" . "~")
+          ("#+end_quote" . "~")
+          ("#+TBLFM:" . 8747)
+          ("[ ]" .  9744)
+          ("[X]" . 9745 )
+          ("[-]" . 10061 )
           )))
 
 

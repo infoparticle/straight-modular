@@ -75,5 +75,5 @@
 
 (with-system gnu/linux
   (load-user-file "conf-linux.el")
-  (setq custom-file (expand-file-name "../custom-config/conf-linux-custom.el" user-config-directory))
+  (setq custom-file (expand-file-name "../custom-configs/conf-linux-custom.el" user-config-directory))
   (load custom-file))

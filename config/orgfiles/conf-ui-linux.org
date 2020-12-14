@@ -1,0 +1,117 @@
+#+TITLE: Conf Linux
+Last Saved: "Dec 14 Mon, 2020"
+
+
+* Enabled Config
+ :PROPERTIES:
+ :header-args: :tangle yes
+ :END:
+
+** mode-line
+
+#+BEGIN_SRC emacs-lisp
+(setq-default mode-line-format
+              (
+               quote(
+                     "  "
+                     (:eval
+                      (when (eql buffer-read-only t)
+                        (propertize " [R] " 'face
+                                    '( ; :background "color-88"
+                                      :foreground "gray60" :weight bold))))
+                     (:eval
+                      (propertize "●" 'face
+                                  (if (buffer-modified-p)
+                                      '(:foreground "Indian red" :weight bold)
+                                    '(:foreground "gray93" :weight bold ))))
+
+                     (:eval (propertize " %b" 'face
+                                      '(:foreground "gray30" :weight bold)))
+                     "   "
+                     mode-line-misc-info)))
+(set-face-attribute 'mode-line           nil :background "gray90" :box '(:line-width 1 :color "gray80" ))
+(set-face-attribute 'mode-line-inactive  nil :background "gray95" :box nil)
+#+END_SRC
+
+some experiments!:
+===================
+(set-face-attribute 'mode-line           nil :background "white"
+:box '(:line-width 1 :color "white" )
+)
+(set-face-attribute 'mode-line-inactive  nil :background "white" :box nil)
+(set-face 'mode-line-inactive                            'mode-line)
+
+
+  (set-face-attribute 'mode-line nil
+                      :height 100
+                      :underline  "gray"
+                      :overline nil
+                      :box nil
+                      :foreground (face-background 'default)
+                      :background "white"
+                      )
+
+** highlight selected window
+
+#+BEGIN_SRC emacs-lisp
+(defun highlight-selected-window ()
+  "Highlight selected window with a different background color."
+  (walk-windows (lambda (w)
+                  (unless (eq w (selected-window))
+                    (with-current-buffer (window-buffer w)
+                      (buffer-face-set '(:background "gray95"))))))
+  (buffer-face-set 'default))
+;(add-hook 'buffer-list-update-hook 'highlight-selected-window)
+#+END_SRC
+
+** global-highlight-line
+
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode 1)
+(set-face-background hl-line-face "lavender")
+#+END_SRC
+
+** windows margin set-window-margins + window-configuration-change-hook + global-visual-line-mode
+
+#+BEGIN_SRC emacs-lisp
+;; Adjust margins of all windows.
+(defun center-windows () ""
+  (walk-windows (lambda (window) (set-window-margins window 2 0)) nil 1))
+
+;; Listen to window changes.
+(add-hook 'window-configuration-change-hook 'center-windows)
+(global-visual-line-mode)
+#+END_SRC
+
+
+* Disabled Config
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
+
+** no modeline - but with title
+
+Needs more work, but existing modeline is good enough
+
+ #+BEGIN_SRC emacs-lisp
+
+(setq-default mode-line-format " ")
+
+(setq helm-mode-line-string nil)
+(setq m/header-icon-face 'all-the-icons-lblue)
+
+(setq-default header-line-format
+		'("            "
+		  (:eval (all-the-icons-icon-for-mode major-mode :face m/header-icon-face))
+		  "   "
+		  (:eval (if buffer-file-name
+			     (s-join "." (butlast (split-string (file-name-nondirectory (buffer-file-name)) "\\.")))
+			   (buffer-name)))))
+(defun m/noheader()
+  (with-helm-buffer
+    (setq header-line-format nil)))
+
+(add-hook 'helm-after-initialize-hook 'm/noheader)
+
+(message "Conf experiment loaded!")
+#+END_SRC

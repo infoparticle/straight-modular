@@ -1,7 +1,7 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Dec 13 Sun, 2020"
+Last Saved: "Dec 14 Mon, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -301,20 +301,6 @@ Let's not defer it must be loaded to work with org-wiki setups.
   (super-save-mode +1))
 #+END_SRC
 
-** engine-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package engine-mode
-    :defer 3
-    :config
-    (defengine quixy
-      "https://quixy.swinfra.net/quixy/query/detail.php?ISSUEID=%s"
-      :keybinding "q")
-
-    (defengine duckduckgo
-      "https://duckduckgo.com/?q=%s"
-      :keybinding "d")
-)
-#+END_SRC
 ** eshell
 
 #+BEGIN_SRC emacs-lisp
@@ -579,3 +565,18 @@ looks like mode-line needs utf-8 icons can be inserted in buffer but not in mode
       :keybinding "d")
 
       https://quixy.swinfra.net/quixy/query/detail.php?ISSUEID=QCIM8D112020
+
+** engine-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package engine-mode
+    :defer 3
+    :config
+    (defengine quixy
+      "https://quixy.swinfra.net/quixy/query/detail.php?ISSUEID=%s"
+      :keybinding "q")
+
+    (defengine duckduckgo
+      "https://duckduckgo.com/?q=%s"
+      :keybinding "d")
+)
+#+END_SRC

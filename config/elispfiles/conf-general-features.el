@@ -223,18 +223,6 @@
   (setq super-save-exclude '(".gpg")) ;avoid auto saving gpg files
   (super-save-mode +1))
 
-  (use-package engine-mode
-    :defer 3
-    :config
-    (defengine quixy
-      "https://quixy.swinfra.net/quixy/query/detail.php?ISSUEID=%s"
-      :keybinding "q")
-
-    (defengine duckduckgo
-      "https://duckduckgo.com/?q=%s"
-      :keybinding "d")
-)
-
 (defun eshell/clear ()
   "Clear the eshell buffer."
   (let ((inhibit-read-only t))

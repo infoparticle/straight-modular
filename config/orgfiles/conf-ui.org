@@ -3,7 +3,7 @@
 #+PROPERTY: header-args :tangle yes
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
-Last Saved: "Nov 10 Tue, 2020"
+Last Saved: "Dec 14 Mon, 2020"
 
 Common UI configs
 
@@ -13,7 +13,7 @@ Common UI configs
  :header-args: :tangle yes
  :END:
 
-** default face and theme
+** default face and theme                        :theme:
 ;:family "Fira Code medium"
 (set-face-attribute 'default nil
                     :family "Consolas"
@@ -25,7 +25,7 @@ Common UI configs
 ;(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
 #+END_SRC
 
-** load windows/linux specific ui configs
+** load windows/linux specific ui configs        :ui:
 
 #+BEGIN_SRC emacs-lisp
 (with-system windows-nt

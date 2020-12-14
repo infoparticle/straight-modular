@@ -2,7 +2,7 @@
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
-Last Saved: "Dec 13 Sun, 2020"
+Last Saved: "Dec 14 Mon, 2020"
 
 * Enabled Config
 
@@ -53,7 +53,7 @@ Last Saved: "Dec 13 Sun, 2020"
 #+BEGIN_SRC emacs-lisp
 (setq
  time-stamp-active t          ; do enable time-stamps
- time-stamp-pattern "34/\\(\\(L\\|l\\)ast\\( \\|-\\)\\(\\(S\\|s\\)aved\\|\\(M\\|m\\)odified\\|\\(U\\|u\\)pdated\\)\\|Time-stamp\\) *: [\"]%b %02d %a, %:y[\"]")
+ time-stamp-pattern "34/\\(\\(L\\|l\\)ast\\( \\|-\\)\\(\\(S\\|s\\)aved\\|\\(M\\|m\\)odified\\|\\(U\\|u\\)pdated\\)\\|Time-stamp\\) *: [\"]%:b %02d %:a, %:y[\"]")
 
 ;; can also add this to source code: // (set-variable time-stamp-format "%04y-%:b-%02d %02H:%02M:%02S")
 

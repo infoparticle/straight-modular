@@ -354,3 +354,5 @@
       (byte-recompile-directory (concat user-emacs-directory "config/elispfiles/") 0))))
 
 ;;(add-hook 'after-save-hook #'my/tangle-dotfiles)
+
+(use-package org-sidebar :ensure t)

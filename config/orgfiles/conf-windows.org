@@ -1,5 +1,5 @@
 #+TITLE: Conf  Windows
-Last Saved: "Dec 11 Fri, 2020"
+Last Saved: "Dec 13 Sun, 2020"
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -14,6 +14,7 @@ Last Saved: "Dec 11 Fri, 2020"
 - [[#disabled-config][Disabled Config]]
   - [[#pdftools---not-enabled][pdftools - not enabled]]
   - [[#org-agenda][org-agenda]]
+  - [[#future-ideas][Future Ideas]]
 
 * Enabled Config
 
@@ -222,3 +223,29 @@ c:\\opt\\irfan32\\i_view32.exe
 
 (defun org-current-is-todo ()
   (string= "TODO" (org-get-todo-state)))
+
+
+** Future Ideas
+
+[[https://www.reddit.com/r/emacs/comments/jczcv0/paste_an_image_into_an_org_file_windows/][Paste an image into an org file (Windows) : emacs]]
+#+BEGIN_SRC emacs-lisp
+I just found out this nice trick to save the clipboard into an image and link it in an org-mode file. It works on Window using some PowerShell magic.
+
+(defvar jjgr-org-mode-paste-image-width 800)
+
+(defun jjgr-org-mode-paste-image (file-name)
+  (interactive "F")
+  (let ((type (file-name-extension file-name)))
+    (unless (member (upcase type) '("JPG" "JPEG" "PNG" "GIF"))
+      (setq file-name (concat file-name ".png")))
+    (let* ((command (format "(Get-Clipboard -Format Image).save(\"%s\")"
+                            (expand-file-name file-name)))
+           (output (call-process "powershell.exe" nil "*powershell*" nil "-Command" command)))
+      (if (not (zerop output))
+          (message "Unable to save image. Probably clipboard is empty.")
+        (when jjgr-org-mode-paste-image-width
+          (insert (format "#+ATTR_ORG: :width %s\n" jjgr-org-mode-paste-image-width)))
+        (insert "[[file:" file-name "]]\n")
+        (org-display-inline-images))))
+
+#+END_SRC

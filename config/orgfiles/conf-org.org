@@ -2,7 +2,7 @@
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
-Last Saved: "Dec 11 Fri, 2020"
+Last Saved: "Dec 13 Sun, 2020"
 
 * Enabled Config
 
@@ -501,7 +501,10 @@ See https://unicodelookup.com for more."
 
 ;;(add-hook 'after-save-hook #'my/tangle-dotfiles)
 #+END_SRC
-
+** org-sidebar
+#+BEGIN_SRC emacs-lisp
+(use-package org-sidebar :ensure t)
+#+END_SRC
 * Disbled Config
  :PROPERTIES:
  :header-args: :tangle no

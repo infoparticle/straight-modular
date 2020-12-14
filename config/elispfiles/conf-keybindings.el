@@ -82,6 +82,7 @@
    "tw" 'whitespace-mode
    "tp"  'parinfer-toggle-mode
    "tt"  'toggle-truncate-lines
+   "ts"  'org-sidebar-tree-toggle
 
    ;; git
    "G" '(:ignore t                    :which-key "GIT")

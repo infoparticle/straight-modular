@@ -2633,7 +2633,7 @@ behavior. But let's refine these keys:
 
 #+BEGIN_SRC emacs-lisp :tangle yes
   (use-package window
-    :ensure nil
+    :ensure true
     :bind (("C-x 3" . hsplit-last-buffer)
            ("C-x 2" . vsplit-last-buffer))
     :preface

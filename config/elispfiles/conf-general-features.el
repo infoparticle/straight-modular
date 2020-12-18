@@ -293,3 +293,10 @@ directory to make multiple eshell windows easier."
   )
 
 (use-package hyperbole :ensure t)
+
+(add-to-list 'load-path (expand-file-name "local-packages/org-tree-slide" user-emacs-directory) )
+(require 'org-tree-slide)
+(with-eval-after-load "org-tree-slide"
+  (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
+  (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree)
+  )

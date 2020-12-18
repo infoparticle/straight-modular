@@ -1,7 +1,7 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Dec 14 Mon, 2020"
+Last Saved: "Dec 18 Fri, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -416,6 +416,18 @@ https://github.com/Bad-ptr/persp-mode.el
 (use-package hyperbole :ensure t)
 #+END_SRC
 
+** org-tree-slide
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path (expand-file-name "local-packages/org-tree-slide" user-emacs-directory) )
+(require 'org-tree-slide)
+(with-eval-after-load "org-tree-slide"
+  (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
+  (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree)
+  )
+
+(use-package hide-mode-line :ensure t)
+#+END_SRC
 * Disabled Config
  :PROPERTIES:
  :header-args: :tangle no
@@ -580,3 +592,17 @@ looks like mode-line needs utf-8 icons can be inserted in buffer but not in mode
       :keybinding "d")
 )
 #+END_SRC
+
+** org-tree-slide
+Not working not sure
+#+BEGIN_SRC emacs-lisp
+(use-package org-tree-slide :ensure t
+:config
+(with-eval-after-load "org-tree-slide"
+  (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
+  (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree)
+  (add-hook 'org-tree-slide-mode-hook #'hide-mode-line-mode)
+  )
+)
+#+END_SRC
+(auto-install-from-url "https://raw.github.com/takaxp/org-tree-slide/master/org-tree-slide.el")

@@ -93,13 +93,6 @@
         ;; allow input not in order
         '((t   . ivy--regex-ignore-order))))
 
-
-(use-package ivy-posframe :ensure t
-  :config
-  (progn
-    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
-    (ivy-posframe-mode 1)))
-
 (use-package avy :defer t
 :config
 (defhydra hydra-avy (:color teal)
@@ -300,3 +293,5 @@ directory to make multiple eshell windows easier."
   (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
   (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree)
   )
+
+(use-package hide-mode-line :ensure t)

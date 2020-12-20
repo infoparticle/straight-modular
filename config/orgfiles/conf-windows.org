@@ -1,5 +1,5 @@
 #+TITLE: Conf  Windows
-Last Saved: "Dec 13 Sun, 2020"
+Last Saved: "Dec 19 Sat, 2020"
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
@@ -146,7 +146,7 @@ c:\\opt\\irfan32\\i_view32.exe
 ;; windows python config
 (when (file-exists-p "C:/opt/anaconda3/python.exe")
   (setq python-shell-interpreter "C:/opt/anaconda3/python.exe")
-                                        ;(setq exec-path (append '("C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1") exec-path))
+;;(setq exec-path (append '("C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1") exec-path))
   )
 
 
@@ -158,8 +158,7 @@ c:\\opt\\irfan32\\i_view32.exe
 #+END_SRC
 
 (when (file-exists-p "c:/my/opt/putty/plink.exe")
-  (setq exec-path (append '("C:/my/opt/putty") exec-path))
-  )
+  (setq exec-path (append '("C:/my/opt/putty") exec-path)))
 
 ** search with everything
 

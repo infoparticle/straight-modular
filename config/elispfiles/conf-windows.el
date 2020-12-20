@@ -92,7 +92,7 @@
 ;; windows python config
 (when (file-exists-p "C:/opt/anaconda3/python.exe")
   (setq python-shell-interpreter "C:/opt/anaconda3/python.exe")
-                                        ;(setq exec-path (append '("C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1") exec-path))
+;;(setq exec-path (append '("C:/opt/anaconda3/pkgs/python-3.7.3-h8c8aaf0_1") exec-path))
   )
 
 

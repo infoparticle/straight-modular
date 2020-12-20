@@ -2,7 +2,7 @@
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
-Last Saved: "Dec 14 Mon, 2020"
+Last Saved: "December 20 Sunday, 2020"
 
 * Enabled Config
 
@@ -93,6 +93,9 @@ Last Saved: "Dec 14 Mon, 2020"
    (gnuplot . t)
    (haskell . t)
    (sql . t)))
+
+;; avoid tangling into dos eol in linux files edited using tramp
+(add-hook 'org-babel-pre-tangle-hook (lambda () (setq coding-system-for-write 'utf-8-unix)))
 
 ;; http://kitchingroup.cheme.cmu.edu/blog/2015/03/12/Making-org-mode-Python-sessions-look-better/
 (defun org-babel-python-strip-session-chars ()

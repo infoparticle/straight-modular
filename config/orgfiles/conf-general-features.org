@@ -1,7 +1,7 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "Dec 18 Fri, 2020"
+Last Saved: "December 20 Sunday, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -84,7 +84,7 @@ Last Saved: "Dec 18 Fri, 2020"
                  (recentf-mode t)))
 #+END_SRC
 
-** ivy, ivy-posframe
+** ivy
 
 #+BEGIN_SRC emacs-lisp
 (use-package ivy
@@ -115,13 +115,6 @@ Last Saved: "Dec 18 Fri, 2020"
   (setq ivy-re-builders-alist
         ;; allow input not in order
         '((t   . ivy--regex-ignore-order))))
-
-
-(use-package ivy-posframe :ensure t
-  :config
-  (progn
-    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
-    (ivy-posframe-mode 1)))
 
 #+END_SRC
 
@@ -606,3 +599,14 @@ Not working not sure
 )
 #+END_SRC
 (auto-install-from-url "https://raw.github.com/takaxp/org-tree-slide/master/org-tree-slide.el")
+
+** ivy posframe screw that default is fine
+#+BEGIN_SRC
+
+(use-package ivy-posframe :ensure t
+  :config
+  (progn
+    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+    (ivy-posframe-mode 1)))
+
+#+END_SRC

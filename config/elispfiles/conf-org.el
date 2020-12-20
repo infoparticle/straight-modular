@@ -64,6 +64,9 @@
    (haskell . t)
    (sql . t)))
 
+;; avoid tangling into dos eol in linux files edited using tramp
+(add-hook 'org-babel-pre-tangle-hook (lambda () (setq coding-system-for-write 'utf-8-unix)))
+
 ;; http://kitchingroup.cheme.cmu.edu/blog/2015/03/12/Making-org-mode-Python-sessions-look-better/
 (defun org-babel-python-strip-session-chars ()
   "Remove >>> and ... from a Python session output."

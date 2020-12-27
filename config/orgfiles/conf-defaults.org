@@ -108,7 +108,6 @@ Provides sane defaults and improves the vanilla emacs.
 ** show trailing white spaces
 #+BEGIN_SRC emacs-lisp
 ;(setq-default show-trailing-whitespace t)
-
 (setq default-tab-width 4)
 (setq tab-width 4)
 

@@ -1,5 +1,5 @@
 #+TITLE: Conf Windows
-Last Saved: "Dec 19 Sat, 2020"
+Last Saved: "December 21 Monday, 2020"
 
 
 * Enabled Config
@@ -13,7 +13,11 @@ Last Saved: "Dec 19 Sat, 2020"
 #+BEGIN_SRC emacs-lisp
 (use-package doom-modeline
   :ensure t
-  :hook (after-init . doom-modeline-mode))
+  :hook (after-init . doom-modeline-mode)
+  :config
+  (progn
+    (set-face-attribute 'mode-line           nil :background "gray90" :box nil)
+    (set-face-attribute 'mode-line-inactive  nil :background "gray95" :box nil)))
 #+END_SRC
 
 ** global-highlight-line
@@ -34,7 +38,6 @@ Last Saved: "Dec 19 Sat, 2020"
 (add-hook 'window-configuration-change-hook 'center-windows)
 (global-visual-line-mode)
 #+END_SRC
-
 
 * Disabled Config
  :PROPERTIES:

@@ -1,11 +1,35 @@
 (set-face-font 'default "Roboto Mono Light 10")
 ;(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
 
-(with-system windows-nt
-  (load-user-file "conf-ui-windows.el"))
+(use-package autothemer :ensure t)
+(setq custom-theme-directory (expand-file-name "config/themes/" user-emacs-directory))
+;(load-theme 'creamsody t)
 
-(with-system gnu/linux
-  (load-user-file "conf-ui-linux.el"))
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode)
+  :config)
+(use-package doom-themes
+  :ensure t
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-nord t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(toggle-frame-fullscreen) ;;occupy full realestate!
 
 (use-package treemacs
   :defer t

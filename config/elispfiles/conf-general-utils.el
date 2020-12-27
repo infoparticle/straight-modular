@@ -41,14 +41,21 @@
   (kill-buffer (previous-buffer)))
 (global-set-key (kbd "C-x C-f") 'gs/find-file-reuse-buffer)
 
-(defun gs/split-window-right-load-previous-file ()
+(defun gs/vsplit-previous-buff ()
   "find file and close previous file"
   (interactive)
-  (split-window-right)
-  (windmove-right)
+  (split-window-vertically)
+  (other-window 1 nil)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
-(global-set-key (kbd "C-x 3")   'gs/split-window-right-load-previous-file)
+(global-set-key (kbd "C-x 2")   'gs/vsplit-previous-buff)
 
+(defun gs/hsplit-previous-buff ()
+  "find file and close previous file"
+  (interactive)
+  (split-window-horizontally)
+  (other-window 1 nil)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+(global-set-key (kbd "C-x 3")   'gs/hsplit-previous-buff)
 
 (defun my/kill-other-buffers ()
   "Kill all other buffers."
@@ -127,8 +134,8 @@ argument makes the windows rotate backwards."
   (face-remap-add-relative 'org-agenda-filter-tags '(:background "#f8f7fa" :foreground "#ff6678") :box '(:line-width 5 :color "#f8f7fa"))
   (face-remap-add-relative 'org-block-begin-line '(:background "#f8f7fa"))
   (face-remap-add-relative 'org-block-end-line '(:background "#f8f7fa"))
-  (face-remap-add-relative 'org-block '(:background "#f3f2f5"))
-  )
+  (face-remap-add-relative 'org-block '(:background "#f3f2f5")))
+
 (defun m/showindex ()
   "Show the index of current projects"
 (interactive)
@@ -137,25 +144,26 @@ argument makes the windows rotate backwards."
       (display-buffer-in-side-window buffer '((side . left) (window-width . 0.25)))
       (set-window-dedicated-p (get-buffer-window buffer) t)
       (select-window (get-buffer-window buffer))
-      (m/index-faces)
-      )))
+      (m/index-faces))))
 
 (defun m/hideindex ()
   "Hide the index of current projects"
 (interactive)
   (let ((buffer (get-file-buffer m/sidebar)))
     (progn
-      (delete-window (get-buffer-window buffer))
-      )))
+      (delete-window (get-buffer-window buffer)))))
 
 (defun m/toggleindex ()
   "Toggle the index of current projects"
   (interactive)
   (let* ((buffer (get-file-buffer m/sidebar))
          (window (get-buffer-window buffer)))
-    (if window
+    (if (and buffer window)
         (m/hideindex)
-      (m/showindex)
-      )))
+      (progn
+        (find-file-noselect m/sidebar)
+        (m/showindex)))))
+
+
 
 (global-set-key (kbd "C-M-SPC") 'm/toggleindex)

@@ -1,5 +1,5 @@
 #+TITLE: Conf Programming
-#+Last Saved: "Nov 19 Thu, 2020"
+#+Last Saved: "December 22 Tuesday, 2020"
 #+property: header-args :tangle yes
 
 * Enabled Config
@@ -61,6 +61,9 @@ To add linum to your favorite modes:
   :init
   (elpy-enable))
 #+END_SRC
+
+more ideas:
+https://github.com/reconmaster/ki_repo/blob/master/docs/org.org#asynchronously-running-python-blocks-in-org-mode
 
 ** Lisp
 *** lisp - parken-face for elisp

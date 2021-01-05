@@ -2,7 +2,7 @@
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
-Last Saved: "December 27 Sunday, 2020"
+Last Saved: "December 29 Tuesday, 2020"
 
 * Enabled Config
  :PROPERTIES:
@@ -51,7 +51,7 @@ Last Saved: "December 27 Sunday, 2020"
 #+BEGIN_SRC emacs-lisp
 (setq
 time-stamp-active t          ; do enable time-stamps
-time-stamp-pattern "34/\\(\\(L\\|l\\)ast\\( \\|-\\)\\(\\(S\\|s\\)aved\\|\\(M\\|m\\)odified\\|\\(U\\|u\\)pdated\\)\\|Time-stamp\\) *: [\"]%:b %02d %:a, %:y[\"]")
+time-stamp-pattern "34/\\(\\(L\\|l\\)ast\\( \\|-\\)\\(\\(S\\|s\\)aved\\|\\(M\\|m\\)odified\\|\\(U\\|u\\)pdated\\)\\|Time-stamp\\) *: [\"]%:B %02d %:A, %:y[\"]")
 
 ;; can also add this to source code: // (set-variable time-stamp-format "%04y-%:b-%02d %02H:%02M:%02S")
 
@@ -239,7 +239,7 @@ more ideas: https://emacs.stackexchange.com/questions/52569/how-to-set-schedule-
 (org-insert-time-stamp
     (apply 'encode-time (org-read-date-analyze time-string default-time default-time)) t nil)))
 ***   org-agenda
-***** NEXT  org-agenda keywords
+*****   org-agenda keywords
 
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords

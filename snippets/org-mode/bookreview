@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: bookreviews
-# key: book
+# key: ,book
 # --
 :PROPERTIES:
 :Title: $1

@@ -12,7 +12,8 @@
   (persp-mode t)
   (persp-frame-switch "one-page")
   (delete-other-windows)
-  (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/one-page-agenda.org")
+  ;(find-file "c:/users/gopinat/dropbox/emacs-apps/agile/one-page-agenda.org")
+  (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/reviews/2021-review.org")
   (split-window-right 45)
   (find-file "c:/users/gopinat/dropbox/emacs-apps/agile/main.org")
 )
@@ -235,6 +236,18 @@
       (goto-char (point-min))
       (while (search-forward "\\" nil t)
         (replace-match "/" nil t)))))
+
+(defun gs/insert-dates-table (month)
+  "insert a bunch of dates"
+  (interactive "nEnter the month number: ")
+  (let* ((day 1)
+         (year 2021)
+         (time (encode-time 1 1 0 day month year)))
+         (insert "| Date | Planned | Comment |\n|------+---------+---------|\n")
+    (while (= (nth 4 (decode-time time)) month)
+      (insert (format-time-string "|%b %d %a|||\n" time))
+      (setq day (1+ day))
+      (setq time (encode-time 1 1 0 day month year)))))
 
 (defun my/trade/file-a-chart()
   (interactive)

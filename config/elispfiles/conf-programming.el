@@ -28,9 +28,15 @@
   (elpy-enable))
 
 (use-package paren-face
-:defer t
-:config
-  (add-hook 'prog-mode-hook #'paren-face-mode))
+  :defer t
+  :ensure t
+  :hook ((common-lisp-mode . paren-face-mode)
+         (emacs-lisp-mode . paren-face-mode)
+         (scheme-mode . paren-face-mode)
+         (racket-mode . paren-face-mode)
+         (hy-mode . paren-face-mode)
+         (lfe-mode . paren-face-mode)
+         (clojure-mode . paren-face-mode)))
 
 (use-package aggressive-indent
   :diminish aggressive-indent-mode

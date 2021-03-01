@@ -50,11 +50,18 @@
   (general-define-key :keymaps 'evil-normal-state-map
                       (general-chord " 0") 'delete-window
                       (general-chord " j") 'avy-goto-char-2
-                      (general-chord " l") 'avy-goto-line
-                      )
+                      (general-chord " l") 'avy-goto-line)
+
+;;FIXME not working
+;;(general-define-key :states '(normal motion emacs) "SPC" nil "" nil) ;; SPC belongs to me, don't allow other packages to use it.
 
   (general-define-key :keymaps 'dired-mode-map
-                      "C-c C-n" 'dired-narrow)
+                      :states '(normal motion)
+                      :prefix "C-x" ;using SPC conflicts with dired+ (SPC is bound to dired-next)
+                      "n" 'dired-narrow
+                      "y" 'dired-ranger-copy
+                      "m" 'dired-ranger-move
+                      "p" 'dired-ranger-paste)
 
   (general-define-key
    :states '(normal visual insert emacs)
@@ -68,7 +75,7 @@
    "3"   '(split-window-right         :which-key "split-window-right")
    "B"   '(counsel-bookmark           :which-key "bookmarks")
    "a"   '(org-agenda                 :which-key "org-agenda")
-  ;"a"   '(hydra-avy/body             :which-key "hydra-avy")
+                                        ;"a"   '(hydra-avy/body             :which-key "hydra-avy")
    "A"   '(cfw:open-org-calendar      :which-key "open-org-calendar")
 
    "c"   '(org-capture                :which-key "org-capture")
@@ -82,7 +89,7 @@
    "y"   '(ivy-yasnippet             :which-key "ivy-yasnippet")
 
    ;; expand region
-   ;"er" 'er/expand-region
+                                        ;"er" 'er/expand-region
    ;; quickly open files
    ;;"oi"  '(/o/inbox :which-key "owspc-inbox.org")
    "os"  '(/o/scratch                 :which-key "owspc-scratch.org")

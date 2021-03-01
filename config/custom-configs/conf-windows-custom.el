@@ -5,6 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#3C3836" "#FB4933" "#86C9D3" "#8DD1CA" "#419BB0" "#A59FC0" "#3FD7E5" "#EBDBB2"])
+ '(bmkp-last-as-first-bookmark-file "c:/Users/gopinat/AppData/Roaming/.emacs.d/bookmarks")
  '(custom-safe-themes
    '("e08833c5dc1ba09647d6f7d2d55579fa25fe1b8c47038513007c41541667d9c8" "0b9803c76a76f283dd3f2ac69a323a94373fb6170f4870d45b46c1e653275da7" "9df867652415c5a54d184fd5010b31b47f5dcbb260fdef410d226165b719a941" "427333ca345649edad1166c767bfb8511c2620720908695274a6b513b1f856d4" "1d75ba6aab722be7b13e72e159073bf2114997ef4f0f80442169e47974cfd753" "2bc02a7d0304b9777d03f4d27af5cba46b8a310250ba2602daadafd4c12a00b4" "e95fe28e830d6b52d0336979b31922a088feb83cd148f1dcdc688c00ad72b1de" "165e3571f414b5f18517431f1fe6d1c7b62a0dad26e781be02ff2b3b91d49f17" "7dc5bc5051faea608b0f32fecf3f4848b5d8370fe9801955a0afff34526cd5d6" "69f90c4ad6f03846429055c4590c5bb6ba187a43129affa85c64b730020f14b0" "44d381559580e02345f1b5ee07ee4bfd9a2260c6be24ea1103a5620ae788be79" "2f3693f5610757748cbaefee90c0b5456aaf576d5d9fba19e0c124d329d24c3a" "7acd52c1af3443cf762b9c33790f202d431664983008cab928cb114a4739fa1e" "7b2f3f5064423615c6cb185afba6718f36750ee030b70386974b58c0aec744a2" "30ffdfb3a769bd329b520f8c4463a974e38c4c4a8703c6bb21f8fe9acf4b927d" "b053b3ab4c1ee722b60bc109903131907e1b858ed5bfdf7af4a22056a45b95f5" "78f9793674cc82b887bcd7df27c1c89ec0f9b89aaa51ed81bcb6f4ea49ef31a7" "5e57277a3ab7b6db80a79b8c6eca2aa3b6ffafd5a16745d343da0b9a1eddca1f" "5834d07f57c62e7172ba067eb16ccf7eb0acb35223d3d2b8b97677f15808721d" "6a009f59b65ef73a128747cf01f1baf14c6c8df18dc5dc4de4f7bbfbab63b60b" "e3b2bad7b781a968692759ad12cb6552bc39d7057762eefaf168dbe604ce3a4b" "da0468f37373855e845e7ebfd7cdc334e0ea92de4dcf6695a4eefd1dc884410d" "13d194a1846d5fa1226593b8b41ec5186e1f82cc3698c8ace35d777ae24ce98d" "fcbbc893cdf7675e078b781c09041e1d2e4dc17375c808f9f4b120cc9a70f2ca" default))
  '(epg-gpg-home-directory "c:\\Users\\gopinat\\AppData\\Roaming\\gnupg")
@@ -19,7 +20,7 @@
  '(org-agenda-files
    '("~/.em/emacs-apps/orgagenda/gtd.org" "~/.em/emacs-apps/orgagenda/anniv.org" "~/.em/emacs-apps/orgagenda/work-inbox.org" "~/.em/emacs-apps/orgagenda/life-inbox.org"))
  '(ox-clip-w32-cmd
-   "c:/opt/anaconda3/python.exe c:/Users/gopinat/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py" t)
+   "c:/opt/anaconda3/python.exe c:/Users/gopinat/AppData/Roaming/.emacs.d/straight/build/ox-clip/html-clip-w32.py")
  '(pdf-view-midnight-colors (cons "#ECEFF4" "#2E3440") t)
  '(pos-tip-background-color "#1A3734" t)
  '(pos-tip-foreground-color "#FFFFC8" t)

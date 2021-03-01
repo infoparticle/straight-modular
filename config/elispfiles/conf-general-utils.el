@@ -161,6 +161,43 @@ argument makes the windows rotate backwards."
         (find-file-noselect m/sidebar)
         (m/showindex)))))
 
+(defun m/toggleindex-public ()
+  "Set the sidebar file and toggle it"
+  (interactive)
+  (setq m/sidebar "~/.em/em.orgroot/sidebar.org")
+  (m/toggleindex))
 
 
-(global-set-key (kbd "C-M-SPC") 'm/toggleindex)
+(defun m/toggleindex-private ()
+  "Set the sidebar file and toggle it"
+  (interactive)
+  (setq m/sidebar "~/.em/em.orgroot/sidebar-private.org")
+  (m/toggleindex))
+
+(global-set-key (kbd "C-<f1>") 'm/toggleindex-public)
+(global-set-key (kbd "C-<f2>") 'm/toggleindex-private)
+
+(defun xah-syntax-color-hex ()
+  "Syntax color text of the form 「#ff1100」 and 「#abc」 in current buffer.
+URL `http://ergoemacs.org/emacs/emacs_CSS_colors.html'
+Version 2017-03-12"
+  (interactive)
+  (font-lock-add-keywords
+   nil
+   '(("#[[:xdigit:]]\\{3\\}"
+      (0 (put-text-property
+          (match-beginning 0)
+          (match-end 0)
+          'face (list :background
+                      (let* (
+                             (ms (match-string-no-properties 0))
+                             (r (substring ms 1 2))
+                             (g (substring ms 2 3))
+                             (b (substring ms 3 4)))
+                        (concat "#" r r g g b b))))))
+     ("#[[:xdigit:]]\\{6\\}"
+      (0 (put-text-property
+          (match-beginning 0)
+          (match-end 0)
+          'face (list :background (match-string-no-properties 0)))))))
+  (font-lock-flush))

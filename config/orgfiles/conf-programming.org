@@ -1,5 +1,5 @@
 #+TITLE: Conf Programming
-#+Last Saved: "December 22 Tuesday, 2020"
+#+Last Saved: "January 14 Thursday, 2021"
 #+property: header-args :tangle yes
 
 * Enabled Config
@@ -70,9 +70,15 @@ https://github.com/reconmaster/ki_repo/blob/master/docs/org.org#asynchronously-r
 
 #+BEGIN_SRC emacs-lisp
 (use-package paren-face
-:defer t
-:config
-  (add-hook 'prog-mode-hook #'paren-face-mode))
+  :defer t
+  :ensure t
+  :hook ((common-lisp-mode . paren-face-mode)
+         (emacs-lisp-mode . paren-face-mode)
+         (scheme-mode . paren-face-mode)
+         (racket-mode . paren-face-mode)
+         (hy-mode . paren-face-mode)
+         (lfe-mode . paren-face-mode)
+         (clojure-mode . paren-face-mode)))
 #+END_SRC
 
 *** lisp - aggressive indent

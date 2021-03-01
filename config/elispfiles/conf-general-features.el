@@ -8,9 +8,12 @@
   :config
   (set-face-attribute
    'aw-leading-char-face nil
-   :foreground "deep sky blue"
+   :foreground "white"
+   :background "red"
    :weight 'bold
-   :height 3.0)
+   :overline t
+   :box '(:line-width 1 :color "orange")
+   :height 1.5)
   (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l)
         ;aw-dispatch-always t
         aw-dispatch-alist
@@ -180,7 +183,7 @@
 (setq diredp-hide-details-initially-flag nil)
 
 
-(use-package dired-narrow)
+;;(use-package dired-narrow)
 
 (use-package dired+
   :init (setq diredp-hide-details-initially-flag nil)
@@ -196,6 +199,19 @@
             ;(set-face-background 'diredp-no-priv     "black")
             ;(set-face-foreground 'diredp-date-time   "#74749A9AF7F7")
 ))
+;; (use-package ranger :ensure t)  ;; may be enable later.
+
+(use-package dired-ranger :ensure t) ;;keybings are defined in conf-keybindings.org
+
+;;narrow dired to match filter
+(use-package dired-narrow :ensure t) ;;also see conf-keybindings.org
+
+(use-package bookmark+
+  :config
+  (progn
+    (setq bookmark-version-control t
+          ;; auto-save bookmarks
+          bookmark-save-flag 1)))
 
 (use-package company
   :config
@@ -258,6 +274,13 @@ directory to make multiple eshell windows easier."
             (lambda ()
               (bind-keys :map eshell-mode-map
                          ("C-d" . ha/eshell-quit-or-delete-char))))
+
+;; A simple eshell two line prompt  from: https://stackoverflow.com/questions/59236226/place-eshell-prompts-to-the-other-line
+(defun your-eshell-prompt-function ()
+  (setq eshell-prompt-regexp "^λ ")
+  (format "%s\nλ " (abbreviate-file-name (eshell/pwd))))
+
+(setq eshell-prompt-function #'your-eshell-prompt-function)
 
 (use-package zoom-window
 :config

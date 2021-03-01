@@ -85,7 +85,6 @@
 (setq inhibit-compacting-font-caches t)
 
 ;(setq-default show-trailing-whitespace t)
-
 (setq default-tab-width 4)
 (setq tab-width 4)
 

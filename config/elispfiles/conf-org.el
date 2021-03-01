@@ -19,6 +19,7 @@
 
 (setq org-preview-latex-default-process 'dvipng)
 
+(use-package plantuml-mode :ensure t)
 (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/tools/plantuml.jar"))
 
 (setq

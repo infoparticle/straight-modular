@@ -2,7 +2,7 @@
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
-Last Saved: "December 29 Tuesday, 2020"
+Last Saved: "January 07 Thursday, 2021"
 
 * Enabled Config
  :PROPERTIES:
@@ -39,6 +39,7 @@ Last Saved: "December 29 Tuesday, 2020"
 #+end_src
 *** org-plantuml
 #+BEGIN_SRC emacs-lisp
+(use-package plantuml-mode :ensure t)
 (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/tools/plantuml.jar"))
 #+END_SRC
 *** Bulk Config

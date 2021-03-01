@@ -1,4 +1,4 @@
-(set-face-font 'default "Roboto Mono Light 10")
+(set-face-font 'default "Roboto Mono Light 11")
 ;(load-file (expand-file-name "config/themes/my-default-theme.el" user-emacs-directory))
 
 (use-package autothemer :ensure t)
@@ -21,10 +21,10 @@
   (doom-themes-visual-bell-config)
 
   ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
+  ;;(doom-themes-neotree-config)
   ;; or for treemacs users
-  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
-  (doom-themes-treemacs-config)
+  ;; (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  ;;(doom-themes-treemacs-config)
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
@@ -56,7 +56,7 @@
           treemacs-max-git-entries               5000
           treemacs-missing-project-action        'ask
           treemacs-move-forward-on-expand        nil
-          treemacs-no-png-images                 nil
+          treemacs-no-png-images                 t      ;disable icons
           treemacs-no-delete-other-windows       t
           treemacs-project-follow-cleanup        nil
           treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
@@ -77,6 +77,12 @@
           treemacs-user-mode-line-format         nil
           treemacs-user-header-line-format       nil
           treemacs-width                         35)
+    (treemacs-modify-theme "Default"
+      :icon-directory "~/.emacs.d/icons"
+      :config
+      (progn
+        (treemacs-create-icon :icon "+" :extensions (dir-closed))
+        (treemacs-create-icon :icon "-" :extensions (dir-open))))
 
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
@@ -109,11 +115,12 @@
   :after treemacs projectile
   )
 
-(use-package treemacs-icons-dired
-  :after treemacs dired
-
-  :config (treemacs-icons-dired-mode))
-
 (use-package neotree
-:config
-(setq neo-theme nil))
+  :config
+  (progn
+    (setq neo-theme 'nerd
+          neo-window-fixed-size nil)
+    (with-system windows-nt
+      (defun neotree-open-file-in-system-application ()
+        (interactive)
+        (shell-command (concat "start " (neo-buffer--get-filename-current-line)))))))

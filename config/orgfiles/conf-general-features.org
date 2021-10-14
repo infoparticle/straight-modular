@@ -1,7 +1,7 @@
 #+TITLE: Conf Behaviour
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "January 14 Thursday, 2021"
+Last Saved: "June 01 Tuesday, 2021"
 
 * Enabled Config
  :PROPERTIES:
@@ -386,19 +386,6 @@ just zoom-window is sufficient!
  '(zoom-window-mode-line-color "lightGreen"))
 )
 #+END_SRC
-** buffer management: persp-mode
-
-https://github.com/Bad-ptr/persp-mode.el
-
-#+begin_src emacs-lisp
-(use-package persp-mode
-  :config
-  (persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
-  (add-hook 'persp-mode
-            (lambda()
-              (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)
-              (global-set-key (kbd "C-x k") #'persp-kill-buffer))))
-#+end_src
 ** zel recent files command
 
 #+BEGIN_SRC emacs-lisp
@@ -416,7 +403,6 @@ https://github.com/Bad-ptr/persp-mode.el
   (setq org-agenda-root-dir "~/.em/emacs-apps/orgagenda") ; default
   )
 #+END_SRC
-
 ** hyperbole
 (use-package hyperbole :ensure t)
 
@@ -429,7 +415,6 @@ https://github.com/Bad-ptr/persp-mode.el
 #+BEGIN_SRC emacs-lisp
 (use-package hyperbole :ensure t)
 #+END_SRC
-
 ** org-tree-slide
 
 #+BEGIN_SRC emacs-lisp
@@ -631,3 +616,18 @@ Not working not sure
     (ivy-posframe-mode 1)))
 
 #+END_SRC
+
+** buffer management: persp-mode
+
+https://github.com/Bad-ptr/persp-mode.el
+
+keeps too many open files and slows down the startup significantly, just list of buffers should be okay.
+#+begin_src emacs-lisp
+(use-package persp-mode
+  :config
+  (persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
+  (add-hook 'persp-mode
+            (lambda()
+              (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)
+              (global-set-key (kbd "C-x k") #'persp-kill-buffer))))
+#+end_src

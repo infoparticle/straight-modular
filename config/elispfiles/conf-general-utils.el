@@ -201,3 +201,17 @@ Version 2017-03-12"
           (match-end 0)
           'face (list :background (match-string-no-properties 0)))))))
   (font-lock-flush))
+
+(defun my/formatted-copy-to-clipboard ()
+"Export region to HTML, and copy it to the clipboard."
+  (interactive)
+  (save-window-excursion
+    (let* ((buf (org-export-to-buffer 'html "*Formatted Copy*" nil nil t t))
+           (html (with-current-buffer buf (buffer-string))))
+      (with-current-buffer buf
+        (shell-command-on-region
+         (point-min)
+         (point-max)
+         "pandoc -t html -o - | htmlclip"))
+      ;; (kill-buffer buf)
+      )))

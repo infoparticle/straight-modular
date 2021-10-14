@@ -1,7 +1,7 @@
 #+TITLE: Conf General Utils
 #+AUTHOR: Gopinath Sadasivam
 #+BABEL: :cache yes
-Last Saved: "March 01 Monday, 2021"
+Last Saved: "June 05 Saturday, 2021"
 
 
 * Enabled Config
@@ -237,6 +237,27 @@ Version 2017-03-12"
           (match-end 0)
           'face (list :background (match-string-no-properties 0)))))))
   (font-lock-flush))
+#+END_SRC
+** copy html formatted text to clipboard
+
+Things to experiment: https://github.com/DogLooksGood/org-html-themify
+
+https://emacs.stackexchange.com/questions/3374/set-the-background-of-org-exported-code-blocks-according-to-theme
+
+#+BEGIN_SRC emacs-lisp
+(defun my/formatted-copy-to-clipboard ()
+"Export region to HTML, and copy it to the clipboard."
+  (interactive)
+  (save-window-excursion
+    (let* ((buf (org-export-to-buffer 'html "*Formatted Copy*" nil nil t t))
+           (html (with-current-buffer buf (buffer-string))))
+      (with-current-buffer buf
+        (shell-command-on-region
+         (point-min)
+         (point-max)
+         "pandoc -t html -o - | htmlclip"))
+      ;; (kill-buffer buf)
+      )))
 #+END_SRC
 
 * Disabled Config

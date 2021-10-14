@@ -7,54 +7,24 @@
  :header-args: :tangle yes
  :END:
 
- #+BEGIN_SRC emacs-lisp
-(message "Conf experiment loaded!")
-#+END_SRC
-* Disabled Config
- :PROPERTIES:
- :header-args: :tangle no
- :END:
-
-** set fringe
- #+BEGIN_SRC emacs-lisp
-(defun eos/set-fringe-background ()
-  "Set the fringe background to the same color as the regular background."
-  (setq eos/fringe-background-color
-        (face-background "gray95"))
-  (custom-set-faces
-   `(fringe ((t (:background "green"))))))
-
-(add-hook 'after-init-hook #'eos/set-fringe-background)
-
-(eos/set-fringe-background)
-
- #+END_SRC
-** cousel-recentf
-
-#+BEGIN_SRC
-(setq initial-buffer-choice 'counsel-recentf)
-#+END_SRC
-
-
-
-** simple dashboard   :noexport:
-
+** simple dashboard
 
 #+BEGIN_SRC emacs-lisp
-
-
-(use-package dashboard :config
-             (dashboard-setup-startup-hook)
-             (setq dashboard-banner-logo-title  "test title"
-                   dashboard-set-init-info t
-                   dashboard-center-content t
-                   dashboard-set-heading-icons t
-                   dashboard-set-file-icons t
-                   dashboard-items '((recents . 5)
-                                     (bookmarks . 5)
-                                     (projects . 5)
-                                     (agenda . 5))
-                   initial-buffer-choice (lambda () (switch-to-buffer "*dashboard*"))))
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-banner-logo-title  "Welcome!"
+        dashboard-startup-banner "~/.emacs.d/resources/images/screen-on-fire.png"
+        dashboard-center-content t
+        dashboard-set-file-icons nil
+        dashboard-set-heading-icons nil
+        dashboard-set-init-info t
+        dashboard-set-navigator t
+        dashboard-items '((recents . 25)
+                          (bookmarks . 25)
+                          (projects . 25)
+                          (agenda . 25))
+        initial-buffer-choice (lambda () (switch-to-buffer "*dashboard*"))))
 
 #+END_SRC
 
@@ -98,6 +68,36 @@
 
 #+RESULTS:
 : ((recents . 5) (bookmarks . 5) (projects . 5) (agenda . 5) (registers . 5))
+
+
+
+ #+BEGIN_SRC emacs-lisp
+(message "Conf experiment loaded!")
+#+END_SRC
+* Disabled Config
+ :PROPERTIES:
+ :header-args: :tangle no
+ :END:
+
+** set fringe
+ #+BEGIN_SRC emacs-lisp
+(defun eos/set-fringe-background ()
+  "Set the fringe background to the same color as the regular background."
+  (setq eos/fringe-background-color
+        (face-background "gray95"))
+  (custom-set-faces
+   `(fringe ((t (:background "green"))))))
+
+(add-hook 'after-init-hook #'eos/set-fringe-background)
+
+(eos/set-fringe-background)
+
+ #+END_SRC
+** cousel-recentf
+
+#+BEGIN_SRC
+(setq initial-buffer-choice 'counsel-recentf)
+#+END_SRC
 
 
 

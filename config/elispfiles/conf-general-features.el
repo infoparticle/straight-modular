@@ -83,7 +83,7 @@
         ivy-wrap nil)
 
   (ivy-mode 1)
-  ;; add ¡®recentf-mode¡¯ and bookmarks to ¡®ivy-switch-buffer¡¯.
+  ;; add Â¡Â®recentf-modeÂ¡Â¯ and bookmarks to Â¡Â®ivy-switch-bufferÂ¡Â¯.
   (setq ivy-use-virtual-buffers t)
   ;; number of result lines to display
   (setq ivy-height 10)
@@ -277,8 +277,8 @@ directory to make multiple eshell windows easier."
 
 ;; A simple eshell two line prompt  from: https://stackoverflow.com/questions/59236226/place-eshell-prompts-to-the-other-line
 (defun your-eshell-prompt-function ()
-  (setq eshell-prompt-regexp "^λ ")
-  (format "%s\nλ " (abbreviate-file-name (eshell/pwd))))
+  (setq eshell-prompt-regexp "^Î» ")
+  (format "%s\nÎ» " (abbreviate-file-name (eshell/pwd))))
 
 (setq eshell-prompt-function #'your-eshell-prompt-function)
 
@@ -288,14 +288,6 @@ directory to make multiple eshell windows easier."
 (custom-set-variables
  '(zoom-window-mode-line-color "lightGreen"))
 )
-
-(use-package persp-mode
-  :config
-  (persp-mode t) ; don't load persp-mode by default, let's have sane emacs windows!
-  (add-hook 'persp-mode
-            (lambda()
-              (global-set-key (kbd "C-x b") #'persp-switch-to-buffer)
-              (global-set-key (kbd "C-x k") #'persp-kill-buffer))))
 
 (use-package zel
   :bind (("C-x C-r" . zel-find-file-frecent))

@@ -1,6 +1,6 @@
 (setq my-owspc-dir "~/.em/em.owspc/")
 (defun /o/scratch       () (interactive) (find-file  (concat my-owspc-dir "inbox/owspc-scratch.org")))
-(defun /o/inbox         () (interactive) (find-file  (concat my-owspc-dir "inbox/owspc-inbox.org/owspc-inbox.org")))
+(defun /o/inbox         () (interactive) (find-file  (concat my-owspc-dir "inbox/owspc-inbox/owspc-inbox.org")))
 (defun /o/backlog       () (interactive) (find-file  (concat my-owspc-dir "apps/agenda/goals-backlog.org")))
 (defun /o/web-bookmarks () (interactive) (find-file  (concat my-owspc-dir "apps/bookmarks/web-bookmarks.org")))
 (defun /o/gtd           () (interactive) (find-file  "~/.em/emacs-apps/orgagenda/gtd-inbox.org"))
@@ -27,8 +27,8 @@
 (defun my/open-wiki (wiki-root wiki-name)
   (if(file-directory-p wiki-root)
       (progn
-        (persp-mode t)
-        (persp-frame-switch wiki-name)
+        ;(persp-mode t)
+        ;(persp-frame-switch wiki-name)
         (delete-other-windows)
         (find-file  (concat wiki-root "/" wiki-name "/contents/index.org"))
         (split-window-right 30)
